@@ -1,2069 +1,1550 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Grupo Navarro Comunicaciones S.A. - Emisora líder en Chiriquí, Panamá."/>
-  <meta name="keywords" content="navarro, comunicaciones, noticias, emisora, radio, Chiriquí, Panamá"/>
-  <meta name="author" content="Grupo Navarro Comunicaciones S.A."/>
-  <meta property="og:title" content="Grupo Navarro Comunicaciones S.A. | Emisora & Espacio Informativo"/>
-  <meta property="og:description" content="Tu fuente principal de noticias e información en Chiriquí, Panamá."/>
-  <meta property="og:type" content="website"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Grupo Navarro Comunicaciones S.A. - Emisora líder en Chiriquí, Panamá." />
+  <meta name="keywords" content="navarro, comunicaciones, noticias, emisora, radio, Chiriquí, Panamá" />
+  <meta name="author" content="Grupo Navarro Comunicaciones S.A." />
+  <meta property="og:title" content="Grupo Navarro Comunicaciones S.A. | Emisora & Espacio Informativo" />
+  <meta property="og:description" content="Tu fuente principal de noticias e información en Chiriquí, Panamá." />
+  <meta property="og:type" content="website" />
   <title>Grupo Navarro Comunicaciones S.A. | Emisora & Espacio Informativo</title>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
 
-  <!-- ===================== FIREBASE SDK (compat v10) ===================== -->
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <!-- FAVICON -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='15' fill='%230d1b4b'/><text x='50%' y='58%' dominant-baseline='middle' text-anchor='middle' font-size='45' fill='%2300c3ff'>GN</text></svg>" type="image/svg+xml"/>
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='15' fill='%230d1b4b'/><text x='50%' y='58%' dominant-baseline='middle' text-anchor='middle' font-size='45' fill='%2300c3ff'>GN</text></svg>" type="image/svg+xml" />
 
-<style>
-/* ============================================================
-   RESET & VARIABLES
-============================================================ */
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --navy-deep:#0a0f2e;
-  --navy-mid:#0d1b4b;
-  --navy-light:#1a2a6c;
-  --navy-card:#111d4a;
-  --cyan:#00c3ff;
-  --cyan-bright:#00e5ff;
-  --cyan-glow:rgba(0,195,255,0.35);
-  --cyan-soft:rgba(0,229,255,0.12);
-  --white:#f0f8ff;
-  --gray:#8ba3c7;
-  --success:#00e676;
-  --warning:#ffb300;
-  --danger:#ff1744;
-  --font-head:'Orbitron',sans-serif;
-  --font-body:'Exo 2',sans-serif;
-  --font-ui:'Rajdhani',sans-serif;
-  --transition:.35s ease;
-  --radius:12px;
-  --radius-lg:20px;
-}
-html{scroll-behavior:smooth;font-size:16px}
-body{
-  background:var(--navy-deep);
-  color:var(--white);
-  font-family:var(--font-body);
-  overflow-x:hidden;
-  cursor:default;
-}
-::selection{background:var(--cyan);color:var(--navy-deep)}
-a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
-ul{list-style:none}
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* SCROLLBAR */
-::-webkit-scrollbar{width:6px}
-::-webkit-scrollbar-track{background:var(--navy-deep)}
-::-webkit-scrollbar-thumb{background:var(--cyan);border-radius:3px}
+    :root{
+      --navy-deep:#0a0f2e;
+      --navy-mid:#0d1b4b;
+      --navy-light:#1a2a6c;
+      --navy-card:#111d4a;
+      --cyan:#00c3ff;
+      --cyan-bright:#00e5ff;
+      --cyan-glow:rgba(0,195,255,0.35);
+      --cyan-soft:rgba(0,229,255,0.12);
+      --white:#f0f8ff;
+      --gray:#8ba3c7;
+      --success:#00e676;
+      --warning:#ffb300;
+      --danger:#ff1744;
+      --font-head:'Orbitron',sans-serif;
+      --font-body:'Exo 2',sans-serif;
+      --font-ui:'Rajdhani',sans-serif;
+      --transition:.35s ease;
+      --radius:12px;
+      --radius-lg:20px;
+    }
 
-/* CANVAS */
-#particles-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.5;}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{
+      background:var(--navy-deep);
+      color:var(--white);
+      font-family:var(--font-body);
+      overflow-x:hidden;
+    }
 
-/* ============================================================
-   FIREBASE STATUS BADGE
-============================================================ */
-#fb-status{
-  position:fixed;bottom:1.5rem;left:1.5rem;z-index:9998;
-  display:flex;align-items:center;gap:.5rem;
-  background:rgba(10,15,46,.95);
-  border:1px solid rgba(0,195,255,.25);
-  border-radius:20px;padding:.35rem .9rem;
-  font-size:.72rem;letter-spacing:1px;color:var(--gray);
-  font-family:var(--font-head);
-  transition:all .4s ease;
-  box-shadow:0 4px 16px rgba(0,0,0,.4);
-}
-#fb-status .fb-dot{
-  width:8px;height:8px;border-radius:50%;
-  background:var(--warning);
-  box-shadow:0 0 8px var(--warning);
-  transition:all .4s ease;
-}
-#fb-status.connected .fb-dot{background:var(--success);box-shadow:0 0 8px var(--success);}
-#fb-status.connected{border-color:rgba(0,230,118,.3);color:var(--success);}
-#fb-status.error .fb-dot{background:var(--danger);box-shadow:0 0 8px var(--danger);}
-#fb-status.error{border-color:rgba(255,23,68,.3);color:var(--danger);}
+    ::selection{background:var(--cyan);color:var(--navy-deep)}
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    ul{list-style:none}
+    button{font-family:inherit}
 
-/* ============================================================
-   NAVBAR
-============================================================ */
-.navbar{
-  position:fixed;top:0;left:0;right:0;z-index:1000;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 3rem;height:72px;
-  background:rgba(10,15,46,.92);
-  backdrop-filter:blur(18px);
-  border-bottom:1px solid rgba(0,195,255,.18);
-  transition:var(--transition);
-}
-.navbar.scrolled{background:rgba(10,15,46,.98);box-shadow:0 4px 30px rgba(0,195,255,.15);}
-.nav-logo{
-  display:flex;align-items:center;gap:.75rem;
-  font-family:var(--font-head);font-size:1.1rem;
-  color:var(--cyan-bright);text-shadow:0 0 15px var(--cyan);
-  letter-spacing:2px;font-weight:700;
-}
-.nav-logo .logo-icon{
-  width:42px;height:42px;border-radius:10px;
-  background:linear-gradient(135deg,var(--navy-light),var(--navy-deep));
-  border:2px solid var(--cyan);
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.3rem;color:var(--cyan);
-  box-shadow:0 0 14px var(--cyan-glow);
-  flex-shrink:0;
-}
-.nav-links{display:flex;align-items:center;gap:2rem;}
-.nav-links a{
-  font-family:var(--font-ui);font-size:1rem;font-weight:600;
-  color:var(--white);letter-spacing:1.5px;text-transform:uppercase;
-  padding:.4rem 0;border-bottom:2px solid transparent;
-  transition:var(--transition);position:relative;
-}
-.nav-links a::after{
-  content:'';position:absolute;bottom:-2px;left:0;right:0;
-  height:2px;background:var(--cyan);
-  transform:scaleX(0);transform-origin:left;
-  transition:transform .3s ease;
-}
-.nav-links a:hover,.nav-links a.active{color:var(--cyan);text-shadow:0 0 8px var(--cyan-glow);}
-.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);}
-.nav-btn{
-  background:transparent;border:2px solid var(--cyan);
-  color:var(--cyan);font-family:var(--font-head);
-  font-size:.75rem;letter-spacing:2px;padding:.5rem 1.2rem;
-  border-radius:6px;cursor:pointer;
-  transition:var(--transition);text-transform:uppercase;
-  box-shadow:0 0 10px rgba(0,195,255,.2);
-}
-.nav-btn:hover{background:var(--cyan);color:var(--navy-deep);box-shadow:0 0 20px var(--cyan);}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.4rem;background:none;border:none;}
-.hamburger span{display:block;width:26px;height:2px;background:var(--cyan);border-radius:2px;transition:var(--transition);}
-.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.hamburger.open span:nth-child(2){opacity:0}
-.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    ::-webkit-scrollbar{width:6px}
+    ::-webkit-scrollbar-track{background:var(--navy-deep)}
+    ::-webkit-scrollbar-thumb{background:var(--cyan);border-radius:3px}
 
-/* PAGES SPA */
-.page{display:none;min-height:100vh;padding-top:72px;position:relative;z-index:1;}
-.page.active{display:block}
+    #particles-canvas{
+      position:fixed;
+      inset:0;
+      width:100%;
+      height:100%;
+      pointer-events:none;
+      z-index:0;
+      opacity:.45;
+    }
 
-/* SECTION UTILITY */
-.section{padding:5rem 3rem;}
-.container{max-width:1200px;margin:0 auto;}
-.section-tag{
-  display:inline-block;font-family:var(--font-head);font-size:.7rem;
-  letter-spacing:4px;text-transform:uppercase;
-  color:var(--cyan);border:1px solid var(--cyan);
-  padding:.3rem .9rem;border-radius:20px;margin-bottom:1.2rem;
-  box-shadow:0 0 12px rgba(0,195,255,.2);
-}
-.section-title{font-family:var(--font-head);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;line-height:1.2;margin-bottom:1rem;}
-.section-title span{color:var(--cyan);text-shadow:0 0 20px var(--cyan-glow);}
-.section-sub{color:var(--gray);font-size:1.05rem;max-width:600px;line-height:1.7;margin-bottom:3rem;}
-.divider{width:60px;height:3px;background:linear-gradient(90deg,var(--cyan),transparent);margin:1rem 0 2.5rem;border-radius:2px;}
+    #db-status{
+      position:fixed;
+      bottom:1.2rem;
+      left:1.2rem;
+      z-index:9999;
+      display:flex;
+      align-items:center;
+      gap:.55rem;
+      background:rgba(10,15,46,.95);
+      border:1px solid rgba(0,195,255,.25);
+      border-radius:20px;
+      padding:.38rem .95rem;
+      font-size:.72rem;
+      letter-spacing:1px;
+      color:var(--gray);
+      font-family:var(--font-head);
+      box-shadow:0 4px 16px rgba(0,0,0,.4);
+    }
+    #db-status .db-dot{
+      width:8px;height:8px;border-radius:50%;
+      background:var(--warning);
+      box-shadow:0 0 8px var(--warning);
+    }
+    #db-status.connected{border-color:rgba(0,230,118,.28);color:var(--success)}
+    #db-status.connected .db-dot{background:var(--success);box-shadow:0 0 8px var(--success)}
+    #db-status.error{border-color:rgba(255,23,68,.3);color:var(--danger)}
+    #db-status.error .db-dot{background:var(--danger);box-shadow:0 0 8px var(--danger)}
 
-/* BUTTONS */
-.btn-primary{
-  display:inline-flex;align-items:center;gap:.5rem;
-  background:linear-gradient(135deg,var(--cyan),#006fa0);
-  color:var(--navy-deep);font-family:var(--font-head);
-  font-size:.8rem;font-weight:700;letter-spacing:2px;
-  padding:.85rem 2rem;border-radius:8px;border:none;cursor:pointer;
-  text-transform:uppercase;transition:var(--transition);
-  box-shadow:0 4px 20px rgba(0,195,255,.4);
-  position:relative;overflow:hidden;
-}
-.btn-primary::before{
-  content:'';position:absolute;top:-50%;left:-50%;
-  width:200%;height:200%;
-  background:conic-gradient(transparent,rgba(255,255,255,.3),transparent 30%);
-  animation:btn-spin 3s linear infinite;
-}
-@keyframes btn-spin{to{transform:rotate(360deg)}}
-.btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,195,255,.6);}
-.btn-outline{
-  display:inline-flex;align-items:center;gap:.5rem;
-  background:transparent;color:var(--cyan);
-  font-family:var(--font-head);font-size:.8rem;
-  font-weight:600;letter-spacing:2px;
-  padding:.85rem 2rem;border-radius:8px;
-  border:2px solid var(--cyan);cursor:pointer;
-  text-transform:uppercase;transition:var(--transition);
-  box-shadow:0 0 12px rgba(0,195,255,.15);
-}
-.btn-outline:hover{background:var(--cyan);color:var(--navy-deep);box-shadow:0 4px 25px rgba(0,195,255,.5);transform:translateY(-3px);}
+    .navbar{
+      position:fixed;
+      top:0;left:0;right:0;
+      z-index:1000;
+      height:72px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 3rem;
+      background:rgba(10,15,46,.92);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(0,195,255,.18);
+      transition:var(--transition);
+    }
+    .navbar.scrolled{
+      background:rgba(10,15,46,.98);
+      box-shadow:0 4px 30px rgba(0,195,255,.15);
+    }
 
-/* CARDS */
-.card{
-  background:var(--navy-card);border:1px solid rgba(0,195,255,.15);
-  border-radius:var(--radius);padding:2rem;
-  transition:var(--transition);position:relative;overflow:hidden;
-}
-.card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent,var(--cyan),transparent);
-  opacity:0;transition:var(--transition);
-}
-.card:hover{border-color:rgba(0,195,255,.5);transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,195,255,.15);}
-.card:hover::before{opacity:1}
+    .nav-logo{
+      display:flex;
+      align-items:center;
+      gap:.75rem;
+      font-family:var(--font-head);
+      font-size:1rem;
+      color:var(--cyan-bright);
+      text-shadow:0 0 15px var(--cyan);
+      letter-spacing:1.3px;
+      font-weight:700;
+    }
+    .nav-logo .logo-icon{
+      width:42px;height:42px;border-radius:10px;
+      background:linear-gradient(135deg,var(--navy-light),var(--navy-deep));
+      border:2px solid var(--cyan);
+      display:flex;align-items:center;justify-content:center;
+      font-size:1.2rem;color:var(--cyan);
+      box-shadow:0 0 14px var(--cyan-glow);
+      flex-shrink:0;
+    }
 
-/* FADE IN */
-.fade-up{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease;}
-.fade-up.visible{opacity:1;transform:translateY(0)}
+    .nav-links{display:flex;align-items:center;gap:1.7rem}
+    .nav-links a{
+      font-family:var(--font-ui);
+      font-size:1rem;
+      font-weight:600;
+      color:var(--white);
+      letter-spacing:1.5px;
+      text-transform:uppercase;
+      padding:.35rem 0;
+      position:relative;
+      transition:var(--transition);
+    }
+    .nav-links a::after{
+      content:'';
+      position:absolute;
+      left:0;right:0;bottom:-2px;
+      height:2px;
+      background:var(--cyan);
+      transform:scaleX(0);
+      transform-origin:left;
+      transition:transform .3s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a.active{
+      color:var(--cyan);
+      text-shadow:0 0 8px var(--cyan-glow);
+    }
+    .nav-links a:hover::after,
+    .nav-links a.active::after{
+      transform:scaleX(1);
+    }
 
-/* ============================================================
-   HERO
-============================================================ */
-.hero{
-  position:relative;min-height:100vh;
-  display:flex;align-items:center;overflow:hidden;
-  background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(26,42,108,.6),transparent),var(--navy-deep);
-}
-.hero-grid-bg{
-  position:absolute;inset:0;
-  background-image:linear-gradient(rgba(0,195,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,195,255,.04) 1px,transparent 1px);
-  background-size:60px 60px;
-  mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,black,transparent);
-}
-.hero-content{
-  position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:0 3rem;
-  display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:4rem;width:100%;
-}
-.hero-badge{
-  display:inline-flex;align-items:center;gap:.6rem;
-  background:rgba(0,195,255,.1);border:1px solid rgba(0,195,255,.3);
-  padding:.4rem 1rem;border-radius:20px;
-  font-size:.8rem;letter-spacing:2px;color:var(--cyan);
-  text-transform:uppercase;margin-bottom:1.5rem;
-  animation:pulse-badge 2s ease infinite;
-}
-@keyframes pulse-badge{0%,100%{box-shadow:0 0 0 0 rgba(0,195,255,.4)}50%{box-shadow:0 0 0 8px rgba(0,195,255,0)}}
-.hero-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--cyan);animation:blink 1.2s ease infinite;}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
-.hero-title{font-family:var(--font-head);font-size:clamp(2.2rem,5vw,4rem);font-weight:900;line-height:1.1;margin-bottom:1.5rem;}
-.hero-title .glitch{
-  position:relative;display:inline-block;color:var(--cyan);
-  text-shadow:0 0 30px var(--cyan-glow),0 0 60px rgba(0,195,255,.3);
-  animation:glitch 4s infinite;
-}
-@keyframes glitch{
-  0%,92%,100%{text-shadow:0 0 30px var(--cyan-glow)}
-  93%{text-shadow:-3px 0 #ff0040,3px 0 var(--cyan)}
-  94%{text-shadow:3px 0 #ff0040,-3px 0 var(--cyan)}
-  95%{text-shadow:-3px 0 var(--cyan),3px 0 #ff0040}
-  96%{text-shadow:0 0 30px var(--cyan-glow)}
-}
-.hero-desc{color:var(--gray);font-size:1.1rem;line-height:1.8;margin-bottom:2.5rem;max-width:500px;}
-.hero-cta{display:flex;gap:1rem;flex-wrap:wrap;}
-.hero-visual{position:relative;display:flex;align-items:center;justify-content:center;}
-.hero-orb{
-  width:380px;height:380px;border-radius:50%;
-  background:radial-gradient(circle at 35% 35%,var(--navy-light),var(--navy-deep));
-  border:2px solid rgba(0,195,255,.25);position:relative;
-  box-shadow:0 0 80px rgba(0,195,255,.2),inset 0 0 80px rgba(0,195,255,.05);
-  animation:orb-pulse 4s ease infinite;
-  display:flex;align-items:center;justify-content:center;
-}
-@keyframes orb-pulse{
-  0%,100%{box-shadow:0 0 80px rgba(0,195,255,.2),inset 0 0 80px rgba(0,195,255,.05)}
-  50%{box-shadow:0 0 120px rgba(0,195,255,.35),inset 0 0 100px rgba(0,195,255,.1)}
-}
-.hero-orb::before,.hero-orb::after{content:'';position:absolute;border-radius:50%;border:1px solid rgba(0,195,255,.15);animation:ring-spin 8s linear infinite;}
-.hero-orb::before{width:120%;height:120%;animation-duration:8s}
-.hero-orb::after{width:145%;height:145%;animation-duration:12s;animation-direction:reverse;border-color:rgba(0,195,255,.08)}
-@keyframes ring-spin{to{transform:rotate(360deg)}}
-.hero-logo-center{font-family:var(--font-head);font-size:2rem;font-weight:900;color:var(--cyan);text-align:center;line-height:1.2;text-shadow:0 0 30px var(--cyan-glow);z-index:1;}
-.hero-logo-center small{display:block;font-size:.65rem;letter-spacing:6px;color:var(--gray);margin-top:.3rem}
-.orbit-tag{position:absolute;background:rgba(13,27,75,.9);border:1px solid var(--cyan);padding:.35rem .8rem;border-radius:20px;font-size:.72rem;letter-spacing:1px;color:var(--cyan);white-space:nowrap;box-shadow:0 0 10px rgba(0,195,255,.3);}
-.orbit-tag:nth-child(2){top:8%;left:50%;transform:translateX(-50%)}
-.orbit-tag:nth-child(3){top:50%;right:-10%;transform:translateY(-50%)}
-.orbit-tag:nth-child(4){bottom:10%;left:50%;transform:translateX(-50%)}
-.orbit-tag:nth-child(5){top:50%;left:-12%;transform:translateY(-50%)}
+    .nav-btn,
+    .btn-primary,
+    .btn-outline{
+      cursor:pointer;
+      transition:var(--transition);
+    }
 
-/* STATS */
-.stats-section{background:var(--navy-mid);border-top:1px solid rgba(0,195,255,.12);border-bottom:1px solid rgba(0,195,255,.12);padding:3.5rem 3rem;}
-.stats-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;}
-.stat-item{text-align:center;}
-.stat-num{font-family:var(--font-head);font-size:clamp(2rem,4vw,3rem);font-weight:800;color:var(--cyan);text-shadow:0 0 20px var(--cyan-glow);display:block;line-height:1;margin-bottom:.3rem;}
-.stat-label{font-size:.85rem;letter-spacing:2px;text-transform:uppercase;color:var(--gray);}
+    .nav-btn{
+      background:transparent;
+      border:2px solid var(--cyan);
+      color:var(--cyan);
+      font-family:var(--font-head);
+      font-size:.75rem;
+      letter-spacing:2px;
+      padding:.5rem 1.2rem;
+      border-radius:6px;
+      text-transform:uppercase;
+      box-shadow:0 0 10px rgba(0,195,255,.2);
+    }
+    .nav-btn:hover{
+      background:var(--cyan);
+      color:var(--navy-deep);
+      box-shadow:0 0 20px var(--cyan);
+    }
 
-/* MISSION/VISION */
-.mv-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem;}
-.mv-card{background:var(--navy-card);border:1px solid rgba(0,195,255,.18);border-radius:var(--radius-lg);padding:2.5rem;position:relative;overflow:hidden;transition:var(--transition);}
-.mv-card::after{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(0,195,255,.08),transparent 70%);}
-.mv-card:hover{border-color:rgba(0,195,255,.4);transform:translateY(-4px)}
-.mv-icon{font-size:2.5rem;color:var(--cyan);margin-bottom:1rem;text-shadow:0 0 20px var(--cyan-glow);}
-.mv-card h3{font-family:var(--font-head);font-size:1.1rem;letter-spacing:3px;color:var(--cyan);margin-bottom:1rem;}
-.mv-card p{color:var(--gray);line-height:1.75;font-size:.95rem;}
+    .hamburger{
+      display:none;
+      flex-direction:column;
+      gap:5px;
+      cursor:pointer;
+      background:none;
+      border:none;
+      padding:.3rem;
+    }
+    .hamburger span{
+      width:26px;height:2px;background:var(--cyan);border-radius:2px;
+      transition:var(--transition);
+      display:block;
+    }
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
-/* NEWS */
-.news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem;margin-top:2rem;}
-.news-card{background:var(--navy-card);border:1px solid rgba(0,195,255,.12);border-radius:var(--radius);overflow:hidden;transition:var(--transition);}
-.news-card:hover{border-color:rgba(0,195,255,.4);transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,195,255,.15);}
-.news-thumb{height:180px;overflow:hidden;background:linear-gradient(135deg,var(--navy-light),var(--navy-mid));display:flex;align-items:center;justify-content:center;position:relative;}
-.news-thumb-icon{font-size:3.5rem;opacity:.25}
-.news-thumb-badge{position:absolute;top:12px;left:12px;background:var(--cyan);color:var(--navy-deep);font-size:.7rem;font-weight:700;letter-spacing:1px;padding:.2rem .7rem;border-radius:4px;text-transform:uppercase;}
-.news-body{padding:1.4rem;}
-.news-cat{font-size:.72rem;letter-spacing:2px;color:var(--cyan);text-transform:uppercase;margin-bottom:.5rem;}
-.news-title-card{font-family:var(--font-head);font-size:.95rem;font-weight:600;margin-bottom:.7rem;line-height:1.4;transition:var(--transition);}
-.news-card:hover .news-title-card{color:var(--cyan)}
-.news-meta{display:flex;align-items:center;gap:.8rem;font-size:.8rem;color:var(--gray);margin-top:1rem;}
-.news-meta i{color:var(--cyan);font-size:.75rem}
-/* Loading skeleton for news */
-.news-skeleton{background:var(--navy-card);border:1px solid rgba(0,195,255,.08);border-radius:var(--radius);overflow:hidden;}
-.skeleton-thumb{height:180px;background:linear-gradient(90deg,var(--navy-mid) 25%,rgba(0,195,255,.05) 50%,var(--navy-mid) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;}
-.skeleton-body{padding:1.4rem;}
-.skeleton-line{height:14px;border-radius:4px;margin-bottom:.8rem;background:linear-gradient(90deg,var(--navy-mid) 25%,rgba(0,195,255,.05) 50%,var(--navy-mid) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;}
-.skeleton-line.short{width:60%}
-.skeleton-line.medium{width:80%}
-@keyframes shimmer{to{background-position:-200% 0}}
+    .mobile-nav{
+      position:fixed;
+      top:72px;left:0;right:0;
+      background:rgba(10,15,46,.98);
+      border-bottom:1px solid rgba(0,195,255,.18);
+      padding:1.2rem 1.5rem;
+      z-index:990;
+      transform:translateY(-120%);
+      opacity:0;
+      pointer-events:none;
+      transition:transform .35s ease, opacity .35s ease;
+    }
+    .mobile-nav.open{
+      transform:translateY(0);
+      opacity:1;
+      pointer-events:auto;
+    }
+    .mobile-nav a{
+      display:block;
+      padding:.85rem 0;
+      border-bottom:1px solid rgba(0,195,255,.08);
+      font-family:var(--font-ui);
+      font-size:1.05rem;
+      font-weight:600;
+      letter-spacing:2px;
+      text-transform:uppercase;
+    }
+    .mobile-nav a.active,
+    .mobile-nav a:hover{color:var(--cyan)}
 
-/* COLLAGE */
-.collage-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,200px);gap:1rem;margin-top:2rem;}
-.collage-item{background:var(--navy-card);border:1px solid rgba(0,195,255,.12);border-radius:var(--radius);overflow:hidden;position:relative;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--transition);}
-.collage-item:hover{border-color:var(--cyan);box-shadow:0 0 25px rgba(0,195,255,.25);transform:scale(1.02);}
-.collage-item:first-child{grid-row:span 2}
-.collage-inner{position:absolute;inset:0;background:linear-gradient(135deg,var(--navy-light),var(--navy-deep));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;transition:var(--transition);}
-.collage-item:hover .collage-inner{background:linear-gradient(135deg,rgba(0,195,255,.15),var(--navy-deep));}
-.collage-inner i{font-size:2.5rem;color:var(--cyan);opacity:.7;transition:var(--transition);}
-.collage-item:hover .collage-inner i{opacity:1;text-shadow:0 0 15px var(--cyan-glow)}
-.collage-inner span{font-size:.8rem;color:var(--gray);letter-spacing:1px;text-transform:uppercase;}
-.collage-overlay{position:absolute;inset:0;background:rgba(0,195,255,.04);opacity:0;transition:var(--transition);}
-.collage-item:hover .collage-overlay{opacity:1}
+    .page{
+      display:none;
+      min-height:100vh;
+      padding-top:72px;
+      position:relative;
+      z-index:1;
+    }
+    .page.active{display:block}
 
-/* ============================================================
-   CLIENTES PAGE
-============================================================ */
-.clients-hero{text-align:center;padding:5rem 3rem 2rem;background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(26,42,108,.5),transparent);}
-.clients-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;margin-top:3rem;}
-.client-card{background:var(--navy-card);border:1px solid rgba(0,195,255,.12);border-radius:var(--radius);padding:2rem;text-align:center;transition:var(--transition);position:relative;overflow:hidden;}
-.client-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,195,255,.05),transparent);opacity:0;transition:var(--transition);}
-.client-card:hover{border-color:rgba(0,195,255,.45);transform:translateY(-6px);box-shadow:0 14px 40px rgba(0,195,255,.18);}
-.client-card:hover::before{opacity:1}
-.client-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--navy-light),var(--navy-mid));border:2px solid rgba(0,195,255,.3);display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--cyan);margin:0 auto 1.2rem;transition:var(--transition);}
-.client-card:hover .client-avatar{border-color:var(--cyan);box-shadow:0 0 20px rgba(0,195,255,.4);}
-.client-name{font-family:var(--font-head);font-size:.9rem;font-weight:600;margin-bottom:.3rem;}
-.client-type{font-size:.8rem;color:var(--cyan);letter-spacing:1px;margin-bottom:.8rem;}
-.client-desc{font-size:.85rem;color:var(--gray);line-height:1.6;}
-.client-badge{display:inline-block;margin-top:.8rem;background:rgba(0,195,255,.1);border:1px solid rgba(0,195,255,.25);color:var(--cyan);font-size:.72rem;letter-spacing:1px;padding:.25rem .7rem;border-radius:20px;}
-.testimonial-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:2rem;}
-.testimonial-card{background:var(--navy-card);border:1px solid rgba(0,195,255,.12);border-radius:var(--radius);padding:2rem;position:relative;transition:var(--transition);}
-.testimonial-card::before{content:'\201C';position:absolute;top:1rem;left:1.5rem;font-size:5rem;line-height:0;color:rgba(0,195,255,.12);font-family:serif;}
-.testimonial-card:hover{border-color:rgba(0,195,255,.35);transform:translateY(-4px)}
-.t-text{font-size:.92rem;color:var(--gray);line-height:1.7;margin-bottom:1.2rem;}
-.t-author{display:flex;align-items:center;gap:.8rem;}
-.t-ava{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--navy-light),var(--navy-mid));border:1px solid rgba(0,195,255,.3);display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--cyan);flex-shrink:0;}
-.t-name{font-family:var(--font-head);font-size:.8rem;font-weight:600;}
-.t-role{font-size:.75rem;color:var(--gray);}
-.stars{color:var(--cyan);font-size:.8rem;margin-bottom:.8rem;}
+    .section{padding:5rem 3rem}
+    .container{max-width:1200px;margin:0 auto}
 
-/* ============================================================
-   CONTACTOS PAGE
-============================================================ */
-.contact-layout{display:grid;grid-template-columns:1fr 1.3fr;gap:3rem;align-items:start;padding:5rem 3rem;max-width:1200px;margin:0 auto;}
-.contact-info h2{font-family:var(--font-head);font-size:1.8rem;margin-bottom:.5rem;}
-.contact-info h2 span{color:var(--cyan);}
-.contact-info p{color:var(--gray);line-height:1.7;margin-bottom:2rem;}
-.contact-detail{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.5rem;}
-.contact-icon{width:48px;height:48px;flex-shrink:0;background:rgba(0,195,255,.1);border:1px solid rgba(0,195,255,.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--cyan);transition:var(--transition);}
-.contact-detail:hover .contact-icon{background:rgba(0,195,255,.2);border-color:var(--cyan);box-shadow:0 0 15px rgba(0,195,255,.3);}
-.contact-detail h4{font-family:var(--font-head);font-size:.8rem;color:var(--cyan);margin-bottom:.2rem;letter-spacing:1px;}
-.contact-detail p{color:var(--gray);font-size:.9rem;margin:0;}
-.map-container{margin-top:2rem;border-radius:var(--radius);overflow:hidden;border:1px solid rgba(0,195,255,.2);height:250px;background:var(--navy-card);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;color:var(--gray);position:relative;}
-.map-container::before{content:'';position:absolute;inset:0;background:linear-gradient(rgba(0,195,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,195,255,.03) 1px,transparent 1px);background-size:30px 30px;}
-.map-pin-icon{font-size:3rem;color:var(--cyan);opacity:.5}
-.map-text{font-size:.85rem;text-align:center;z-index:1;line-height:1.6;}
-.contact-form-wrap{background:var(--navy-card);border:1px solid rgba(0,195,255,.15);border-radius:var(--radius-lg);padding:2.5rem;}
-.contact-form-wrap h3{font-family:var(--font-head);font-size:1.1rem;letter-spacing:2px;color:var(--cyan);margin-bottom:2rem;}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
-.form-group{margin-bottom:1.2rem;}
-.form-group label{display:block;font-size:.8rem;letter-spacing:1.5px;color:var(--cyan);text-transform:uppercase;margin-bottom:.5rem;font-family:var(--font-ui);font-weight:600;}
-.form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(0,195,255,.05);border:1px solid rgba(0,195,255,.2);border-radius:8px;padding:.9rem 1rem;color:var(--white);font-family:var(--font-body);font-size:.95rem;transition:var(--transition);outline:none;resize:none;}
-.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--cyan);background:rgba(0,195,255,.08);box-shadow:0 0 0 3px rgba(0,195,255,.15);}
-.form-group select option{background:var(--navy-mid);color:var(--white)}
-.form-success{display:none;background:rgba(0,195,255,.1);border:1px solid rgba(0,195,255,.3);border-radius:var(--radius);padding:1.2rem;text-align:center;color:var(--cyan);font-family:var(--font-head);font-size:.85rem;letter-spacing:1px;margin-top:1rem;}
-.form-success.show{display:block}
-.form-error-msg{display:none;background:rgba(255,23,68,.1);border:1px solid rgba(255,23,68,.3);border-radius:var(--radius);padding:1rem;text-align:center;color:#ff5370;font-size:.85rem;margin-top:1rem;}
-.form-error-msg.show{display:block}
-.btn-loading{opacity:.7;pointer-events:none;}
+    .section-tag{
+      display:inline-block;
+      font-family:var(--font-head);
+      font-size:.7rem;
+      letter-spacing:4px;
+      text-transform:uppercase;
+      color:var(--cyan);
+      border:1px solid var(--cyan);
+      padding:.3rem .9rem;
+      border-radius:20px;
+      margin-bottom:1.2rem;
+      box-shadow:0 0 12px rgba(0,195,255,.18);
+    }
+    .section-title{
+      font-family:var(--font-head);
+      font-size:clamp(1.9rem,3.5vw,2.8rem);
+      font-weight:700;
+      line-height:1.2;
+      margin-bottom:1rem;
+    }
+    .section-title span{
+      color:var(--cyan);
+      text-shadow:0 0 20px var(--cyan-glow);
+    }
+    .section-sub{
+      color:var(--gray);
+      font-size:1.05rem;
+      max-width:680px;
+      line-height:1.75;
+      margin-bottom:3rem;
+    }
+    .divider{
+      width:60px;height:3px;border-radius:2px;
+      background:linear-gradient(90deg,var(--cyan),transparent);
+      margin:1rem 0 2.3rem;
+    }
 
-/* ============================================================
-   PRODUCTOS PAGE
-============================================================ */
-.products-hero{text-align:center;padding:5rem 3rem 2rem;background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(26,42,108,.5),transparent);}
-.plan-toggle{display:flex;align-items:center;gap:1rem;justify-content:center;margin:1.5rem 0 3rem;}
-.toggle-label{font-size:.9rem;color:var(--gray);font-family:var(--font-ui)}
-.toggle-switch{width:52px;height:28px;border-radius:14px;background:rgba(0,195,255,.15);border:1px solid rgba(0,195,255,.3);position:relative;cursor:pointer;transition:var(--transition);}
-.toggle-switch.on{background:rgba(0,195,255,.35)}
-.toggle-knob{width:20px;height:20px;border-radius:50%;background:var(--cyan);position:absolute;top:3px;left:4px;transition:var(--transition);box-shadow:0 0 8px var(--cyan-glow);}
-.toggle-switch.on .toggle-knob{left:28px}
-.plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem;}
-.plan-card{background:var(--navy-card);border:1px solid rgba(0,195,255,.15);border-radius:var(--radius-lg);padding:2.2rem;text-align:center;transition:var(--transition);position:relative;overflow:hidden;}
-.plan-card.featured{border-color:var(--cyan);box-shadow:0 0 40px rgba(0,195,255,.2);}
-.plan-card.featured::before{content:'MÁS POPULAR';position:absolute;top:1.2rem;right:1.2rem;background:var(--cyan);color:var(--navy-deep);font-size:.65rem;font-weight:700;letter-spacing:2px;padding:.25rem .7rem;border-radius:20px;}
-.plan-card:hover{transform:translateY(-6px)}
-.plan-icon{font-size:2.5rem;color:var(--cyan);margin-bottom:1rem;text-shadow:0 0 15px var(--cyan-glow)}
-.plan-name{font-family:var(--font-head);font-size:1rem;letter-spacing:2px;margin-bottom:.5rem;}
-.plan-price{font-family:var(--font-head);font-size:2.5rem;font-weight:800;color:var(--cyan);margin:.8rem 0;text-shadow:0 0 15px var(--cyan-glow);}
-.plan-price small{font-size:.9rem;color:var(--gray);font-weight:400}
-.plan-period{font-size:.8rem;color:var(--gray);margin-bottom:1.5rem}
-.plan-divider{height:1px;background:rgba(0,195,255,.12);margin:1.5rem 0;}
-.plan-feat{list-style:none;text-align:left;margin-bottom:2rem}
-.plan-feat li{padding:.5rem 0;font-size:.88rem;color:var(--gray);display:flex;align-items:center;gap:.7rem;border-bottom:1px solid rgba(0,195,255,.06);}
-.plan-feat li:last-child{border:none}
-.plan-feat li i{color:var(--cyan);font-size:.8rem;flex-shrink:0}
-.plan-feat li.disabled{opacity:.4}
-.plan-feat li.disabled i{color:var(--gray)}
-.addons-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;margin-top:2rem;}
-.addon-card{background:var(--navy-card);border:1px solid rgba(0,195,255,.12);border-radius:var(--radius);padding:1.8rem;display:flex;gap:1.2rem;transition:var(--transition);align-items:flex-start;}
-.addon-card:hover{border-color:rgba(0,195,255,.4);transform:translateY(-4px)}
-.addon-icon{width:50px;height:50px;flex-shrink:0;background:rgba(0,195,255,.1);border:1px solid rgba(0,195,255,.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:var(--cyan);}
-.addon-info h4{font-family:var(--font-head);font-size:.85rem;margin-bottom:.3rem}
-.addon-info p{font-size:.82rem;color:var(--gray);line-height:1.5}
-.addon-price{font-family:var(--font-head);font-size:.95rem;color:var(--cyan);margin-top:.5rem;}
+    .btn-primary{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.6rem;
+      background:linear-gradient(135deg,var(--cyan),#006fa0);
+      color:var(--navy-deep);
+      font-family:var(--font-head);
+      font-size:.82rem;
+      font-weight:700;
+      letter-spacing:2px;
+      padding:.9rem 1.8rem;
+      border-radius:8px;
+      border:none;
+      text-transform:uppercase;
+      box-shadow:0 4px 20px rgba(0,195,255,.35);
+    }
+    .btn-primary:hover{
+      transform:translateY(-3px);
+      box-shadow:0 8px 30px rgba(0,195,255,.55);
+    }
 
-/* ============================================================
-   SERVICIOS PAGE
-============================================================ */
-.services-hero{text-align:center;padding:5rem 3rem 2rem;background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(26,42,108,.5),transparent);}
-.services-main-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;margin-top:2rem;}
-.service-card{background:var(--navy-card);border:1px solid rgba(0,195,255,.12);border-radius:var(--radius-lg);padding:2.2rem;transition:var(--transition);position:relative;overflow:hidden;}
-.service-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--cyan),var(--cyan-bright));transform:scaleX(0);transform-origin:left;transition:transform .4s ease;}
-.service-card:hover{border-color:rgba(0,195,255,.4);transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,195,255,.15);}
-.service-card:hover::before{transform:scaleX(1)}
-.service-icon-wrap{width:64px;height:64px;background:rgba(0,195,255,.08);border:1px solid rgba(0,195,255,.2);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:var(--cyan);margin-bottom:1.5rem;transition:var(--transition);}
-.service-card:hover .service-icon-wrap{background:rgba(0,195,255,.15);border-color:var(--cyan);box-shadow:0 0 20px rgba(0,195,255,.3);}
-.service-card h3{font-family:var(--font-head);font-size:1rem;letter-spacing:1.5px;margin-bottom:.8rem;transition:var(--transition);}
-.service-card:hover h3{color:var(--cyan)}
-.service-card p{font-size:.88rem;color:var(--gray);line-height:1.7;margin-bottom:1.2rem;}
-.service-tags{display:flex;flex-wrap:wrap;gap:.4rem;}
-.service-tag{background:rgba(0,195,255,.08);border:1px solid rgba(0,195,255,.15);color:var(--cyan);font-size:.7rem;letter-spacing:1px;padding:.2rem .6rem;border-radius:4px;}
-.process-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-top:2rem;position:relative;}
-.process-steps::before{content:'';position:absolute;top:40px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,195,255,.2),transparent);}
-.step-item{text-align:center;position:relative}
-.step-num{width:60px;height:60px;border-radius:50%;background:var(--navy-card);border:2px solid var(--cyan);display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem;font-family:var(--font-head);font-size:1.1rem;font-weight:700;color:var(--cyan);box-shadow:0 0 20px rgba(0,195,255,.25);position:relative;z-index:1;}
-.step-item h4{font-family:var(--font-head);font-size:.85rem;margin-bottom:.5rem;letter-spacing:1px;}
-.step-item p{font-size:.82rem;color:var(--gray);line-height:1.5}
-.pricing-table{width:100%;border-collapse:collapse;margin-top:2rem;font-size:.9rem;}
-.pricing-table th{background:rgba(0,195,255,.1);font-family:var(--font-head);font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);padding:1rem 1.5rem;text-align:left;border-bottom:2px solid rgba(0,195,255,.2);}
-.pricing-table td{padding:.9rem 1.5rem;border-bottom:1px solid rgba(0,195,255,.06);color:var(--gray);}
-.pricing-table tr:hover td{background:rgba(0,195,255,.04)}
-.pricing-table td:first-child{color:var(--white);font-weight:600}
-.pricing-table td:last-child{color:var(--cyan);font-family:var(--font-head);font-size:.85rem}
+    .btn-outline{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.6rem;
+      background:transparent;
+      color:var(--cyan);
+      border:2px solid var(--cyan);
+      font-family:var(--font-head);
+      font-size:.82rem;
+      font-weight:600;
+      letter-spacing:2px;
+      padding:.9rem 1.8rem;
+      border-radius:8px;
+      text-transform:uppercase;
+      box-shadow:0 0 12px rgba(0,195,255,.12);
+    }
+    .btn-outline:hover{
+      background:var(--cyan);
+      color:var(--navy-deep);
+      transform:translateY(-3px);
+      box-shadow:0 4px 25px rgba(0,195,255,.5);
+    }
 
-/* ============================================================
-   ADMIN PANEL PAGE
-============================================================ */
-.admin-hero{
-  text-align:center;padding:5rem 3rem 2rem;
-  background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(26,42,108,.5),transparent);
-}
-/* login card */
-.admin-login-card{
-  max-width:440px;margin:3rem auto;
-  background:var(--navy-card);
-  border:1px solid rgba(0,195,255,.2);
-  border-radius:var(--radius-lg);padding:2.5rem;
-}
-.admin-login-card h3{font-family:var(--font-head);font-size:1rem;color:var(--cyan);letter-spacing:3px;margin-bottom:2rem;text-align:center;}
-/* admin dashboard */
-.admin-tabs{display:flex;gap:.5rem;margin-bottom:2rem;flex-wrap:wrap;}
-.admin-tab{
-  padding:.6rem 1.4rem;border-radius:8px;
-  border:1px solid rgba(0,195,255,.2);
-  background:transparent;color:var(--gray);
-  font-family:var(--font-head);font-size:.72rem;letter-spacing:2px;
-  cursor:pointer;transition:var(--transition);text-transform:uppercase;
-}
-.admin-tab.active,.admin-tab:hover{background:rgba(0,195,255,.12);border-color:var(--cyan);color:var(--cyan);}
-.admin-tab-content{display:none;}
-.admin-tab-content.active{display:block;}
-/* messages table */
-.msg-table-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid rgba(0,195,255,.12);}
-.msg-table{width:100%;border-collapse:collapse;font-size:.85rem;}
-.msg-table th{background:rgba(0,195,255,.1);font-family:var(--font-head);font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);padding:.9rem 1rem;text-align:left;border-bottom:1px solid rgba(0,195,255,.15);}
-.msg-table td{padding:.85rem 1rem;border-bottom:1px solid rgba(0,195,255,.06);color:var(--gray);vertical-align:top;}
-.msg-table tr:hover td{background:rgba(0,195,255,.04)}
-.msg-table td:first-child{color:var(--white);}
-.msg-badge-new{background:rgba(0,195,255,.15);border:1px solid rgba(0,195,255,.3);color:var(--cyan);font-size:.65rem;font-weight:700;letter-spacing:1px;padding:.15rem .5rem;border-radius:10px;text-transform:uppercase;}
-.msg-badge-read{background:rgba(139,163,199,.1);border:1px solid rgba(139,163,199,.2);color:var(--gray);font-size:.65rem;letter-spacing:1px;padding:.15rem .5rem;border-radius:10px;text-transform:uppercase;}
-.msg-action-btn{background:none;border:1px solid rgba(0,195,255,.2);color:var(--cyan);font-size:.72rem;padding:.25rem .6rem;border-radius:4px;cursor:pointer;transition:var(--transition);font-family:var(--font-head);}
-.msg-action-btn:hover{background:rgba(0,195,255,.15);border-color:var(--cyan);}
-.msg-action-btn.danger{border-color:rgba(255,23,68,.3);color:#ff5370;}
-.msg-action-btn.danger:hover{background:rgba(255,23,68,.1);}
-/* stats cards for admin */
-.admin-stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-bottom:2rem;}
-.admin-stat-card{background:var(--navy-card);border:1px solid rgba(0,195,255,.12);border-radius:var(--radius);padding:1.5rem;text-align:center;}
-.admin-stat-num{font-family:var(--font-head);font-size:2rem;font-weight:800;color:var(--cyan);text-shadow:0 0 15px var(--cyan-glow);}
-.admin-stat-label{font-size:.75rem;color:var(--gray);letter-spacing:2px;text-transform:uppercase;margin-top:.3rem;}
-/* add news form */
-.news-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
-/* msg detail modal */
-.msg-detail-overlay{
-  position:fixed;inset:0;z-index:9100;
-  background:rgba(7,11,30,.85);backdrop-filter:blur(8px);
-  display:none;align-items:center;justify-content:center;padding:1.5rem;
-}
-.msg-detail-overlay.open{display:flex}
-.msg-detail-box{
-  background:var(--navy-mid);border:1px solid rgba(0,195,255,.25);
-  border-radius:var(--radius-lg);width:100%;max-width:580px;
-  padding:2rem;position:relative;animation:modal-in .3s ease;
-}
-.msg-detail-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--gray);font-size:1.3rem;cursor:pointer;}
-.msg-detail-close:hover{color:var(--cyan)}
-.msg-field{margin-bottom:1rem;}
-.msg-field label{display:block;font-size:.7rem;letter-spacing:2px;color:var(--cyan);text-transform:uppercase;margin-bottom:.3rem;font-family:var(--font-head);}
-.msg-field p{background:rgba(0,195,255,.04);border:1px solid rgba(0,195,255,.1);border-radius:8px;padding:.7rem 1rem;color:var(--white);font-size:.9rem;line-height:1.6;}
+    .card{
+      background:var(--navy-card);
+      border:1px solid rgba(0,195,255,.15);
+      border-radius:var(--radius);
+      padding:2rem;
+      transition:var(--transition);
+      position:relative;
+      overflow:hidden;
+    }
+    .card:hover{
+      border-color:rgba(0,195,255,.45);
+      transform:translateY(-5px);
+      box-shadow:0 16px 40px rgba(0,195,255,.12);
+    }
 
-/* empty state */
-.empty-state{text-align:center;padding:3rem;color:var(--gray);}
-.empty-state i{font-size:3rem;color:rgba(0,195,255,.2);margin-bottom:1rem;display:block;}
-.empty-state p{font-size:.9rem;}
-/* loading spinner */
-.spinner-wrap{text-align:center;padding:2rem;color:var(--gray);}
-.spinner{display:inline-block;width:40px;height:40px;border:3px solid rgba(0,195,255,.2);border-top-color:var(--cyan);border-radius:50%;animation:spin .8s linear infinite;}
-@keyframes spin{to{transform:rotate(360deg)}}
+    .fade-up{
+      opacity:0;
+      transform:translateY(35px);
+      transition:opacity .7s ease, transform .7s ease;
+    }
+    .fade-up.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
 
-/* ============================================================
-   FOOTER
-============================================================ */
-.footer{background:var(--navy-mid);border-top:1px solid rgba(0,195,255,.15);padding:4rem 3rem 1.5rem;}
-.footer-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
-.footer-brand .logo{font-family:var(--font-head);font-size:1.1rem;color:var(--cyan);letter-spacing:2px;margin-bottom:1rem;display:flex;align-items:center;gap:.6rem;}
-.footer-brand p{font-size:.88rem;color:var(--gray);line-height:1.7;margin-bottom:1.5rem;}
-.social-links{display:flex;gap:.8rem;}
-.social-link{width:38px;height:38px;border-radius:8px;background:rgba(0,195,255,.08);border:1px solid rgba(0,195,255,.2);display:flex;align-items:center;justify-content:center;color:var(--gray);font-size:.9rem;transition:var(--transition);}
-.social-link:hover{background:rgba(0,195,255,.2);border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 12px rgba(0,195,255,.3);transform:translateY(-2px);}
-.footer-col h4{font-family:var(--font-head);font-size:.8rem;letter-spacing:3px;color:var(--cyan);text-transform:uppercase;margin-bottom:1.2rem;}
-.footer-col ul li{margin-bottom:.6rem;}
-.footer-col ul li a{font-size:.88rem;color:var(--gray);transition:var(--transition);display:flex;align-items:center;gap:.4rem;}
-.footer-col ul li a::before{content:'›';color:var(--cyan);opacity:0;transform:translateX(-5px);transition:var(--transition);}
-.footer-col ul li a:hover{color:var(--cyan);padding-left:.3rem}
-.footer-col ul li a:hover::before{opacity:1;transform:translateX(0)}
-.footer-bottom{max-width:1200px;margin:0 auto;border-top:1px solid rgba(0,195,255,.1);padding-top:1.5rem;display:flex;align-items:center;justify-content:space-between;font-size:.8rem;color:var(--gray);flex-wrap:wrap;gap:1rem;}
-.footer-bottom span{color:var(--cyan);}
-.footer-address{display:flex;align-items:center;gap:.4rem;font-size:.8rem;color:var(--gray);}
-.footer-address i{color:var(--cyan)}
+    /* HERO */
+    .hero{
+      position:relative;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      overflow:hidden;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%,rgba(26,42,108,.6),transparent),
+        var(--navy-deep);
+    }
+    .hero-grid-bg{
+      position:absolute;inset:0;
+      background-image:
+        linear-gradient(rgba(0,195,255,.04) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(0,195,255,.04) 1px,transparent 1px);
+      background-size:60px 60px;
+      mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,black,transparent);
+    }
+    .hero-content{
+      position:relative;
+      z-index:2;
+      max-width:1200px;
+      width:100%;
+      margin:0 auto;
+      padding:0 3rem;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:4rem;
+      align-items:center;
+    }
+    .hero-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:.6rem;
+      background:rgba(0,195,255,.1);
+      border:1px solid rgba(0,195,255,.3);
+      padding:.45rem 1rem;
+      border-radius:20px;
+      font-size:.8rem;
+      letter-spacing:2px;
+      color:var(--cyan);
+      text-transform:uppercase;
+      margin-bottom:1.4rem;
+      animation:pulse-badge 2s ease infinite;
+    }
+    @keyframes pulse-badge{
+      0%,100%{box-shadow:0 0 0 0 rgba(0,195,255,.35)}
+      50%{box-shadow:0 0 0 8px rgba(0,195,255,0)}
+    }
+    .hero-badge .dot{
+      width:8px;height:8px;border-radius:50%;
+      background:var(--cyan);
+      animation:blink 1.2s ease infinite;
+    }
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+    .hero-title{
+      font-family:var(--font-head);
+      font-size:clamp(2.2rem,5vw,4rem);
+      font-weight:900;
+      line-height:1.08;
+      margin-bottom:1.4rem;
+    }
+    .hero-title .glitch{
+      color:var(--cyan);
+      text-shadow:0 0 30px var(--cyan-glow),0 0 60px rgba(0,195,255,.3);
+    }
+    .hero-desc{
+      color:var(--gray);
+      font-size:1.08rem;
+      line-height:1.8;
+      max-width:560px;
+      margin-bottom:2rem;
+    }
+    .hero-cta{
+      display:flex;
+      gap:1rem;
+      flex-wrap:wrap;
+    }
+    .hero-visual{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+    }
+    .hero-orb{
+      width:360px;height:360px;border-radius:50%;
+      background:radial-gradient(circle at 35% 35%,var(--navy-light),var(--navy-deep));
+      border:2px solid rgba(0,195,255,.25);
+      position:relative;
+      box-shadow:0 0 80px rgba(0,195,255,.18),inset 0 0 80px rgba(0,195,255,.05);
+      display:flex;align-items:center;justify-content:center;
+      animation:orb-pulse 4s ease infinite;
+    }
+    @keyframes orb-pulse{
+      0%,100%{box-shadow:0 0 80px rgba(0,195,255,.18),inset 0 0 80px rgba(0,195,255,.05)}
+      50%{box-shadow:0 0 120px rgba(0,195,255,.3),inset 0 0 100px rgba(0,195,255,.08)}
+    }
+    .hero-orb::before,.hero-orb::after{
+      content:'';
+      position:absolute;
+      border-radius:50%;
+      border:1px solid rgba(0,195,255,.15);
+      animation:ring-spin 8s linear infinite;
+    }
+    .hero-orb::before{width:120%;height:120%}
+    .hero-orb::after{
+      width:145%;height:145%;
+      animation-duration:12s;
+      animation-direction:reverse;
+      border-color:rgba(0,195,255,.08);
+    }
+    @keyframes ring-spin{to{transform:rotate(360deg)}}
+    .hero-logo-center{
+      font-family:var(--font-head);
+      font-size:2rem;
+      font-weight:900;
+      color:var(--cyan);
+      text-align:center;
+      line-height:1.2;
+      text-shadow:0 0 30px var(--cyan-glow);
+      z-index:1;
+    }
+    .hero-logo-center small{
+      display:block;
+      font-size:.65rem;
+      letter-spacing:6px;
+      color:var(--gray);
+      margin-top:.35rem;
+    }
+    .orbit-tag{
+      position:absolute;
+      background:rgba(13,27,75,.92);
+      border:1px solid var(--cyan);
+      padding:.35rem .8rem;
+      border-radius:20px;
+      font-size:.72rem;
+      letter-spacing:1px;
+      color:var(--cyan);
+      white-space:nowrap;
+      box-shadow:0 0 10px rgba(0,195,255,.25);
+    }
+    .orbit-tag:nth-child(2){top:8%;left:50%;transform:translateX(-50%)}
+    .orbit-tag:nth-child(3){top:50%;right:-10%;transform:translateY(-50%)}
+    .orbit-tag:nth-child(4){bottom:10%;left:50%;transform:translateX(-50%)}
+    .orbit-tag:nth-child(5){top:50%;left:-12%;transform:translateY(-50%)}
 
-/* ============================================================
-   MODAL FACTURA
-============================================================ */
-.modal-overlay{position:fixed;inset:0;z-index:9000;background:rgba(7,11,30,.85);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:1.5rem;overflow-y:auto;}
-.modal-overlay.open{display:flex}
-.modal{background:var(--navy-mid);border:1px solid rgba(0,195,255,.25);border-radius:var(--radius-lg);width:100%;max-width:720px;position:relative;animation:modal-in .4s ease;overflow:hidden;}
-@keyframes modal-in{from{opacity:0;transform:scale(.92) translateY(30px)}}
-.modal-header{background:linear-gradient(135deg,var(--navy-light),var(--navy-mid));border-bottom:1px solid rgba(0,195,255,.2);padding:1.8rem 2rem;display:flex;align-items:center;justify-content:space-between;}
-.modal-title{font-family:var(--font-head);font-size:1rem;letter-spacing:3px;color:var(--cyan);}
-.modal-close{background:none;border:none;color:var(--gray);font-size:1.4rem;cursor:pointer;transition:var(--transition);}
-.modal-close:hover{color:var(--cyan)}
-.modal-body{padding:2rem;}
-.invoice-header{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2rem;}
-.invoice-from h4,.invoice-to h4{font-family:var(--font-head);font-size:.75rem;letter-spacing:3px;color:var(--cyan);margin-bottom:.8rem;}
-.invoice-from p,.invoice-to p{font-size:.85rem;color:var(--gray);line-height:1.7;}
-.invoice-meta{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2rem;}
-.invoice-meta-item{background:rgba(0,195,255,.06);border:1px solid rgba(0,195,255,.12);border-radius:8px;padding:.6rem 1rem;font-size:.8rem;}
-.invoice-meta-item span{display:block;font-size:.7rem;color:var(--gray);margin-bottom:.2rem;letter-spacing:1px;text-transform:uppercase}
-.invoice-meta-item strong{color:var(--cyan);font-family:var(--font-head);font-size:.85rem}
-table.invoice-table{width:100%;border-collapse:collapse;font-size:.85rem;}
-.invoice-table th{font-family:var(--font-head);font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);padding:.7rem 1rem;border-bottom:1px solid rgba(0,195,255,.2);text-align:left;}
-.invoice-table td{padding:.8rem 1rem;border-bottom:1px solid rgba(0,195,255,.07);color:var(--gray)}
-.invoice-table td:last-child{text-align:right;color:var(--white)}
-.invoice-table tr:last-child td{border:none}
-.invoice-totals{margin-top:1.5rem;display:flex;flex-direction:column;align-items:flex-end;gap:.4rem;}
-.invoice-row{display:flex;gap:3rem;font-size:.9rem;}
-.invoice-row span:first-child{color:var(--gray)}
-.invoice-row span:last-child{min-width:90px;text-align:right;color:var(--white)}
-.invoice-row.total{font-family:var(--font-head);font-size:1.1rem;color:var(--cyan);border-top:1px solid rgba(0,195,255,.2);padding-top:.6rem;margin-top:.4rem;}
-.invoice-row.total span:last-child{color:var(--cyan);text-shadow:0 0 10px var(--cyan-glow)}
-.invoice-note{margin-top:1.5rem;background:rgba(0,195,255,.06);border:1px solid rgba(0,195,255,.12);border-radius:8px;padding:1rem;font-size:.82rem;color:var(--gray);line-height:1.6;}
-.invoice-note strong{color:var(--cyan)}
-.modal-footer{padding:1.5rem 2rem;border-top:1px solid rgba(0,195,255,.12);display:flex;gap:1rem;justify-content:flex-end;}
+    .stats-section{
+      background:var(--navy-mid);
+      border-top:1px solid rgba(0,195,255,.12);
+      border-bottom:1px solid rgba(0,195,255,.12);
+      padding:3.5rem 3rem;
+    }
+    .stats-grid{
+      max-width:1200px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:2rem;
+    }
+    .stat-item{text-align:center}
+    .stat-num{
+      font-family:var(--font-head);
+      font-size:clamp(2rem,4vw,3rem);
+      font-weight:800;
+      color:var(--cyan);
+      text-shadow:0 0 20px var(--cyan-glow);
+      display:block;
+      line-height:1;
+      margin-bottom:.35rem;
+    }
+    .stat-label{
+      font-size:.85rem;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      color:var(--gray);
+    }
 
-/* PROTECT TOAST */
-.protect-toast{position:fixed;bottom:2rem;right:2rem;background:rgba(13,27,75,.95);border:1px solid var(--cyan);border-radius:10px;padding:1rem 1.5rem;font-size:.82rem;color:var(--cyan);z-index:9999;display:none;letter-spacing:1px;box-shadow:0 0 20px rgba(0,195,255,.3);font-family:var(--font-head);animation:toast-in .3s ease;}
-@keyframes toast-in{from{opacity:0;transform:translateY(10px)}}
+    .mv-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:2rem;
+      margin-top:2rem;
+    }
+    .mv-card{
+      background:var(--navy-card);
+      border:1px solid rgba(0,195,255,.18);
+      border-radius:var(--radius-lg);
+      padding:2.4rem;
+      position:relative;
+      overflow:hidden;
+      transition:var(--transition);
+    }
+    .mv-card:hover{
+      border-color:rgba(0,195,255,.4);
+      transform:translateY(-4px);
+    }
+    .mv-card::after{
+      content:'';
+      position:absolute;
+      top:-60px;right:-60px;
+      width:200px;height:200px;border-radius:50%;
+      background:radial-gradient(circle,rgba(0,195,255,.08),transparent 70%);
+    }
+    .mv-icon{
+      font-size:2.5rem;
+      color:var(--cyan);
+      margin-bottom:1rem;
+      text-shadow:0 0 20px var(--cyan-glow);
+    }
+    .mv-card h3{
+      font-family:var(--font-head);
+      font-size:1.08rem;
+      letter-spacing:3px;
+      color:var(--cyan);
+      margin-bottom:1rem;
+    }
+    .mv-card p{
+      color:var(--gray);
+      line-height:1.75;
+      font-size:.95rem;
+    }
 
-/* MOBILE NAV */
-.mobile-nav{position:fixed;top:72px;left:0;right:0;background:rgba(10,15,46,.98);border-bottom:1px solid rgba(0,195,255,.18);padding:1.5rem 2rem;z-index:990;transform:translateY(-100%);opacity:0;transition:transform .35s ease,opacity .35s ease;pointer-events:none;}
-.mobile-nav.open{transform:translateY(0);opacity:1;pointer-events:all}
-.mobile-nav a{display:block;padding:.9rem 0;font-family:var(--font-ui);font-size:1.1rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--white);border-bottom:1px solid rgba(0,195,255,.08);transition:var(--transition);}
-.mobile-nav a:hover,.mobile-nav a.active{color:var(--cyan);padding-left:.5rem}
+    .news-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:1.5rem;
+      margin-top:2rem;
+    }
+    .news-card{
+      background:var(--navy-card);
+      border:1px solid rgba(0,195,255,.12);
+      border-radius:var(--radius);
+      overflow:hidden;
+      transition:var(--transition);
+    }
+    .news-card:hover{
+      border-color:rgba(0,195,255,.4);
+      transform:translateY(-6px);
+      box-shadow:0 16px 40px rgba(0,195,255,.15);
+    }
+    .news-thumb{
+      height:180px;
+      overflow:hidden;
+      background:linear-gradient(135deg,var(--navy-light),var(--navy-mid));
+      display:flex;align-items:center;justify-content:center;
+      position:relative;
+    }
+    .news-thumb-icon{
+      font-size:3.5rem;
+      opacity:.25;
+    }
+    .news-thumb-badge{
+      position:absolute;
+      top:12px;left:12px;
+      background:var(--cyan);
+      color:var(--navy-deep);
+      font-size:.7rem;
+      font-weight:700;
+      letter-spacing:1px;
+      padding:.2rem .7rem;
+      border-radius:4px;
+      text-transform:uppercase;
+    }
+    .news-body{padding:1.35rem}
+    .news-cat{
+      font-size:.72rem;
+      letter-spacing:2px;
+      color:var(--cyan);
+      text-transform:uppercase;
+      margin-bottom:.5rem;
+    }
+    .news-title-card{
+      font-family:var(--font-head);
+      font-size:.95rem;
+      font-weight:600;
+      line-height:1.4;
+      margin-bottom:.7rem;
+    }
+    .news-meta{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:.8rem;
+      font-size:.8rem;
+      color:var(--gray);
+      margin-top:1rem;
+    }
+    .news-meta i{color:var(--cyan);font-size:.75rem}
 
-/* ============================================================
-   RESPONSIVE
-============================================================ */
-@media(max-width:1100px){
-  .plans-grid{grid-template-columns:1fr 1fr}
-  .footer-grid{grid-template-columns:1fr 1fr}
-}
-@media(max-width:900px){
-  .navbar{padding:0 1.5rem}
-  .nav-links,.nav-btn{display:none}
-  .hamburger{display:flex}
-  .hero-content{grid-template-columns:1fr;text-align:center;gap:3rem}
-  .hero-cta{justify-content:center}
-  .hero-desc{margin:0 auto 2.5rem}
-  .hero-visual{order:-1}
-  .hero-orb{width:260px;height:260px}
-  .stats-grid{grid-template-columns:repeat(2,1fr)}
-  .mv-grid{grid-template-columns:1fr}
-  .contact-layout{grid-template-columns:1fr;padding:3rem 1.5rem}
-  .invoice-header{grid-template-columns:1fr}
-  .section{padding:4rem 1.5rem}
-  .news-form-grid{grid-template-columns:1fr}
-}
-@media(max-width:600px){
-  .plans-grid{grid-template-columns:1fr}
-  .collage-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
-  .collage-item:first-child{grid-row:auto}
-  .footer-grid{grid-template-columns:1fr}
-  .footer-bottom{flex-direction:column;text-align:center}
-  .form-row{grid-template-columns:1fr}
-  .stats-grid{grid-template-columns:repeat(2,1fr)}
-  .hero-orb{width:200px;height:200px}
-  .orbit-tag{display:none}
-  .modal-body{padding:1.2rem}
-  .invoice-header{grid-template-columns:1fr}
-  .modal-footer{flex-direction:column}
-  .admin-stats-grid{grid-template-columns:1fr 1fr}
-}
-</style>
+    .clients-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+      gap:1.5rem;
+      margin-top:2rem;
+    }
+    .client-card{
+      background:var(--navy-card);
+      border:1px solid rgba(0,195,255,.12);
+      border-radius:var(--radius);
+      padding:2rem;
+      text-align:center;
+      transition:var(--transition);
+    }
+    .client-card:hover{
+      border-color:rgba(0,195,255,.45);
+      transform:translateY(-6px);
+      box-shadow:0 14px 40px rgba(0,195,255,.15);
+    }
+    .client-avatar{
+      width:80px;height:80px;border-radius:50%;
+      margin:0 auto 1.1rem;
+      background:linear-gradient(135deg,var(--navy-light),var(--navy-mid));
+      border:2px solid rgba(0,195,255,.3);
+      display:flex;align-items:center;justify-content:center;
+      font-size:2rem;color:var(--cyan);
+    }
+    .client-name{
+      font-family:var(--font-head);
+      font-size:.9rem;
+      font-weight:600;
+      margin-bottom:.3rem;
+    }
+    .client-type{
+      font-size:.8rem;
+      color:var(--cyan);
+      letter-spacing:1px;
+      margin-bottom:.8rem;
+    }
+    .client-desc{
+      font-size:.85rem;
+      color:var(--gray);
+      line-height:1.6;
+    }
+    .client-badge{
+      display:inline-block;
+      margin-top:.8rem;
+      background:rgba(0,195,255,.1);
+      border:1px solid rgba(0,195,255,.25);
+      color:var(--cyan);
+      font-size:.72rem;
+      letter-spacing:1px;
+      padding:.25rem .7rem;
+      border-radius:20px;
+    }
+
+    .testimonial-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:1.5rem;
+      margin-top:2rem;
+    }
+    .testimonial-card{
+      background:var(--navy-card);
+      border:1px solid rgba(0,195,255,.12);
+      border-radius:var(--radius);
+      padding:2rem;
+      position:relative;
+      transition:var(--transition);
+    }
+    .testimonial-card:hover{
+      border-color:rgba(0,195,255,.35);
+      transform:translateY(-4px);
+    }
+    .testimonial-card::before{
+      content:'“';
+      position:absolute;
+      top:1rem;left:1.4rem;
+      font-size:5rem;
+      line-height:0;
+      color:rgba(0,195,255,.12);
+      font-family:serif;
+    }
+    .stars{
+      color:var(--cyan);
+      font-size:.8rem;
+      margin-bottom:.8rem;
+    }
+    .t-text{
+      font-size:.92rem;
+      color:var(--gray);
+      line-height:1.7;
+      margin-bottom:1.2rem;
+    }
+    .t-author{
+      display:flex;
+      align-items:center;
+      gap:.8rem;
+    }
+    .t-ava{
+      width:42px;height:42px;border-radius:50%;
+      background:linear-gradient(135deg,var(--navy-light),var(--navy-mid));
+      border:1px solid rgba(0,195,255,.3);
+      display:flex;align-items:center;justify-content:center;
+      font-size:1rem;color:var(--cyan);flex-shrink:0;
+    }
+    .t-name{
+      font-family:var(--font-head);
+      font-size:.8rem;
+      font-weight:600;
+    }
+    .t-role{
+      font-size:.75rem;
+      color:var(--gray);
+    }
+
+    .contact-layout{
+      display:grid;
+      grid-template-columns:1fr 1.25fr;
+      gap:3rem;
+      align-items:start;
+      max-width:1200px;
+      margin:0 auto;
+      padding:5rem 3rem;
+    }
+    .contact-info p{
+      color:var(--gray);
+      line-height:1.7;
+      margin-bottom:2rem;
+    }
+    .contact-detail{
+      display:flex;
+      align-items:flex-start;
+      gap:1rem;
+      margin-bottom:1.4rem;
+    }
+    .contact-icon{
+      width:48px;height:48px;flex-shrink:0;
+      background:rgba(0,195,255,.1);
+      border:1px solid rgba(0,195,255,.2);
+      border-radius:10px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:1.1rem;color:var(--cyan);
+    }
+    .contact-detail h4{
+      font-family:var(--font-head);
+      font-size:.8rem;
+      color:var(--cyan);
+      margin-bottom:.2rem;
+      letter-spacing:1px;
+    }
+    .contact-detail p{
+      color:var(--gray);
+      font-size:.9rem;
+      margin:0;
+      line-height:1.6;
+    }
+    .map-container{
+      margin-top:2rem;
+      border-radius:var(--radius);
+      overflow:hidden;
+      border:1px solid rgba(0,195,255,.2);
+      height:250px;
+      background:var(--navy-card);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:1rem;
+      color:var(--gray);
+      position:relative;
+      text-align:center;
+      padding:1rem;
+    }
+    .map-container::before{
+      content:'';
+      position:absolute;inset:0;
+      background:
+        linear-gradient(rgba(0,195,255,.03) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(0,195,255,.03) 1px,transparent 1px);
+      background-size:30px 30px;
+    }
+    .map-pin-icon{
+      font-size:3rem;
+      color:var(--cyan);
+      opacity:.5;
+      z-index:1;
+    }
+    .map-text{
+      z-index:1;
+      font-size:.85rem;
+      line-height:1.6;
+    }
+
+    .contact-form-wrap{
+      background:var(--navy-card);
+      border:1px solid rgba(0,195,255,.15);
+      border-radius:var(--radius-lg);
+      padding:2.5rem;
+    }
+    .contact-form-wrap h3{
+      font-family:var(--font-head);
+      font-size:1.05rem;
+      letter-spacing:2px;
+      color:var(--cyan);
+      margin-bottom:1.5rem;
+    }
+    .form-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:1rem;
+    }
+    .form-group{margin-bottom:1.15rem}
+    .form-group label{
+      display:block;
+      font-size:.8rem;
+      letter-spacing:1.5px;
+      color:var(--cyan);
+      text-transform:uppercase;
+      margin-bottom:.5rem;
+      font-family:var(--font-ui);
+      font-weight:600;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea{
+      width:100%;
+      background:rgba(0,195,255,.05);
+      border:1px solid rgba(0,195,255,.2);
+      border-radius:8px;
+      padding:.9rem 1rem;
+      color:var(--white);
+      font-family:var(--font-body);
+      font-size:.95rem;
+      transition:var(--transition);
+      outline:none;
+      resize:none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus{
+      border-color:var(--cyan);
+      background:rgba(0,195,255,.08);
+      box-shadow:0 0 0 3px rgba(0,195,255,.15);
+    }
+    .form-group select option{
+      background:var(--navy-mid);
+      color:var(--white);
+    }
+    #dbFormNotice{
+      display:flex;
+      align-items:center;
+      gap:.65rem;
+      background:rgba(0,195,255,.06);
+      border:1px solid rgba(0,195,255,.15);
+      border-radius:8px;
+      padding:.8rem 1rem;
+      margin-bottom:1.2rem;
+      font-size:.8rem;
+      color:var(--gray);
+    }
+
+    .form-success,
+    .form-error-msg{
+      display:none;
+      border-radius:var(--radius);
+      padding:1rem 1.2rem;
+      margin-top:1rem;
+      font-size:.88rem;
+      text-align:center;
+    }
+    .form-success{
+      background:rgba(0,230,118,.08);
+      border:1px solid rgba(0,230,118,.28);
+      color:#7dffbc;
+    }
+    .form-error-msg{
+      background:rgba(255,23,68,.08);
+      border:1px solid rgba(255,23,68,.28);
+      color:#ff6a88;
+    }
+    .form-success.show,
+    .form-error-msg.show{display:block}
+
+    .btn-loading{opacity:.7;pointer-events:none}
+
+    .plan-toggle{
+      display:flex;
+      align-items:center;
+      gap:1rem;
+      justify-content:center;
+      margin:1.5rem 0 3rem;
+    }
+    .toggle-label{
+      font-size:.9rem;
+      color:var(--gray);
+      font-family:var(--font-ui);
+    }
+    .toggle-switch{
+      width:52px;height:28px;border-radius:14px;
+      background:rgba(0,195,255,.15);
+      border:1px solid rgba(0,195,255,.3);
+      position:relative;
+      cursor:pointer;
+      transition:var(--transition);
+    }
+    .toggle-switch.on{background:rgba(0,195,255,.35)}
+    .toggle-knob{
+      width:20px;height:20px;border-radius:50%;
+      background:var(--cyan);
+      position:absolute;top:3px;left:4px;
+      transition:var(--transition);
+      box-shadow:0 0 8px var(--cyan-glow);
+    }
+    .toggle-switch.on .toggle-knob{left:28px}
+
+    .plans-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:1.5rem;
+      margin-top:1rem;
+    }
+    .plan-card{
+      background:var(--navy-card);
+      border:1px solid rgba(0,195,255,.15);
+      border-radius:var(--radius-lg);
+      padding:2.2rem;
+      text-align:center;
+      position:relative;
+      transition:var(--transition);
+    }
+    .plan-card:hover{transform:translateY(-6px)}
+    .plan-card.featured{
+      border-color:var(--cyan);
+      box-shadow:0 0 40px rgba(0,195,255,.18);
+    }
+    .plan-card.featured::before{
+      content:'MÁS POPULAR';
+      position:absolute;
+      top:1.1rem;right:1.1rem;
+      background:var(--cyan);
+      color:var(--navy-deep);
+      font-size:.64rem;
+      font-weight:700;
+      letter-spacing:2px;
+      padding:.24rem .7rem;
+      border-radius:20px;
+    }
+    .plan-icon{
+      font-size:2.4rem;
+      color:var(--cyan);
+      margin-bottom:1rem;
+      text-shadow:0 0 15px var(--cyan-glow);
+    }
+    .plan-name{
+      font-family:var(--font-head);
+      font-size:1rem;
+      letter-spacing:2px;
+      margin-bottom:.45rem;
+    }
+    .plan-price{
+      font-family:var(--font-head);
+      font-size:2.4rem;
+      font-weight:800;
+      color:var(--cyan);
+      margin:.8rem 0;
+      text-shadow:0 0 15px var(--cyan-glow);
+    }
+    .plan-price small{
+      font-size:.9rem;
+      color:var(--gray);
+      font-weight:400;
+    }
+    .plan-period{
+      font-size:.8rem;
+      color:var(--gray);
+      margin-bottom:1.3rem;
+    }
+    .plan-divider{
+      height:1px;
+      background:rgba(0,195,255,.12);
+      margin:1.3rem 0;
+    }
+    .plan-feat{
+      text-align:left;
+      margin-bottom:1.6rem;
+    }
+    .plan-feat li{
+      padding:.55rem 0;
+      font-size:.88rem;
+      color:var(--gray);
+      display:flex;
+      align-items:center;
+      gap:.7rem;
+      border-bottom:1px solid rgba(0,195,255,.06);
+    }
+    .plan-feat li:last-child{border:none}
+    .plan-feat li i{color:var(--cyan);font-size:.8rem}
+    .plan-feat li.disabled{opacity:.4}
+    .plan-feat li.disabled i{color:var(--gray)}
+
+    .addons-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+      gap:1.5rem;
+      margin-top:2rem;
+    }
+    .addon-card{
+      background:var(--navy-card);
+      border:1px solid rgba(0,195,255,.12);
+      border-radius:var(--radius);
+      padding:1.8rem;
+      display:flex;
+      gap:1rem;
+      align-items:flex-start;
+      transition:var(--transition);
+    }
+    .addon-card:hover{
+      border-color:rgba(0,195,255,.4);
+      transform:translateY(-4px);
+    }
+    .addon-icon{
+      width:50px;height:50px;flex-shrink:0;
+      background:rgba(0,195,255,.1);
+      border:1px solid rgba(0,195,255,.2);
+      border-radius:10px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:1.3rem;color:var(--cyan);
+    }
+    .addon-info h4{
+      font-family:var(--font-head);
+      font-size:.85rem;
+      margin-bottom:.3rem;
+    }
+    .addon-info p{
+      font-size:.82rem;
+      color:var(--gray);
+      line-height:1.55;
+    }
+    .addon-price{
+      font-family:var(--font-head);
+      font-size:.95rem;
+      color:var(--cyan);
+      margin-top:.55rem;
+    }
+
+    .services-main-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+      gap:1.5rem;
+      margin-top:2rem;
+    }
+    .service-card{
+      background:var(--navy-card);
+      border:1px solid rgba(0,195,255,.12);
+      border-radius:var(--radius-lg);
+      padding:2.2rem;
+      transition:var(--transition);
+      position:relative;
+      overflow:hidden;
+    }
+    .service-card:hover{
+      border-color:rgba(0,195,255,.4);
+      transform:translateY(-6px);
+      box-shadow:0 16px 40px rgba(0,195,255,.15);
+    }
+    .service-card::before{
+      content:'';
+      position:absolute;
+      bottom:0;left:0;right:0;
+      height:3px;
+      background:linear-gradient(90deg,var(--cyan),var(--cyan-bright));
+      transform:scaleX(0);
+      transform-origin:left;
+      transition:transform .4s ease;
+    }
+    .service-card:hover::before{transform:scaleX(1)}
+    .service-icon-wrap{
+      width:64px;height:64px;border-radius:16px;
+      background:rgba(0,195,255,.08);
+      border:1px solid rgba(0,195,255,.2);
+      display:flex;align-items:center;justify-content:center;
+      font-size:1.8rem;color:var(--cyan);
+      margin-bottom:1.4rem;
+    }
+    .service-card h3{
+      font-family:var(--font-head);
+      font-size:1rem;
+      letter-spacing:1.5px;
+      margin-bottom:.8rem;
+    }
+    .service-card p{
+      font-size:.88rem;
+      color:var(--gray);
+      line-height:1.7;
+      margin-bottom:1rem;
+    }
+    .service-tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.4rem;
+    }
+    .service-tag{
+      background:rgba(0,195,255,.08);
+      border:1px solid rgba(0,195,255,.15);
+      color:var(--cyan);
+      font-size:.7rem;
+      letter-spacing:1px;
+      padding:.2rem .6rem;
+      border-radius:4px;
+    }
+
+    .process-steps{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:1.5rem;
+      margin-top:2rem;
+      position:relative;
+    }
+    .process-steps::before{
+      content:'';
+      position:absolute;
+      top:40px;left:0;right:0;
+      height:1px;
+      background:linear-gradient(90deg,transparent,rgba(0,195,255,.2),transparent);
+    }
+    .step-item{text-align:center;position:relative}
+    .step-num{
+      width:60px;height:60px;border-radius:50%;
+      background:var(--navy-card);
+      border:2px solid var(--cyan);
+      display:flex;align-items:center;justify-content:center;
+      margin:0 auto 1.1rem;
+      font-family:var(--font-head);
+      font-size:1.1rem;
+      font-weight:700;
+      color:var(--cyan);
+      box-shadow:0 0 20px rgba(0,195,255,.2);
+      position:relative;z-index:1;
+    }
+    .step-item h4{
+      font-family:var(--font-head);
+      font-size:.85rem;
+      margin-bottom:.5rem;
+      letter-spacing:1px;
+    }
+    .step-item p{
+      font-size:.82rem;
+      color:var(--gray);
+      line-height:1.55;
+    }
+
+    .pricing-wrap{
+      overflow-x:auto;
+      border-radius:var(--radius);
+      border:1px solid rgba(0,195,255,.12);
+      margin-top:1.5rem;
+    }
+    .pricing-table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:.9rem;
+    }
+    .pricing-table th{
+      background:rgba(0,195,255,.1);
+      font-family:var(--font-head);
+      font-size:.74rem;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      color:var(--cyan);
+      padding:1rem 1.4rem;
+      text-align:left;
+      border-bottom:2px solid rgba(0,195,255,.18);
+    }
+    .pricing-table td{
+      padding:.95rem 1.4rem;
+      border-bottom:1px solid rgba(0,195,255,.06);
+      color:var(--gray);
+    }
+    .pricing-table td:first-child{color:var(--white);font-weight:600}
+    .pricing-table td:last-child{color:var(--cyan);font-family:var(--font-head);font-size:.85rem}
+    .pricing-table tr:hover td{background:rgba(0,195,255,.04)}
+
+    .cta-box{
+      text-align:center;
+      padding:4rem 2rem;
+      background:linear-gradient(135deg,var(--navy-card),var(--navy-light));
+      border-color:rgba(0,195,255,.3);
+    }
+
+    .modal-overlay{
+      position:fixed;inset:0;z-index:9000;
+      background:rgba(7,11,30,.85);
+      backdrop-filter:blur(8px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:1.5rem;
+      overflow-y:auto;
+    }
+    .modal-overlay.open{display:flex}
+    .modal{
+      background:var(--navy-mid);
+      border:1px solid rgba(0,195,255,.25);
+      border-radius:var(--radius-lg);
+      width:100%;
+      max-width:780px;
+      overflow:hidden;
+      animation:modal-in .35s ease;
+    }
+    @keyframes modal-in{
+      from{opacity:0;transform:scale(.95) translateY(20px)}
+    }
+    .modal-header{
+      background:linear-gradient(135deg,var(--navy-light),var(--navy-mid));
+      border-bottom:1px solid rgba(0,195,255,.2);
+      padding:1.5rem 1.8rem;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+    }
+    .modal-title{
+      font-family:var(--font-head);
+      font-size:.95rem;
+      letter-spacing:2px;
+      color:var(--cyan);
+    }
+    .modal-close{
+      background:none;
+      border:none;
+      color:var(--gray);
+      font-size:1.35rem;
+      cursor:pointer;
+    }
+    .modal-close:hover{color:var(--cyan)}
+    .modal-body{padding:1.8rem}
+    .invoice-meta{
+      display:flex;
+      gap:1rem;
+      flex-wrap:wrap;
+      margin-bottom:1.8rem;
+    }
+    .invoice-meta-item{
+      background:rgba(0,195,255,.06);
+      border:1px solid rgba(0,195,255,.12);
+      border-radius:8px;
+      padding:.65rem 1rem;
+      font-size:.8rem;
+    }
+    .invoice-meta-item span{
+      display:block;
+      font-size:.7rem;
+      color:var(--gray);
+      margin-bottom:.2rem;
+      letter-spacing:1px;
+      text-transform:uppercase;
+    }
+    .invoice-meta-item strong{
+      color:var(--cyan);
+      font-family:var(--font-head);
+      font-size:.84rem;
+    }
+    .invoice-header{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:2rem;
+      margin-bottom:2rem;
+    }
+    .invoice-header h4{
+      font-family:var(--font-head);
+      font-size:.75rem;
+      letter-spacing:3px;
+      color:var(--cyan);
+      margin-bottom:.7rem;
+    }
+    .invoice-header p{
+      font-size:.85rem;
+      color:var(--gray);
+      line-height:1.7;
+    }
+    .invoice-table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:.85rem;
+    }
+    .invoice-table th{
+      font-family:var(--font-head);
+      font-size:.7rem;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      color:var(--cyan);
+      padding:.75rem 1rem;
+      border-bottom:1px solid rgba(0,195,255,.2);
+      text-align:left;
+    }
+    .invoice-table td{
+      padding:.8rem 1rem;
+      border-bottom:1px solid rgba(0,195,255,.07);
+      color:var(--gray);
+    }
+    .invoice-table td:last-child{text-align:right;color:var(--white)}
+    .invoice-totals{
+      margin-top:1.4rem;
+      display:flex;
+      flex-direction:column;
+      align-items:flex-end;
+      gap:.35rem;
+    }
+    .invoice-row{
+      display:flex;
+      gap:3rem;
+      font-size:.9rem;
+    }
+    .invoice-row span:first-child{color:var(--gray)}
+    .invoice-row span:last-child{
+      min-width:100px;
+      text-align:right;
+      color:var(--white);
+    }
+    .invoice-row.total{
+      font-family:var(--font-head);
+      font-size:1.05rem;
+      color:var(--cyan);
+      border-top:1px solid rgba(0,195,255,.2);
+      padding-top:.65rem;
+      margin-top:.35rem;
+    }
+    .invoice-row.total span:last-child{
+      color:var(--cyan);
+      text-shadow:0 0 10px var(--cyan-glow);
+    }
+    .invoice-note{
+      margin-top:1.5rem;
+      background:rgba(0,195,255,.06);
+      border:1px solid rgba(0,195,255,.12);
+      border-radius:8px;
+      padding:1rem;
+      font-size:.82rem;
+      color:var(--gray);
+      line-height:1.6;
+    }
+    .invoice-note strong{color:var(--cyan)}
+    .modal-footer{
+      padding:1.2rem 1.8rem;
+      border-top:1px solid rgba(0,195,255,.12);
+      display:flex;
+      gap:1rem;
+      justify-content:flex-end;
+      flex-wrap:wrap;
+    }
+
+    .footer{
+      background:var(--navy-mid);
+      border-top:1px solid rgba(0,195,255,.15);
+      padding:4rem 3rem 1.5rem;
+      position:relative;
+      z-index:1;
+    }
+    .footer-grid{
+      max-width:1200px;
+      margin:0 auto 3rem;
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr 1fr;
+      gap:2.5rem;
+    }
+    .footer-brand .logo{
+      font-family:var(--font-head);
+      font-size:1rem;
+      color:var(--cyan);
+      letter-spacing:2px;
+      margin-bottom:1rem;
+      display:flex;
+      align-items:center;
+      gap:.6rem;
+    }
+    .footer-brand p{
+      font-size:.88rem;
+      color:var(--gray);
+      line-height:1.7;
+      margin-bottom:1.4rem;
+    }
+    .social-links{display:flex;gap:.8rem}
+    .social-link{
+      width:38px;height:38px;border-radius:8px;
+      background:rgba(0,195,255,.08);
+      border:1px solid rgba(0,195,255,.2);
+      display:flex;align-items:center;justify-content:center;
+      color:var(--gray);
+      font-size:.9rem;
+      transition:var(--transition);
+    }
+    .social-link:hover{
+      background:rgba(0,195,255,.2);
+      border-color:var(--cyan);
+      color:var(--cyan);
+      transform:translateY(-2px);
+      box-shadow:0 0 12px rgba(0,195,255,.3);
+    }
+    .footer-col h4{
+      font-family:var(--font-head);
+      font-size:.8rem;
+      letter-spacing:3px;
+      color:var(--cyan);
+      text-transform:uppercase;
+      margin-bottom:1.1rem;
+    }
+    .footer-col ul li{margin-bottom:.65rem}
+    .footer-col ul li a{
+      font-size:.88rem;
+      color:var(--gray);
+      transition:var(--transition);
+    }
+    .footer-col ul li a:hover{color:var(--cyan)}
+    .footer-bottom{
+      max-width:1200px;
+      margin:0 auto;
+      border-top:1px solid rgba(0,195,255,.1);
+      padding-top:1.5rem;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:1rem;
+      font-size:.82rem;
+      color:var(--gray);
+    }
+    .footer-bottom span{color:var(--cyan)}
+    .footer-address{
+      display:flex;
+      align-items:center;
+      gap:.45rem;
+      font-size:.8rem;
+      color:var(--gray);
+    }
+    .footer-address i{color:var(--cyan)}
+
+    @media(max-width:1100px){
+      .plans-grid{grid-template-columns:1fr 1fr}
+      .footer-grid{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:900px){
+      .navbar{padding:0 1.4rem}
+      .nav-links,.nav-btn{display:none}
+      .hamburger{display:flex}
+      .hero-content{grid-template-columns:1fr;text-align:center;gap:3rem}
+      .hero-cta{justify-content:center}
+      .hero-desc{margin:0 auto 2rem}
+      .hero-visual{order:-1}
+      .hero-orb{width:260px;height:260px}
+      .orbit-tag{display:none}
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+      .mv-grid{grid-template-columns:1fr}
+      .contact-layout{grid-template-columns:1fr;padding:3rem 1.5rem}
+      .section{padding:4rem 1.5rem}
+      .form-row{grid-template-columns:1fr}
+      .invoice-header{grid-template-columns:1fr}
+    }
+    @media(max-width:650px){
+      .plans-grid{grid-template-columns:1fr}
+      .footer-grid{grid-template-columns:1fr}
+      .footer-bottom{flex-direction:column;text-align:center}
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+      .hero-orb{width:210px;height:210px}
+      .modal-body{padding:1.1rem}
+      .modal-footer{flex-direction:column}
+      .invoice-row{gap:1.5rem}
+    }
+  </style>
 </head>
 <body>
 
-<!-- CANVAS PARTICLES -->
-<canvas id="particles-canvas"></canvas>
+  <canvas id="particles-canvas"></canvas>
 
-<!-- FIREBASE STATUS BADGE -->
-<div id="fb-status">
-  <span class="fb-dot"></span>
-  <span id="fb-status-text">Firebase...</span>
-</div>
-
-<!-- ===================== NAVBAR ===================== -->
-<nav class="navbar" id="navbar">
-  <div class="nav-logo">
-    <div class="logo-icon"><i class="fas fa-broadcast-tower"></i></div>
-    Grupo Navarro Comunicaciones S.A.
-  </div>
-  <div class="nav-links">
-    <a href="#" onclick="showPage('home')" class="active" data-page="home">Inicio</a>
-    <a href="#" onclick="showPage('clientes')" data-page="clientes">Clientes</a>
-    <a href="#" onclick="showPage('contactos')" data-page="contactos">Contactos</a>
-    <a href="#" onclick="showPage('productos')" data-page="productos">Productos</a>
-    <a href="#" onclick="showPage('servicios')" data-page="servicios">Servicios</a>
-  </div>
-  <button class="nav-btn" onclick="openModal()"><i class="fas fa-file-invoice-dollar"></i> &nbsp;Cotización</button>
-  <button class="hamburger" id="hamburger" onclick="toggleMobileNav()">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<!-- MOBILE NAV -->
-<div class="mobile-nav" id="mobileNav">
-  <a href="#" onclick="showPage('home');closeMobileNav()" data-page="home">Inicio</a>
-  <a href="#" onclick="showPage('clientes');closeMobileNav()" data-page="clientes">Clientes</a>
-  <a href="#" onclick="showPage('contactos');closeMobileNav()" data-page="contactos">Contactos</a>
-  <a href="#" onclick="showPage('productos');closeMobileNav()" data-page="productos">Productos</a>
-  <a href="#" onclick="showPage('servicios');closeMobileNav()" data-page="servicios">Servicios</a>
-  <a href="#" onclick="openModal();closeMobileNav()" style="color:var(--cyan);margin-top:.5rem"><i class="fas fa-file-invoice-dollar"></i> &nbsp;Ver Cotización</a>
-</div>
-
-<!-- ===========================================================
-     PÁGINA: HOME
-=========================================================== -->
-<div id="page-home" class="page active">
-  <section class="hero">
-    <div class="hero-grid-bg"></div>
-    <div class="hero-content">
-      <div>
-        <div class="hero-badge">
-          <span class="dot"></span>
-          TRANSMITIENDO EN VIVO • CHIRIQUÍ, PANAMÁ
-        </div>
-        <h1 class="hero-title">
-          Tu Voz,<br>Tu <span class="glitch">NAVARRO</span><br>Nuestra Misión
-        </h1>
-        <p class="hero-desc">Somos el espacio informativo y emisora líder de Chiriquí. Conectamos comunidades, amplificamos voces y llevamos las noticias que importan directo a ti.</p>
-        <div class="hero-cta">
-          <button class="btn-primary" onclick="showPage('servicios')"><i class="fas fa-play-circle"></i> Nuestros Servicios</button>
-          <button class="btn-outline" onclick="showPage('contactos')"><i class="fas fa-headset"></i> Contáctanos</button>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="hero-orb">
-          <div class="hero-logo-center">
-            <span>GNC</span>
-            <small>ON AIR</small>
-          </div>
-          <div class="orbit-tag">📡 Noticias 24/7</div>
-          <div class="orbit-tag">🎙 Entrevistas</div>
-          <div class="orbit-tag">📻 En Vivo</div>
-          <div class="orbit-tag">🌐 Digital</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="stats-section">
-    <div class="stats-grid">
-      <div class="stat-item fade-up">
-        <span class="stat-num" data-target="15">0</span>
-        <span class="stat-label">Años en el Aire</span>
-      </div>
-      <div class="stat-item fade-up">
-        <span class="stat-num" data-target="120">0</span>
-        <span class="stat-label">Clientes Activos</span>
-      </div>
-      <div class="stat-item fade-up">
-        <span class="stat-num" data-target="50000">0</span>
-        <span class="stat-label">Oyentes Digitales</span>
-      </div>
-      <div class="stat-item fade-up">
-        <span class="stat-num" data-target="98">0</span>
-        <span class="stat-label">% Satisfacción</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <span class="section-tag">Quiénes Somos</span>
-      <h2 class="section-title">Nuestra <span>Identidad</span></h2>
-      <div class="divider"></div>
-      <div class="mv-grid">
-        <div class="mv-card fade-up">
-          <div class="mv-icon"><i class="fas fa-bullseye"></i></div>
-          <h3>Misión</h3>
-          <p>Ser el medio de comunicación más dinámico e influyente de la Provincia de Chiriquí, ofreciendo información oportuna, veraz y de calidad a nuestra audiencia, mientras apoyamos el crecimiento de nuestros clientes con servicios de comunicación innovadores y eficientes.</p>
-        </div>
-        <div class="mv-card fade-up">
-          <div class="mv-icon"><i class="fas fa-eye"></i></div>
-          <h3>Visión</h3>
-          <p>Convertirnos en el referente mediático digital y radial más importante del istmo panameño para 2030, expandiendo nuestra plataforma tecnológica y consolidando alianzas estratégicas que impulsen el desarrollo informativo y cultural de nuestra comunidad.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- NOTICIAS DINÁMICAS DESDE FIREBASE -->
-  <section class="section" style="padding-top:0">
-    <div class="container">
-      <span class="section-tag">Actualidad</span>
-      <h2 class="section-title">Noticias <span>Destacadas</span></h2>
-      <div class="divider"></div>
-      <p class="section-sub">Las últimas noticias de Chiriquí y Panamá, directamente desde nuestra sala de redacción.</p>
-      <div class="news-grid" id="newsGrid">
-        <!-- Skeleton loaders -->
-        <div class="news-skeleton">
-          <div class="skeleton-thumb"></div>
-          <div class="skeleton-body">
-            <div class="skeleton-line short"></div>
-            <div class="skeleton-line medium"></div>
-            <div class="skeleton-line"></div>
-            <div class="skeleton-line short"></div>
-          </div>
-        </div>
-        <div class="news-skeleton">
-          <div class="skeleton-thumb"></div>
-          <div class="skeleton-body">
-            <div class="skeleton-line short"></div>
-            <div class="skeleton-line medium"></div>
-            <div class="skeleton-line"></div>
-            <div class="skeleton-line short"></div>
-          </div>
-        </div>
-        <div class="news-skeleton">
-          <div class="skeleton-thumb"></div>
-          <div class="skeleton-body">
-            <div class="skeleton-line short"></div>
-            <div class="skeleton-line medium"></div>
-            <div class="skeleton-line"></div>
-            <div class="skeleton-line short"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" style="padding-top:0">
-    <div class="container">
-      <span class="section-tag">Portafolio</span>
-      <h2 class="section-title">Nuestros <span>Trabajos</span></h2>
-      <div class="divider"></div>
-      <p class="section-sub">Una muestra de los proyectos y coberturas que hemos realizado para nuestros clientes y la comunidad chiricana.</p>
-      <div class="collage-grid">
-        <div class="collage-item"><div class="collage-inner"><i class="fas fa-broadcast-tower"></i><span>Cobertura Electoral</span></div><div class="collage-overlay"></div></div>
-        <div class="collage-item"><div class="collage-inner"><i class="fas fa-music"></i><span>Eventos Musicales</span></div><div class="collage-overlay"></div></div>
-        <div class="collage-item"><div class="collage-inner"><i class="fas fa-trophy"></i><span>Deportes Locales</span></div><div class="collage-overlay"></div></div>
-        <div class="collage-item"><div class="collage-inner"><i class="fas fa-handshake"></i><span>Campañas Corporativas</span></div><div class="collage-overlay"></div></div>
-        <div class="collage-item"><div class="collage-inner"><i class="fas fa-graduation-cap"></i><span>Educación & Cultura</span></div><div class="collage-overlay"></div></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" style="padding-top:0">
-    <div class="container">
-      <div class="card" style="text-align:center;padding:4rem 2rem;background:linear-gradient(135deg,var(--navy-card),var(--navy-light));border-color:rgba(0,195,255,.3)">
-        <i class="fas fa-satellite-dish" style="font-size:3rem;color:var(--cyan);margin-bottom:1.5rem;text-shadow:0 0 20px var(--cyan-glow)"></i>
-        <h2 class="section-title" style="margin-bottom:1rem">¿Listo para <span>Transmitir</span> tu Mensaje?</h2>
-        <p style="color:var(--gray);font-size:1rem;margin-bottom:2rem;max-width:500px;margin:0 auto 2rem">Únete a más de 120 empresas que confían en Grupo Navarro Comunicaciones S.A. para llevar su mensaje a toda la región.</p>
-        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
-          <button class="btn-primary" onclick="showPage('contactos')"><i class="fas fa-paper-plane"></i> Solicitar Información</button>
-          <button class="btn-outline" onclick="openModal()"><i class="fas fa-file-invoice-dollar"></i> Ver Cotización</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo"><i class="fas fa-broadcast-tower"></i> Grupo Navarro Comunicaciones S.A.</div>
-        <p>Emisora y espacio informativo líder de la Provincia de Chiriquí. Conectando comunidades desde el corazón de David.</p>
-        <div class="social-links">
-          <a class="social-link" href="#"><i class="fab fa-facebook-f"></i></a>
-          <a class="social-link" href="#"><i class="fab fa-instagram"></i></a>
-          <a class="social-link" href="#"><i class="fab fa-x-twitter"></i></a>
-          <a class="social-link" href="#"><i class="fab fa-youtube"></i></a>
-          <a class="social-link" href="#"><i class="fab fa-whatsapp"></i></a>
-        </div>
-      </div>
-      <div class="footer-col"><h4>Navegación</h4><ul>
-        <li><a href="#" onclick="showPage('home')">Inicio</a></li>
-        <li><a href="#" onclick="showPage('clientes')">Clientes</a></li>
-        <li><a href="#" onclick="showPage('contactos')">Contactos</a></li>
-        <li><a href="#" onclick="showPage('productos')">Productos</a></li>
-        <li><a href="#" onclick="showPage('servicios')">Servicios</a></li>
-      </ul></div>
-      <div class="footer-col"><h4>Servicios</h4><ul>
-        <li><a href="#" onclick="showPage('servicios')">Publicidad Radial</a></li>
-        <li><a href="#" onclick="showPage('servicios')">Cobertura de Eventos</a></li>
-        <li><a href="#" onclick="showPage('servicios')">Producción Digital</a></li>
-        <li><a href="#" onclick="showPage('servicios')">Streaming Online</a></li>
-        <li><a href="#" onclick="showPage('servicios')">Diseño de Campañas</a></li>
-      </ul></div>
-      <div class="footer-col"><h4>Contacto</h4><ul>
-        <li><a href="tel:+50764000000"><i class="fas fa-phone"></i> +507 6400-0000</a></li>
-        <li><a href="/cdn-cgi/l/email-protection#f29b9c949db29c93849380809d919d9f879c9b9193919b9d9c9781dc919d9f"><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="b1d8dfd7def1dfd0c7d0c3c3ded2dedcc4dfd8d2d0d2d8dedfd4c29fd2dedc">[email&#160;protected]</span></a></li>
-        <li><a href="#"><i class="fas fa-map-marker-alt"></i> David, Chiriquí</a></li>
-        <li><a href="#"><i class="fas fa-clock"></i> Lun–Vie: 7am–8pm</a></li>
-      </ul></div>
-    </div>
-    <div class="footer-bottom">
-      <div>© 2026 <span>Grupo Navarro Comunicaciones S.A.</span> · Todos los derechos reservados.</div>
-      <div class="footer-address"><i class="fas fa-map-pin"></i> Av. Domingo Díaz, David, Chiriquí, República de Panamá</div>
-      <div>Desarrollado por <span>Servicios TI Profesionales</span></div>
-    </div>
-  </footer>
-</div>
-
-<!-- ===========================================================
-     PÁGINA: CLIENTES
-=========================================================== -->
-<div id="page-clientes" class="page">
-  <section class="clients-hero">
-    <div class="container">
-      <span class="section-tag">Nuestros Aliados</span>
-      <h1 class="section-title">Clientes que <span>Confían</span> en Nosotros</h1>
-      <div class="divider" style="margin:1rem auto 1.5rem"></div>
-      <p class="section-sub" style="margin:0 auto">Empresas, instituciones y marcas que han elegido a Grupo Navarro Comunicaciones S.A. como su aliado estratégico.</p>
-    </div>
-  </section>
-  <section class="section" style="padding-top:1rem">
-    <div class="container">
-      <div class="clients-grid">
-        <div class="client-card fade-up"><div class="client-avatar"><i class="fas fa-store"></i></div><div class="client-name">Supermercados Félix B. Maduro</div><div class="client-type">Retail & Comercio</div><p class="client-desc">Campaña de publicidad radial mensual con cuñas comerciales en horario prime time.</p><span class="client-badge">Cliente Premium</span></div>
-        <div class="client-card fade-up"><div class="client-avatar"><i class="fas fa-car"></i></div><div class="client-name">Agencia Auto Chiriquí</div><div class="client-type">Automotriz</div><p class="client-desc">Cobertura de lanzamiento de vehículos y transmisión de eventos especiales de la agencia.</p><span class="client-badge">3 Años</span></div>
-        <div class="client-card fade-up"><div class="client-avatar"><i class="fas fa-hospital"></i></div><div class="client-name">Clínica Médica del Barú</div><div class="client-type">Salud & Bienestar</div><p class="client-desc">Campañas informativas de salud pública y promoción de servicios médicos especializados.</p><span class="client-badge">Cliente Fiel</span></div>
-        <div class="client-card fade-up"><div class="client-avatar"><i class="fas fa-graduation-cap"></i></div><div class="client-name">Universidad Tecnológica Oteima</div><div class="client-type">Educación Superior</div><p class="client-desc">Difusión de procesos de admisión, eventos académicos y campañas institucionales.</p><span class="client-badge">Institucional</span></div>
-        <div class="client-card fade-up"><div class="client-avatar"><i class="fas fa-hotel"></i></div><div class="client-name">Hotel Castillo</div><div class="client-type">Turismo & Hotelería</div><p class="client-desc">Publicidad radial y digital enfocada en turismo nacional e internacional.</p><span class="client-badge">2 Años</span></div>
-        <div class="client-card fade-up"><div class="client-avatar"><i class="fas fa-landmark"></i></div><div class="client-name">Municipio de David</div><div class="client-type">Gobierno Local</div><p class="client-desc">Cobertura oficial de eventos municipales, cadenas informativas y campañas ciudadanas.</p><span class="client-badge">Oficial</span></div>
-        <div class="client-card fade-up"><div class="client-avatar"><i class="fas fa-seedling"></i></div><div class="client-name">Finca Orgánica Palmira</div><div class="client-type">Agroalimentario</div><p class="client-desc">Promoción de productos orgánicos certificados y ecoturismo rural de la región.</p><span class="client-badge">PYME Destacada</span></div>
-        <div class="client-card fade-up"><div class="client-avatar"><i class="fas fa-hammer"></i></div><div class="client-name">Constructora Boquete S.A.</div><div class="client-type">Construcción</div><p class="client-desc">Campañas de lanzamiento de proyectos inmobiliarios en la zona alta de Chiriquí.</p><span class="client-badge">Nuevo Cliente</span></div>
-      </div>
-    </div>
-  </section>
-  <section class="section" style="padding-top:0">
-    <div class="container">
-      <span class="section-tag">Testimonios</span>
-      <h2 class="section-title">Lo que Dicen <span>Nuestros Clientes</span></h2>
-      <div class="divider"></div>
-      <div class="testimonial-grid">
-        <div class="testimonial-card fade-up"><div class="stars">★★★★★</div><p class="t-text">"Grupo Navarro Comunicaciones S.A. transformó nuestra estrategia comunicacional. El alcance y la profesionalidad de su equipo es incomparable en la región."</p><div class="t-author"><div class="t-ava"><i class="fas fa-user-tie"></i></div><div><div class="t-name">Carlos Herrera</div><div class="t-role">Gerente, Auto Chiriquí</div></div></div></div>
-        <div class="testimonial-card fade-up"><div class="stars">★★★★★</div><p class="t-text">"La cobertura de nuestros eventos académicos superó todas las expectativas. El equipo siempre está preparado y comprometido con la calidad."</p><div class="t-author"><div class="t-ava"><i class="fas fa-chalkboard-teacher"></i></div><div><div class="t-name">Prof. Ana Quijada</div><div class="t-role">Directora Académica, UTO</div></div></div></div>
-        <div class="testimonial-card fade-up"><div class="stars">★★★★☆</div><p class="t-text">"Gracias a la publicidad incrementamos nuestras reservas un 40% durante la última temporada. Excelente inversión para el turismo local."</p><div class="t-author"><div class="t-ava"><i class="fas fa-concierge-bell"></i></div><div><div class="t-name">Miriam Castillo</div><div class="t-role">Gerente, Hotel Castillo</div></div></div></div>
-      </div>
-    </div>
-  </section>
-  <footer class="footer">
-    <div class="footer-grid">
-      <div class="footer-brand"><div class="logo"><i class="fas fa-broadcast-tower"></i> Grupo Navarro Comunicaciones S.A.</div><p>Emisora y espacio informativo líder de la Provincia de Chiriquí.</p><div class="social-links"><a class="social-link" href="#"><i class="fab fa-facebook-f"></i></a><a class="social-link" href="#"><i class="fab fa-instagram"></i></a><a class="social-link" href="#"><i class="fab fa-x-twitter"></i></a><a class="social-link" href="#"><i class="fab fa-youtube"></i></a></div></div>
-      <div class="footer-col"><h4>Navegación</h4><ul><li><a href="#" onclick="showPage('home')">Inicio</a></li><li><a href="#" onclick="showPage('clientes')">Clientes</a></li><li><a href="#" onclick="showPage('contactos')">Contactos</a></li><li><a href="#" onclick="showPage('productos')">Productos</a></li><li><a href="#" onclick="showPage('servicios')">Servicios</a></li></ul></div>
-      <div class="footer-col"><h4>Servicios</h4><ul><li><a href="#" onclick="showPage('servicios')">Publicidad Radial</a></li><li><a href="#" onclick="showPage('servicios')">Cobertura de Eventos</a></li><li><a href="#" onclick="showPage('servicios')">Producción Digital</a></li></ul></div>
-      <div class="footer-col"><h4>Contacto</h4><ul><li><a href="tel:+50764000000"><i class="fas fa-phone"></i> +507 6400-0000</a></li><li><a href="/cdn-cgi/l/email-protection#4b22252d240b252a3d2a3939242824263e2522282a282224252e3865282426"><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="563f383039163837203724243935393b23383f3537353f393833257835393b">[email&#160;protected]</span></a></li></ul></div>
-    </div>
-    <div class="footer-bottom"><div>© 2026 <span>Grupo Navarro Comunicaciones S.A.</span> · Todos los derechos reservados.</div><div class="footer-address"><i class="fas fa-map-pin"></i> Av. Domingo Díaz, David, Chiriquí, República de Panamá</div></div>
-  </footer>
-</div>
-
-<!-- ===========================================================
-     PÁGINA: CONTACTOS
-=========================================================== -->
-<div id="page-contactos" class="page">
-  <div class="contact-layout">
-    <div class="contact-info">
-      <span class="section-tag">Háblanos</span>
-      <h2 class="section-title" style="margin-top:.5rem">Contáctanos <span>Ahora</span></h2>
-      <div class="divider"></div>
-      <p>Estamos listos para escucharte. Visítanos, llámanos o escríbenos y un asesor te atenderá a la brevedad posible.</p>
-      <div class="contact-detail fade-up"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div><h4>Dirección Física</h4><p>Av. Domingo Díaz, Barrio Bolívar<br>David, Provincia de Chiriquí<br>República de Panamá</p></div></div>
-      <div class="contact-detail fade-up"><div class="contact-icon"><i class="fas fa-phone-alt"></i></div><div><h4>Teléfonos</h4><p>+507 775-0000 (Oficina)<br>+507 6400-0000 (Móvil)<br>+507 6400-0001 (WhatsApp)</p></div></div>
-      <div class="contact-detail fade-up"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div><h4>Correo Electrónico</h4><p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4e272028210e202f382f3c3c212d21233b20272d2f2d2721202b3d602d2123">[email&#160;protected]</a><br><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="166663747a7f757f727772567877607764647975797b63787f7577757f797873653875797b">[email&#160;protected]</a></p></div></div>
-      <div class="contact-detail fade-up"><div class="contact-icon"><i class="fas fa-clock"></i></div><div><h4>Horario de Atención</h4><p>Lunes a Viernes: 7:00am – 8:00pm<br>Sábados: 8:00am – 2:00pm<br>Domingos: Emergencias 24/7</p></div></div>
-      <div class="map-container">
-        <i class="fas fa-map-marked-alt map-pin-icon"></i>
-        <div class="map-text">
-          <strong style="color:var(--cyan);display:block;margin-bottom:.3rem">Grupo Navarro Comunicaciones S.A. — Sede Central</strong>
-          Av. Domingo Díaz, Barrio Bolívar<br>David, Chiriquí · 0401<br>
-          <span style="color:var(--cyan);font-size:.78rem;margin-top:.4rem;display:block">📍 Coordenadas: 8.4337° N, 82.4332° O</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="contact-form-wrap fade-up">
-      <h3><i class="fas fa-paper-plane" style="margin-right:.5rem"></i>Envíanos un Mensaje</h3>
-      <!-- Firebase connection notice -->
-      <div id="fbFormNotice" style="display:flex;align-items:center;gap:.6rem;background:rgba(0,195,255,.06);border:1px solid rgba(0,195,255,.15);border-radius:8px;padding:.7rem 1rem;margin-bottom:1.2rem;font-size:.8rem;color:var(--gray);">
-        <i class="fas fa-database" style="color:var(--cyan)"></i>
-        <span>Los mensajes se guardan de forma segura en <strong style="color:var(--cyan)">Firebase Firestore</strong></span>
-      </div>
-      <form id="contactForm" onsubmit="submitContact(event)">
-        <div class="form-row">
-          <div class="form-group">
-            <label>Nombre *</label>
-            <input type="text" id="inp-nombre" placeholder="Tu nombre completo" required/>
-          </div>
-          <div class="form-group">
-            <label>Apellido *</label>
-            <input type="text" id="inp-apellido" placeholder="Tu apellido" required/>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Correo Electrónico *</label>
-          <input type="email" id="inp-email" placeholder="correo@ejemplo.com" required/>
-        </div>
-        <div class="form-group">
-          <label>Teléfono</label>
-          <input type="tel" id="inp-telefono" placeholder="+507 6000-0000"/>
-        </div>
-        <div class="form-group">
-          <label>Asunto *</label>
-          <select id="inp-asunto" required>
-            <option value="" disabled selected>Selecciona un motivo</option>
-            <option>Información de Servicios</option>
-            <option>Solicitud de Cotización</option>
-            <option>Pauta Publicitaria</option>
-            <option>Cobertura de Evento</option>
-            <option>Soporte Técnico</option>
-            <option>Otro</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Mensaje *</label>
-          <textarea rows="5" id="inp-mensaje" placeholder="Cuéntanos en qué podemos ayudarte..." required></textarea>
-        </div>
-        <button type="submit" class="btn-primary" id="submitBtn" style="width:100%;justify-content:center">
-          <i class="fas fa-paper-plane"></i> Enviar Mensaje
-        </button>
-      </form>
-      <div class="form-success" id="formSuccess">
-        <i class="fas fa-check-circle" style="font-size:1.5rem;display:block;margin-bottom:.5rem"></i>
-        ¡MENSAJE ENVIADO CON ÉXITO!<br>
-        <span style="font-size:.8rem;color:var(--gray);font-family:var(--font-body)">Guardado en Firebase. Nos pondremos en contacto en menos de 24 horas.</span>
-      </div>
-      <div class="form-error-msg" id="formError">
-        <i class="fas fa-exclamation-triangle"></i>
-        <span id="formErrorText"> Error al enviar. Por favor intenta nuevamente.</span>
-      </div>
-    </div>
-  </div>
-  <footer class="footer">
-    <div class="footer-grid">
-      <div class="footer-brand"><div class="logo"><i class="fas fa-broadcast-tower"></i> Grupo Navarro Comunicaciones S.A.</div><p>Emisora y espacio informativo líder de la Provincia de Chiriquí.</p><div class="social-links"><a class="social-link" href="#"><i class="fab fa-facebook-f"></i></a><a class="social-link" href="#"><i class="fab fa-instagram"></i></a><a class="social-link" href="#"><i class="fab fa-x-twitter"></i></a><a class="social-link" href="#"><i class="fab fa-youtube"></i></a></div></div>
-      <div class="footer-col"><h4>Navegación</h4><ul><li><a href="#" onclick="showPage('home')">Inicio</a></li><li><a href="#" onclick="showPage('clientes')">Clientes</a></li><li><a href="#" onclick="showPage('contactos')">Contactos</a></li><li><a href="#" onclick="showPage('productos')">Productos</a></li><li><a href="#" onclick="showPage('servicios')">Servicios</a></li></ul></div>
-      <div class="footer-col"><h4>Servicios</h4><ul><li><a href="#" onclick="showPage('servicios')">Publicidad Radial</a></li><li><a href="#" onclick="showPage('servicios')">Cobertura de Eventos</a></li><li><a href="#" onclick="showPage('servicios')">Producción Digital</a></li></ul></div>
-      <div class="footer-col"><h4>Contacto</h4><ul><li><a href="tel:+50764000000"><i class="fas fa-phone"></i> +507 6400-0000</a></li><li><a href="/cdn-cgi/l/email-protection#6f060109002f010e190e1d1d000c00021a01060c0e0c0600010a1c410c0002"><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="274e494148674946514655554844484a52494e4446444e484942540944484a">[email&#160;protected]</span></a></li></ul></div>
-    </div>
-    <div class="footer-bottom"><div>© 2026 <span>Grupo Navarro Comunicaciones S.A.</span> · Todos los derechos reservados.</div><div class="footer-address"><i class="fas fa-map-pin"></i> Av. Domingo Díaz, David, Chiriquí, República de Panamá</div></div>
-  </footer>
-</div>
-
-<!-- ===========================================================
-     PÁGINA: PRODUCTOS
-=========================================================== -->
-<div id="page-productos" class="page">
-  <section class="products-hero">
-    <div class="container">
-      <span class="section-tag">Paquetes & Planes</span>
-      <h1 class="section-title">Nuestros <span>Productos</span></h1>
-      <div class="divider" style="margin:1rem auto 1.5rem"></div>
-      <p class="section-sub" style="margin:0 auto">Elige el plan que mejor se adapte a las necesidades de tu empresa o proyecto. Todos incluyen soporte y asesoría personalizada.</p>
-      <div class="plan-toggle">
-        <span class="toggle-label">Mensual</span>
-        <div class="toggle-switch" id="planToggle" onclick="togglePlan()"><div class="toggle-knob"></div></div>
-        <span class="toggle-label">Anual <span style="color:var(--cyan);font-size:.8rem">(–15%)</span></span>
-      </div>
-    </div>
-  </section>
-  <section class="section" style="padding-top:0">
-    <div class="container">
-      <div class="plans-grid">
-        <div class="plan-card fade-up"><div class="plan-icon"><i class="fas fa-signal"></i></div><div class="plan-name">BÁSICO</div><div class="plan-price" id="price-basic">$180<small>/mes</small></div><div class="plan-period">Ideal para emprendedores</div><div class="plan-divider"></div><ul class="plan-feat"><li><i class="fas fa-check-circle"></i> 4 cuñas radiales al mes</li><li><i class="fas fa-check-circle"></i> 1 mención en vivo</li><li><i class="fas fa-check-circle"></i> Publicación en redes sociales</li><li><i class="fas fa-check-circle"></i> Diseño básico de artes</li><li class="disabled"><i class="fas fa-times-circle"></i> Producción de video</li><li class="disabled"><i class="fas fa-times-circle"></i> Reportero en campo</li><li class="disabled"><i class="fas fa-times-circle"></i> Cobertura de evento</li></ul><button class="btn-outline" onclick="showPage('contactos')">Elegir Plan</button></div>
-        <div class="plan-card featured fade-up"><div class="plan-icon"><i class="fas fa-microphone-alt"></i></div><div class="plan-name">PROFESIONAL</div><div class="plan-price" id="price-pro">$350<small>/mes</small></div><div class="plan-period">Para negocios en crecimiento</div><div class="plan-divider"></div><ul class="plan-feat"><li><i class="fas fa-check-circle"></i> 12 cuñas radiales al mes</li><li><i class="fas fa-check-circle"></i> 3 menciones en vivo</li><li><i class="fas fa-check-circle"></i> Redes sociales + stories</li><li><i class="fas fa-check-circle"></i> Diseño gráfico profesional</li><li><i class="fas fa-check-circle"></i> 1 video corporativo</li><li><i class="fas fa-check-circle"></i> Reporte mensual de alcance</li><li class="disabled"><i class="fas fa-times-circle"></i> Cobertura de evento</li></ul><button class="btn-primary" onclick="showPage('contactos')">Elegir Plan</button></div>
-        <div class="plan-card fade-up"><div class="plan-icon"><i class="fas fa-building"></i></div><div class="plan-name">CORPORATIVO</div><div class="plan-price" id="price-corp">$650<small>/mes</small></div><div class="plan-period">Para grandes empresas</div><div class="plan-divider"></div><ul class="plan-feat"><li><i class="fas fa-check-circle"></i> Cuñas ilimitadas</li><li><i class="fas fa-check-circle"></i> Menciones diarias en vivo</li><li><i class="fas fa-check-circle"></i> Gestión completa de redes</li><li><i class="fas fa-check-circle"></i> Diseño gráfico + motion</li><li><i class="fas fa-check-circle"></i> 3 videos corporativos</li><li><i class="fas fa-check-circle"></i> 1 cobertura de evento</li><li><i class="fas fa-check-circle"></i> Ejecutivo de cuenta dedicado</li></ul><button class="btn-outline" onclick="showPage('contactos')">Elegir Plan</button></div>
-      </div>
-    </div>
-  </section>
-  <section class="section" style="padding-top:0">
-    <div class="container">
-      <span class="section-tag">Complementos</span>
-      <h2 class="section-title">Servicios <span>Adicionales</span></h2>
-      <div class="divider"></div>
-      <div class="addons-grid">
-        <div class="addon-card fade-up"><div class="addon-icon"><i class="fas fa-video"></i></div><div class="addon-info"><h4>Producción de Video</h4><p>Video institucional HD con guión, grabación y edición profesional.</p><div class="addon-price">desde $200</div></div></div>
-        <div class="addon-card fade-up"><div class="addon-icon"><i class="fas fa-satellite-dish"></i></div><div class="addon-info"><h4>Transmisión en Vivo</h4><p>Cobertura en vivo de eventos con equipo técnico especializado.</p><div class="addon-price">desde $350</div></div></div>
-        <div class="addon-card fade-up"><div class="addon-icon"><i class="fas fa-paint-brush"></i></div><div class="addon-info"><h4>Diseño de Campaña</h4><p>Estrategia creativa completa: concepto, artes, guión y material multimedia.</p><div class="addon-price">desde $150</div></div></div>
-        <div class="addon-card fade-up"><div class="addon-icon"><i class="fas fa-chart-line"></i></div><div class="addon-info"><h4>Análisis de Audiencia</h4><p>Informe detallado de métricas, alcance y efectividad de tu campaña.</p><div class="addon-price">desde $80</div></div></div>
-        <div class="addon-card fade-up"><div class="addon-icon"><i class="fas fa-podcast"></i></div><div class="addon-info"><h4>Podcast Corporativo</h4><p>Producción mensual de podcast de tu marca con distribución multiplataforma.</p><div class="addon-price">desde $120/mes</div></div></div>
-        <div class="addon-card fade-up"><div class="addon-icon"><i class="fas fa-photo-video"></i></div><div class="addon-info"><h4>Fotografía Corporativa</h4><p>Sesión fotográfica profesional para uso en campañas, web y redes sociales.</p><div class="addon-price">desde $180</div></div></div>
-      </div>
-    </div>
-  </section>
-  <footer class="footer">
-    <div class="footer-grid">
-      <div class="footer-brand"><div class="logo"><i class="fas fa-broadcast-tower"></i> Grupo Navarro Comunicaciones S.A.</div><p>Emisora y espacio informativo líder de la Provincia de Chiriquí.</p><div class="social-links"><a class="social-link" href="#"><i class="fab fa-facebook-f"></i></a><a class="social-link" href="#"><i class="fab fa-instagram"></i></a><a class="social-link" href="#"><i class="fab fa-x-twitter"></i></a></div></div>
-      <div class="footer-col"><h4>Navegación</h4><ul><li><a href="#" onclick="showPage('home')">Inicio</a></li><li><a href="#" onclick="showPage('clientes')">Clientes</a></li><li><a href="#" onclick="showPage('contactos')">Contactos</a></li><li><a href="#" onclick="showPage('productos')">Productos</a></li><li><a href="#" onclick="showPage('servicios')">Servicios</a></li></ul></div>
-      <div class="footer-col"><h4>Planes</h4><ul><li><a href="#">Plan Básico</a></li><li><a href="#">Plan Profesional</a></li><li><a href="#">Plan Corporativo</a></li><li><a href="#" onclick="openModal()">Ver Cotización</a></li></ul></div>
-      <div class="footer-col"><h4>Contacto</h4><ul><li><a href="tel:+50764000000"><i class="fas fa-phone"></i> +507 6400-0000</a></li><li><a href="/cdn-cgi/l/email-protection#026b6c646d426c63746370706d616d6f776c6b6163616b6d6c67712c616d6f"><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="bfd6d1d9d0ffd1dec9decdcdd0dcd0d2cad1d6dcdedcd6d0d1dacc91dcd0d2">[email&#160;protected]</span></a></li></ul></div>
-    </div>
-    <div class="footer-bottom"><div>© 2026 <span>Grupo Navarro Comunicaciones S.A.</span> · Todos los derechos reservados.</div></div>
-  </footer>
-</div>
-
-<!-- ===========================================================
-     PÁGINA: SERVICIOS
-=========================================================== -->
-<div id="page-servicios" class="page">
-  <section class="services-hero">
-    <div class="container">
-      <span class="section-tag">Lo que Hacemos</span>
-      <h1 class="section-title">Nuestros <span>Servicios</span></h1>
-      <div class="divider" style="margin:1rem auto 1.5rem"></div>
-      <p class="section-sub" style="margin:0 auto">Soluciones de comunicación integrales diseñadas para posicionar tu marca en la mente de los chiricanos y más allá.</p>
-    </div>
-  </section>
-  <section class="section" style="padding-top:1rem">
-    <div class="container">
-      <div class="services-main-grid">
-        <div class="service-card fade-up"><div class="service-icon-wrap"><i class="fas fa-broadcast-tower"></i></div><h3>PUBLICIDAD RADIAL</h3><p>Cuñas y spots de alto impacto en nuestra señal AM/FM/Digital. Alcanza miles de oyentes diariamente.</p><div class="service-tags"><span class="service-tag">Cuñas 30s/60s</span><span class="service-tag">Prime Time</span><span class="service-tag">Producción</span></div></div>
-        <div class="service-card fade-up"><div class="service-icon-wrap"><i class="fas fa-camera-retro"></i></div><h3>COBERTURA DE EVENTOS</h3><p>Equipo periodístico profesional en campo. Transmisión en vivo, reportajes y cobertura multimedia completa.</p><div class="service-tags"><span class="service-tag">En Vivo</span><span class="service-tag">Reporteros</span><span class="service-tag">Multimedia</span></div></div>
-        <div class="service-card fade-up"><div class="service-icon-wrap"><i class="fas fa-mobile-alt"></i></div><h3>MARKETING DIGITAL</h3><p>Gestión profesional de redes sociales, creación de contenido digital y estrategias de posicionamiento online.</p><div class="service-tags"><span class="service-tag">Redes Sociales</span><span class="service-tag">Contenido</span><span class="service-tag">SEO Local</span></div></div>
-        <div class="service-card fade-up"><div class="service-icon-wrap"><i class="fas fa-film"></i></div><h3>PRODUCCIÓN AUDIOVISUAL</h3><p>Producción completa de videos institucionales, comerciales y cápsulas informativas para multiplataforma.</p><div class="service-tags"><span class="service-tag">Video 4K</span><span class="service-tag">Edición</span><span class="service-tag">Motion</span></div></div>
-        <div class="service-card fade-up"><div class="service-icon-wrap"><i class="fas fa-newspaper"></i></div><h3>PERIODISMO INFORMATIVO</h3><p>Redacción, edición y publicación de notas informativas en nuestra plataforma digital con alcance regional.</p><div class="service-tags"><span class="service-tag">Notas de Prensa</span><span class="service-tag">Comunicados</span><span class="service-tag">Digital</span></div></div>
-        <div class="service-card fade-up"><div class="service-icon-wrap"><i class="fas fa-laptop-code"></i></div><h3>DESARROLLO WEB</h3><p>Diseño y desarrollo de sitios web corporativos, landing pages y tiendas en línea con tecnología moderna.</p><div class="service-tags"><span class="service-tag">Web Design</span><span class="service-tag">E-commerce</span><span class="service-tag">SEO</span></div></div>
-      </div>
-    </div>
-  </section>
-  <section class="section" style="padding-top:0">
-    <div class="container">
-      <span class="section-tag">Metodología</span>
-      <h2 class="section-title">Nuestro <span>Proceso</span></h2>
-      <div class="divider"></div>
-      <div class="process-steps">
-        <div class="step-item fade-up"><div class="step-num">01</div><h4>CONSULTA</h4><p>Analizamos tus necesidades y objetivos de comunicación con atención personalizada.</p></div>
-        <div class="step-item fade-up"><div class="step-num">02</div><h4>ESTRATEGIA</h4><p>Diseñamos un plan de comunicación personalizado y medible para tu marca.</p></div>
-        <div class="step-item fade-up"><div class="step-num">03</div><h4>PRODUCCIÓN</h4><p>Nuestro equipo creativo ejecuta el proyecto con los más altos estándares.</p></div>
-        <div class="step-item fade-up"><div class="step-num">04</div><h4>DIFUSIÓN</h4><p>Publicamos y transmitimos tu mensaje en todos los canales acordados.</p></div>
-        <div class="step-item fade-up"><div class="step-num">05</div><h4>ANÁLISIS</h4><p>Medimos resultados y optimizamos la estrategia para maximizar el impacto.</p></div>
-      </div>
-    </div>
-  </section>
-  <section class="section" style="padding-top:0">
-    <div class="container">
-      <span class="section-tag">Tarifario</span>
-      <h2 class="section-title">Tabla de <span>Precios Base</span></h2>
-      <div class="divider"></div>
-      <div style="overflow-x:auto;border-radius:var(--radius);border:1px solid rgba(0,195,255,.12)">
-        <table class="pricing-table">
-          <thead><tr><th>Servicio</th><th>Descripción</th><th>Duración / Alcance</th><th>Precio desde</th></tr></thead>
-          <tbody>
-            <tr><td>Cuña Radial</td><td>Grabación y producción de spot publicitario</td><td>30 segundos</td><td>$45</td></tr>
-            <tr><td>Mención en Vivo</td><td>Referencia directa al aire por locutor oficial</td><td>15 – 30 seg</td><td>$25</td></tr>
-            <tr><td>Video Corporativo</td><td>Producción audiovisual institucional completa</td><td>2 – 5 min</td><td>$200</td></tr>
-            <tr><td>Cobertura de Evento</td><td>Equipo en campo + transmisión + nota informativa</td><td>4 horas</td><td>$350</td></tr>
-            <tr><td>Gestión Redes Sociales</td><td>Publicaciones diarias + diseño + análisis</td><td>Mensual</td><td>$150/mes</td></tr>
-            <tr><td>Sitio Web Corporativo</td><td>Diseño y desarrollo web responsive + SEO</td><td>Entrega en 15 días</td><td>$450</td></tr>
-            <tr><td>Streaming en Vivo</td><td>Transmisión digital multiplataforma en tiempo real</td><td>Por evento</td><td>$250</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div style="text-align:center;margin-top:2rem">
-        <button class="btn-primary" onclick="openModal()"><i class="fas fa-file-invoice-dollar"></i> Ver Cotización Oficial</button>
-      </div>
-    </div>
-  </section>
-  <footer class="footer">
-    <div class="footer-grid">
-      <div class="footer-brand"><div class="logo"><i class="fas fa-broadcast-tower"></i> Grupo Navarro Comunicaciones S.A.</div><p>Emisora y espacio informativo líder de la Provincia de Chiriquí.</p><div class="social-links"><a class="social-link" href="#"><i class="fab fa-facebook-f"></i></a><a class="social-link" href="#"><i class="fab fa-instagram"></i></a><a class="social-link" href="#"><i class="fab fa-x-twitter"></i></a></div></div>
-      <div class="footer-col"><h4>Navegación</h4><ul><li><a href="#" onclick="showPage('home')">Inicio</a></li><li><a href="#" onclick="showPage('clientes')">Clientes</a></li><li><a href="#" onclick="showPage('contactos')">Contactos</a></li><li><a href="#" onclick="showPage('productos')">Productos</a></li><li><a href="#" onclick="showPage('servicios')">Servicios</a></li></ul></div>
-      <div class="footer-col"><h4>Servicios</h4><ul><li><a href="#">Publicidad Radial</a></li><li><a href="#">Cobertura de Eventos</a></li><li><a href="#">Producción Digital</a></li></ul></div>
-      <div class="footer-col"><h4>Contacto</h4><ul><li><a href="tel:+50764000000"><i class="fas fa-phone"></i> +507 6400-0000</a></li><li><a href="/cdn-cgi/l/email-protection#bcd5d2dad3fcd2ddcaddceced3dfd3d1c9d2d5dfdddfd5d3d2d9cf92dfd3d1"><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="dfb6b1b9b09fb1bea9beadadb0bcb0b2aab1b6bcbebcb6b0b1baacf1bcb0b2">[email&#160;protected]</span></a></li></ul></div>
-    </div>
-    <div class="footer-bottom"><div>© 2026 <span>Grupo Navarro Comunicaciones S.A.</span> · Todos los derechos reservados.</div></div>
-  </footer>
-</div>
-
-<!-- ===========================================================
-     PÁGINA: ADMIN PANEL (acceso por URL hash #admin)
-=========================================================== -->
-<div id="page-admin" class="page">
-  <section class="admin-hero">
-    <div class="container">
-      <span class="section-tag" style="border-color:rgba(255,183,0,.4);color:#ffb300;box-shadow:0 0 12px rgba(255,183,0,.2)">Panel Privado</span>
-      <h1 class="section-title" style="margin-top:.5rem">Panel de <span>Administración</span></h1>
-      <div class="divider"></div>
-    </div>
-  </section>
-
-  <!-- LOGIN PANEL -->
-  <div class="section" style="padding-top:0">
-    <div class="container">
-      <!-- Login card (shown when not authenticated) -->
-      <div id="adminLogin">
-        <div class="admin-login-card">
-          <h3><i class="fas fa-shield-alt" style="margin-right:.5rem;color:#ffb300"></i>ACCESO ADMINISTRADOR</h3>
-          <div class="form-group">
-            <label>Correo Electrónico</label>
-            <input type="email" id="adminEmail" placeholder="admin@navarrocomunicaciones.com"/>
-          </div>
-          <div class="form-group">
-            <label>Contraseña</label>
-            <input type="password" id="adminPass" placeholder="••••••••"/>
-          </div>
-          <button class="btn-primary" onclick="adminLogin()" style="width:100%;justify-content:center;margin-top:.5rem">
-            <i class="fas fa-lock-open"></i> Iniciar Sesión
-          </button>
-          <div id="loginError" style="display:none;margin-top:1rem;padding:.8rem;background:rgba(255,23,68,.1);border:1px solid rgba(255,23,68,.3);border-radius:8px;font-size:.82rem;color:#ff5370;text-align:center;"></div>
-          <p style="text-align:center;margin-top:1.5rem;font-size:.78rem;color:var(--gray)">
-            <i class="fas fa-info-circle" style="color:var(--cyan)"></i>
-            Acceso exclusivo para personal autorizado
-          </p>
-        </div>
-      </div>
-
-      <!-- Dashboard (shown when authenticated) -->
-      <div id="adminDashboard" style="display:none">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:1rem;">
-          <div>
-            <h3 style="font-family:var(--font-head);font-size:1rem;color:var(--cyan);letter-spacing:2px">BIENVENIDO, <span id="adminUserName">Admin</span></h3>
-            <p style="font-size:.82rem;color:var(--gray);margin-top:.2rem">Panel de control en tiempo real · Firebase Firestore</p>
-          </div>
-          <button class="btn-outline" onclick="adminLogout()" style="padding:.5rem 1.2rem;font-size:.72rem">
-            <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
-          </button>
-        </div>
-
-        <!-- Stats cards -->
-        <div class="admin-stats-grid" id="adminStatsGrid">
-          <div class="admin-stat-card"><div class="admin-stat-num" id="stat-total">–</div><div class="admin-stat-label">Total Mensajes</div></div>
-          <div class="admin-stat-card"><div class="admin-stat-num" id="stat-new">–</div><div class="admin-stat-label">Sin Leer</div></div>
-          <div class="admin-stat-card"><div class="admin-stat-num" id="stat-noticias">–</div><div class="admin-stat-label">Noticias</div></div>
-          <div class="admin-stat-card"><div class="admin-stat-num" id="stat-visits">–</div><div class="admin-stat-label">Visitas Totales</div></div>
-        </div>
-
-        <!-- Tabs -->
-        <div class="admin-tabs">
-          <button class="admin-tab active" onclick="switchAdminTab('mensajes',this)"><i class="fas fa-envelope"></i> Mensajes</button>
-          <button class="admin-tab" onclick="switchAdminTab('noticias',this)"><i class="fas fa-newspaper"></i> Noticias</button>
-          <button class="admin-tab" onclick="switchAdminTab('nueva-noticia',this)"><i class="fas fa-plus-circle"></i> Nueva Noticia</button>
-        </div>
-
-        <!-- Tab: Mensajes -->
-        <div class="admin-tab-content active" id="tab-mensajes">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:.8rem;">
-            <h4 style="font-family:var(--font-head);font-size:.85rem;color:var(--white);letter-spacing:1px">BANDEJA DE MENSAJES</h4>
-            <button class="btn-outline" onclick="loadMessages()" style="padding:.4rem 1rem;font-size:.7rem"><i class="fas fa-sync"></i> Actualizar</button>
-          </div>
-          <div id="messagesWrap">
-            <div class="spinner-wrap"><div class="spinner"></div><p style="margin-top:1rem;font-size:.85rem">Cargando mensajes...</p></div>
-          </div>
-        </div>
-
-        <!-- Tab: Noticias -->
-        <div class="admin-tab-content" id="tab-noticias">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:.8rem;">
-            <h4 style="font-family:var(--font-head);font-size:.85rem;color:var(--white);letter-spacing:1px">NOTICIAS PUBLICADAS</h4>
-            <button class="btn-outline" onclick="loadNoticiasAdmin()" style="padding:.4rem 1rem;font-size:.7rem"><i class="fas fa-sync"></i> Actualizar</button>
-          </div>
-          <div id="noticiasAdminWrap">
-            <div class="spinner-wrap"><div class="spinner"></div><p style="margin-top:1rem;font-size:.85rem">Cargando noticias...</p></div>
-          </div>
-        </div>
-
-        <!-- Tab: Nueva Noticia -->
-        <div class="admin-tab-content" id="tab-nueva-noticia">
-          <h4 style="font-family:var(--font-head);font-size:.85rem;color:var(--cyan);letter-spacing:1px;margin-bottom:1.5rem">PUBLICAR NUEVA NOTICIA</h4>
-          <div style="background:var(--navy-card);border:1px solid rgba(0,195,255,.15);border-radius:var(--radius-lg);padding:2rem;">
-            <div class="news-form-grid">
-              <div class="form-group"><label>Título *</label><input type="text" id="n-titulo" placeholder="Título de la noticia"/></div>
-              <div class="form-group"><label>Categoría *</label>
-                <select id="n-categoria">
-                  <option value="" disabled selected>Selecciona categoría</option>
-                  <option>Economía Local</option><option>Cultura</option><option>Política</option>
-                  <option>Deportes</option><option>Salud</option><option>Medioambiente</option>
-                  <option>Tecnología</option><option>Comunidad</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group"><label>Extracto / Resumen *</label><textarea id="n-extracto" rows="3" placeholder="Resumen breve de la noticia..."></textarea></div>
-            <div class="news-form-grid">
-              <div class="form-group"><label>Etiqueta Badge</label><input type="text" id="n-badge" placeholder="ej: Destacado, En Vivo"/></div>
-              <div class="form-group"><label>Color Badge</label>
-                <select id="n-badgeColor">
-                  <option value="var(--cyan)">Cyan (Defecto)</option>
-                  <option value="#ff6b35">Naranja (En Vivo)</option>
-                  <option value="#00b894">Verde (Ambiente)</option>
-                  <option value="#e17055">Rojo</option>
-                  <option value="#6c5ce7">Morado</option>
-                </select>
-              </div>
-            </div>
-            <div class="news-form-grid">
-              <div class="form-group"><label>Icono (Font Awesome clase)</label><input type="text" id="n-icono" placeholder="ej: fa-city  fa-leaf  fa-trophy"/></div>
-              <div class="form-group"><label>Tiempo de Lectura</label><input type="text" id="n-lectura" placeholder="ej: 4 min lectura"/></div>
-            </div>
-            <button class="btn-primary" onclick="publishNoticia()" id="publishBtn" style="margin-top:.5rem">
-              <i class="fas fa-paper-plane"></i> Publicar Noticia
-            </button>
-            <div id="noticiaSuccess" style="display:none;margin-top:1rem;padding:1rem;background:rgba(0,195,255,.1);border:1px solid rgba(0,195,255,.3);border-radius:8px;color:var(--cyan);font-family:var(--font-head);font-size:.82rem;text-align:center;">
-              <i class="fas fa-check-circle"></i> ¡Noticia publicada con éxito en Firebase!
-            </div>
-          </div>
-        </div>
-      </div><!-- end adminDashboard -->
-    </div>
+  <div id="db-status">
+    <span class="db-dot"></span>
+    <span id="db-status-text">Supabase pendiente</span>
   </div>
 
-  <footer class="footer" style="margin-top:3rem">
-    <div class="footer-bottom" style="max-width:1200px;margin:0 auto;border-top:none;padding-top:1.5rem;">
-      <div>© 2026 <span>Grupo Navarro Comunicaciones S.A.</span> · Panel Administrativo</div>
-      <div><span>Firebase Firestore</span> + Authentication</div>
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">
+      <div class="logo-icon"><i class="fas fa-broadcast-tower"></i></div>
+      Grupo Navarro Comunicaciones S.A.
     </div>
-  </footer>
-</div>
 
-<!-- ===========================================================
-     MODAL: DETALLE DE MENSAJE
-=========================================================== -->
-<div class="msg-detail-overlay" id="msgDetailOverlay" onclick="closeMsgDetail(event)">
-  <div class="msg-detail-box">
-    <button class="msg-detail-close" onclick="closeMsgDetail()"><i class="fas fa-times"></i></button>
-    <h3 style="font-family:var(--font-head);font-size:.9rem;color:var(--cyan);letter-spacing:2px;margin-bottom:1.5rem"><i class="fas fa-envelope-open" style="margin-right:.5rem"></i>DETALLE DEL MENSAJE</h3>
-    <div id="msgDetailContent"></div>
-  </div>
-</div>
-
-<!-- ===========================================================
-     MODAL: FACTURA / COTIZACIÓN
-=========================================================== -->
-<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
-  <div class="modal" id="modalContent">
-    <div class="modal-header">
-      <div class="modal-title"><i class="fas fa-file-invoice-dollar" style="margin-right:.6rem"></i>COTIZACIÓN PROFESIONAL DE SERVICIOS</div>
-      <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
-    </div>
-    <div class="modal-body">
-      <div class="invoice-meta">
-        <div class="invoice-meta-item"><span>No. Cotización</span><strong>COT-2026-041</strong></div>
-        <div class="invoice-meta-item"><span>Fecha</span><strong>26/03/2026</strong></div>
-        <div class="invoice-meta-item"><span>Válida hasta</span><strong>26/04/2026</strong></div>
-        <div class="invoice-meta-item"><span>Moneda</span><strong>USD ($)</strong></div>
-      </div>
-      <div class="invoice-header">
-        <div class="invoice-from"><h4>EMITIDO POR:</h4><p><strong style="color:var(--white)">Servicios TI Profesionales</strong><br>RUC: 8-123-4567<br>David, Chiriquí, Panamá<br>Tel: +507 6500-0000<br><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e2968bcc918790948b818b8d91a2878f838b8ecc818d8f">[email&#160;protected]</a></p></div>
-        <div class="invoice-to"><h4>PARA:</h4><p><strong style="color:var(--white)">Grupo Navarro Comunicaciones S.A.</strong><br>Emisora & Espacio Informativo<br>Av. Domingo Díaz, Barrio Bolívar<br>David, Chiriquí, Panamá<br><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="660f080009260807100714140905090b13080f0507050f090803154805090b">[email&#160;protected]</a></p></div>
-      </div>
-      <table class="invoice-table">
-        <thead><tr><th>#</th><th>Descripción del Servicio</th><th>Cant.</th><th>Precio Unit.</th><th>Total</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td><strong style="color:var(--white)">Diseño y Desarrollo Web Corporativo</strong><br><span style="font-size:.78rem">Sitio web 5 páginas, responsive, SEO básico, panel de administración</span></td><td>1</td><td>$450.00</td><td>$450.00</td></tr>
-          <tr><td>2</td><td><strong style="color:var(--white)">Hosting Web Compartido – Anual</strong><br><span style="font-size:.78rem">Proveedor: DigitalOcean / cPanel · 10 GB SSD · SSL incluido · Uptime 99.9%</span></td><td>1</td><td>$120.00</td><td>$120.00</td></tr>
-          <tr><td>3</td><td><strong style="color:var(--white)">Registro de Dominio .com – Anual</strong><br><span style="font-size:.78rem">navarrocomunicaciones.com · Incluye privacidad WHOIS</span></td><td>1</td><td>$15.00</td><td>$15.00</td></tr>
-          <tr><td>4</td><td><strong style="color:var(--white)">Servidor de Datos Linux (VPS) – Anual</strong><br><span style="font-size:.78rem">Ubuntu 22.04 LTS · 2vCPU · 4GB RAM · SSH + FTP configurado · Backups diarios</span></td><td>1</td><td>$240.00</td><td>$240.00</td></tr>
-          <tr><td>5</td><td><strong style="color:var(--white)">Mantenimiento Web Mensual (6 meses)</strong><br><span style="font-size:.78rem">Actualizaciones, copias de seguridad, soporte técnico, optimización SEO</span></td><td>6</td><td>$60.00</td><td>$360.00</td></tr>
-          <tr><td>6</td><td><strong style="color:var(--white)">Implementación Sistema de Streaming</strong><br><span style="font-size:.78rem">Servidor de transmisión online + app móvil + estadísticas en tiempo real</span></td><td>1</td><td>$800.00</td><td>$800.00</td></tr>
-        </tbody>
-      </table>
-      <div class="invoice-totals">
-        <div class="invoice-row"><span>Subtotal:</span><span>$1,985.00</span></div>
-        <div class="invoice-row"><span>ITBMS (7%):</span><span>$138.95</span></div>
-        <div class="invoice-row"><span>Descuento (5%):</span><span>-$99.25</span></div>
-        <div class="invoice-row total"><span>TOTAL A PAGAR:</span><span>$2,024.70</span></div>
-      </div>
-      <div class="invoice-note">
-        <strong>📋 Condiciones:</strong> Pago 50% al inicio del proyecto · 50% a la entrega final.<br>
-        <strong>🗄️ Base de Datos:</strong> Incluye integración Firebase Firestore para gestión de mensajes y noticias en tiempo real.<br>
-        <strong>✅ Garantía:</strong> 30 días de soporte post-entrega incluidos en todos los servicios.
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn-outline" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button>
-      <button class="btn-primary" onclick="closeModal();showPage('contactos')"><i class="fas fa-handshake"></i> Aceptar Cotización</button>
-    </div>
-  </div>
-</div>
-
-<!-- TOAST PROTECCIÓN -->
-<div class="protect-toast" id="protectToast">
-  <i class="fas fa-shield-alt"></i> &nbsp;CONTENIDO PROTEGIDO · GRUPO NAVARRO COMUNICACIONES S.A.
-</div>
-
-<!-- ===========================================================
-     JAVASCRIPT PRINCIPAL + FIREBASE
-=========================================================== -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-/* ============================================================
-   ██ FIREBASE CONFIGURATION
-   IMPORTANTE: Reemplaza estos valores con los de tu proyecto
-   Firebase Console → Project Settings → Your apps → Firebase SDK snippet
-============================================================ */
-const firebaseConfig = {
-  apiKey:            "YOUR_API_KEY",
-  authDomain:        "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId:         "YOUR_PROJECT_ID",
-  storageBucket:     "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId:             "YOUR_APP_ID"
-};
-
-/* ============================================================
-   FIREBASE INIT
-============================================================ */
-let db = null;
-let auth = null;
-let firebaseReady = false;
-
-function initFirebase() {
-  try {
-    if (typeof firebase === 'undefined') {
-      setFbStatus('error', 'SDK no cargado');
-      return;
-    }
-    // Prevent double-init
-    if (!firebase.apps.length) {
-      firebase.initializeApp(firebaseConfig);
-    }
-    db   = firebase.firestore();
-    auth = firebase.auth();
-
-    // Test connection with a lightweight read
-    db.collection('_ping').doc('test').set({ ts: firebase.firestore.FieldValue.serverTimestamp() })
-      .then(() => {
-        firebaseReady = true;
-        setFbStatus('connected', 'Firebase conectado');
-        loadNews(); // load dynamic news after connection
-        trackVisit();
-      })
-      .catch(err => {
-        // Still mark as connected but with limited permissions
-        firebaseReady = true;
-        setFbStatus('connected', 'Firebase listo');
-        loadNews();
-        console.warn('Firestore ping:', err.message);
-      });
-
-    // Listen to auth state
-    auth.onAuthStateChanged(user => {
-      if (document.getElementById('page-admin').classList.contains('active')) {
-        renderAdminState(user);
-      }
-    });
-
-  } catch(e) {
-    setFbStatus('error', 'Config. inválida');
-    console.error('Firebase init error:', e);
-  }
-}
-
-function setFbStatus(state, text) {
-  const el = document.getElementById('fb-status');
-  el.className = '';
-  el.classList.add(state);
-  document.getElementById('fb-status-text').textContent = text;
-}
-
-// Init on DOM ready
-document.addEventListener('DOMContentLoaded', () => {
-  initFirebase();
-  initFadeAnimations();
-  handleHashNavigation();
-});
-
-/* ============================================================
-   TRACK VISIT (Firestore analytics)
-============================================================ */
-async function trackVisit() {
-  if (!firebaseReady || !db) return;
-  try {
-    const ref = db.collection('estadisticas').doc('visitas');
-    await ref.set({
-      total: firebase.firestore.FieldValue.increment(1),
-      ultima: firebase.firestore.FieldValue.serverTimestamp()
-    }, { merge: true });
-  } catch(e) { /* silent */ }
-}
-
-/* ============================================================
-   NOTICIAS ESTÁTICAS (fallback cuando Firebase no está configurado)
-============================================================ */
-const staticNews = [
-  {
-    titulo: "Chiriquí impulsa nuevo polo tecnológico para PYMES en David",
-    categoria: "Economía Local",
-    extracto: "El Ministerio de Comercio e Industrias anuncia inversión en infraestructura digital para impulsar a pequeñas empresas de la región.",
-    fecha: "25 Mar 2026",
-    lectura: "5 min lectura",
-    badge: "Destacado",
-    badgeColor: "var(--cyan)",
-    icono: "fa-city",
-    thumbBg: "linear-gradient(135deg,var(--navy-light),var(--navy-mid))"
-  },
-  {
-    titulo: "Festival de la Mejorana: GNC transmite en exclusiva",
-    categoria: "Cultura",
-    extracto: "Cobertura especial del evento más esperado del año en la Provincia de Veraguas, con entrevistas y reportes en tiempo real.",
-    fecha: "24 Mar 2026",
-    lectura: "3 min lectura",
-    badge: "En Vivo",
-    badgeColor: "#ff6b35",
-    icono: "fa-microphone-alt",
-    thumbBg: "linear-gradient(135deg,#0d2b4b,#0a0f2e)"
-  },
-  {
-    titulo: "Proyecto de reforestación beneficia 3 comunidades de Boquete",
-    categoria: "Medioambiente",
-    extracto: "Más de 500 familias se benefician con el programa que busca restaurar los ecosistemas hídricos de la región alta de Chiriquí.",
-    fecha: "23 Mar 2026",
-    lectura: "4 min lectura",
-    badge: "Ambiente",
-    badgeColor: "#00b894",
-    icono: "fa-leaf",
-    thumbBg: "linear-gradient(135deg,#0a2e1e,#0a0f2e)"
-  }
-];
-
-/* ============================================================
-   LOAD NEWS (from Firestore, fallback to static)
-============================================================ */
-async function loadNews() {
-  const grid = document.getElementById('newsGrid');
-  if (!grid) return;
-
-  if (!firebaseReady || !db) {
-    renderNewsCards(staticNews, grid);
-    return;
-  }
-
-  try {
-    const snap = await db.collection('noticias')
-      .orderBy('timestamp', 'desc')
-      .limit(3)
-      .get();
-
-    if (snap.empty) {
-      renderNewsCards(staticNews, grid);
-      return;
-    }
-
-    const news = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-    renderNewsCards(news, grid);
-  } catch(e) {
-    console.warn('loadNews fallback:', e.message);
-    renderNewsCards(staticNews, grid);
-  }
-}
-
-function renderNewsCards(newsArr, grid) {
-  grid.innerHTML = '';
-  newsArr.forEach(n => {
-    const card = document.createElement('div');
-    card.className = 'news-card fade-up';
-    card.innerHTML = `
-      <div class="news-thumb" style="background:${n.thumbBg || 'linear-gradient(135deg,var(--navy-light),var(--navy-mid))'}">
-        <i class="fas ${n.icono || 'fa-newspaper'} news-thumb-icon"></i>
-        ${n.badge ? `<span class="news-thumb-badge" style="background:${n.badgeColor||'var(--cyan)'};color:var(--navy-deep)">${n.badge}</span>` : ''}
-      </div>
-      <div class="news-body">
-        <div class="news-cat"><i class="fas fa-tag"></i> ${n.categoria || 'Noticias'}</div>
-        <p class="news-title-card">${n.titulo}</p>
-        <p style="font-size:.83rem;color:var(--gray);line-height:1.6">${n.extracto}</p>
-        <div class="news-meta">
-          <span><i class="fas fa-calendar-alt"></i> ${n.fecha || formatDate(n.timestamp)}</span>
-          <span><i class="fas fa-clock"></i> ${n.lectura || '3 min lectura'}</span>
-          ${n.id ? '<span style="color:var(--cyan);font-size:.7rem"><i class="fas fa-database"></i> Firebase</span>' : ''}
-        </div>
-      </div>`;
-    grid.appendChild(card);
-  });
-  setTimeout(initFadeAnimations, 50);
-}
-
-function formatDate(ts) {
-  if (!ts) return '–';
-  try {
-    const d = ts.toDate ? ts.toDate() : new Date(ts);
-    return d.toLocaleDateString('es-PA', { day: '2-digit', month: 'short', year: 'numeric' });
-  } catch { return '–'; }
-}
-
-/* ============================================================
-   CONTACT FORM → FIRESTORE
-============================================================ */
-async function submitContact(e) {
-  e.preventDefault();
-  const btn = document.getElementById('submitBtn');
-  const errDiv = document.getElementById('formError');
-  const sucDiv = document.getElementById('formSuccess');
-
-  errDiv.classList.remove('show');
-
-  const data = {
-    nombre:   document.getElementById('inp-nombre').value.trim(),
-    apellido: document.getElementById('inp-apellido').value.trim(),
-    email:    document.getElementById('inp-email').value.trim(),
-    telefono: document.getElementById('inp-telefono').value.trim(),
-    asunto:   document.getElementById('inp-asunto').value,
-    mensaje:  document.getElementById('inp-mensaje').value.trim(),
-    leido:    false,
-    timestamp: null
-  };
-
-  // Loading state
-  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-  btn.classList.add('btn-loading');
-
-  if (firebaseReady && db) {
-    try {
-      data.timestamp = firebase.firestore.FieldValue.serverTimestamp();
-      await db.collection('mensajes').add(data);
-      showFormSuccess();
-    } catch(err) {
-      console.error('Firestore error:', err);
-      // Fallback: still show success (message captured locally)
-      showFormSuccess('Mensaje capturado (Firebase temporalmente no disponible).');
-    }
-  } else {
-    // No firebase connection – simulate save
-    await new Promise(r => setTimeout(r, 900));
-    showFormSuccess('Mensaje registrado localmente. Configure Firebase para persistencia.');
-  }
-
-  btn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar Mensaje';
-  btn.classList.remove('btn-loading');
-}
-
-function showFormSuccess(customMsg) {
-  const form = document.getElementById('contactForm');
-  const suc  = document.getElementById('formSuccess');
-  form.style.display = 'none';
-  if (customMsg) suc.innerHTML = `<i class="fas fa-check-circle" style="font-size:1.5rem;display:block;margin-bottom:.5rem"></i>¡MENSAJE ENVIADO!<br><span style="font-size:.8rem;color:var(--gray);font-family:var(--font-body)">${customMsg}</span>`;
-  suc.classList.add('show');
-}
-
-/* ============================================================
-   ADMIN AUTH
-============================================================ */
-function renderAdminState(user) {
-  if (user) {
-    document.getElementById('adminLogin').style.display = 'none';
-    document.getElementById('adminDashboard').style.display = 'block';
-    document.getElementById('adminUserName').textContent = user.email.split('@')[0].toUpperCase();
-    loadMessages();
-    loadNoticiasAdmin();
-    loadAdminStats();
-  } else {
-    document.getElementById('adminLogin').style.display = 'block';
-    document.getElementById('adminDashboard').style.display = 'none';
-  }
-}
-
-async function adminLogin() {
-  const email = document.getElementById('adminEmail').value.trim();
-  const pass  = document.getElementById('adminPass').value;
-  const errEl = document.getElementById('loginError');
-  errEl.style.display = 'none';
-
-  if (!auth) { errEl.textContent = 'Firebase no inicializado. Configure firebaseConfig.'; errEl.style.display = 'block'; return; }
-
-  try {
-    await auth.signInWithEmailAndPassword(email, pass);
-    // onAuthStateChanged will handle the rest
-  } catch(e) {
-    const msgs = {
-      'auth/user-not-found':  'Usuario no encontrado.',
-      'auth/wrong-password':  'Contraseña incorrecta.',
-      'auth/invalid-email':   'Correo inválido.',
-      'auth/too-many-requests':'Demasiados intentos. Intente más tarde.',
-      'auth/invalid-api-key': '⚠️ Configure el firebaseConfig con sus credenciales reales.',
-    };
-    errEl.textContent = msgs[e.code] || `Error: ${e.message}`;
-    errEl.style.display = 'block';
-  }
-}
-
-function adminLogout() {
-  if (auth) auth.signOut();
-}
-
-/* ============================================================
-   ADMIN STATS
-============================================================ */
-async function loadAdminStats() {
-  if (!db) return;
-  try {
-    const [msgSnap, notSnap, statsDoc] = await Promise.all([
-      db.collection('mensajes').get(),
-      db.collection('noticias').get(),
-      db.collection('estadisticas').doc('visitas').get()
-    ]);
-    const total   = msgSnap.size;
-    const unread  = msgSnap.docs.filter(d => !d.data().leido).length;
-    const nots    = notSnap.size;
-    const visits  = statsDoc.exists ? (statsDoc.data().total || 0) : 0;
-
-    document.getElementById('stat-total').textContent    = total;
-    document.getElementById('stat-new').textContent      = unread;
-    document.getElementById('stat-noticias').textContent = nots;
-    document.getElementById('stat-visits').textContent   = visits.toLocaleString();
-  } catch(e) { console.warn('Stats error:', e.message); }
-}
-
-/* ============================================================
-   LOAD MESSAGES (Admin)
-============================================================ */
-async function loadMessages() {
-  const wrap = document.getElementById('messagesWrap');
-  if (!wrap || !db) return;
-  wrap.innerHTML = '<div class="spinner-wrap"><div class="spinner"></div><p style="margin-top:1rem;font-size:.85rem">Cargando...</p></div>';
-
-  try {
-    const snap = await db.collection('mensajes').orderBy('timestamp','desc').limit(50).get();
-    if (snap.empty) {
-      wrap.innerHTML = '<div class="empty-state"><i class="fas fa-inbox"></i><p>No hay mensajes aún. Los formularios de contacto aparecerán aquí.</p></div>';
-      return;
-    }
-    const rows = snap.docs.map(doc => {
-      const d = doc.data();
-      const ts = d.timestamp ? formatDate(d.timestamp) : '–';
-      return `<tr>
-        <td><strong>${escHtml(d.nombre)} ${escHtml(d.apellido)}</strong></td>
-        <td>${escHtml(d.email)}</td>
-        <td>${escHtml(d.asunto)}</td>
-        <td>${ts}</td>
-        <td>${d.leido ? '<span class="msg-badge-read">Leído</span>' : '<span class="msg-badge-new">Nuevo</span>'}</td>
-        <td style="white-space:nowrap">
-          <button class="msg-action-btn" onclick="viewMessage('${doc.id}')"><i class="fas fa-eye"></i></button>
-          ${!d.leido ? `<button class="msg-action-btn" onclick="markRead('${doc.id}',this)" style="margin-left:.3rem"><i class="fas fa-check"></i></button>` : ''}
-          <button class="msg-action-btn danger" onclick="deleteMessage('${doc.id}',this)" style="margin-left:.3rem"><i class="fas fa-trash"></i></button>
-        </td>
-      </tr>`;
-    }).join('');
-
-    wrap.innerHTML = `
-      <div class="msg-table-wrap">
-        <table class="msg-table">
-          <thead><tr><th>Nombre</th><th>Email</th><th>Asunto</th><th>Fecha</th><th>Estado</th><th>Acciones</th></tr></thead>
-          <tbody id="msgTableBody">${rows}</tbody>
-        </table>
-      </div>`;
-  } catch(e) {
-    wrap.innerHTML = `<div class="empty-state"><i class="fas fa-exclamation-triangle"></i><p>Error al cargar: ${e.message}<br><small>Asegúrate de configurar las reglas de Firestore.</small></p></div>`;
-  }
-}
-
-async function viewMessage(id) {
-  if (!db) return;
-  try {
-    const doc = await db.collection('mensajes').doc(id).get();
-    if (!doc.exists) return;
-    const d = doc.data();
-    document.getElementById('msgDetailContent').innerHTML = `
-      <div class="msg-field"><label>De</label><p>${escHtml(d.nombre)} ${escHtml(d.apellido)}</p></div>
-      <div class="msg-field"><label>Correo</label><p>${escHtml(d.email)}</p></div>
-      <div class="msg-field"><label>Teléfono</label><p>${escHtml(d.telefono || '–')}</p></div>
-      <div class="msg-field"><label>Asunto</label><p>${escHtml(d.asunto)}</p></div>
-      <div class="msg-field"><label>Mensaje</label><p>${escHtml(d.mensaje)}</p></div>
-      <div class="msg-field"><label>Recibido</label><p>${formatDate(d.timestamp)}</p></div>
-    `;
-    document.getElementById('msgDetailOverlay').classList.add('open');
-    // Mark as read automatically
-    if (!d.leido) {
-      await db.collection('mensajes').doc(id).update({ leido: true });
-      loadMessages();
-      loadAdminStats();
-    }
-  } catch(e) { alert('Error: ' + e.message); }
-}
-
-async function markRead(id, btn) {
-  if (!db) return;
-  try {
-    await db.collection('mensajes').doc(id).update({ leido: true });
-    btn.closest('tr').querySelector('.msg-badge-new').outerHTML = '<span class="msg-badge-read">Leído</span>';
-    btn.remove();
-    loadAdminStats();
-  } catch(e) { alert('Error: ' + e.message); }
-}
-
-async function deleteMessage(id, btn) {
-  if (!confirm('¿Eliminar este mensaje de Firebase? Esta acción no se puede deshacer.')) return;
-  if (!db) return;
-  try {
-    await db.collection('mensajes').doc(id).delete();
-    btn.closest('tr').remove();
-    loadAdminStats();
-  } catch(e) { alert('Error: ' + e.message); }
-}
-
-function closeMsgDetail(e) {
-  if (!e || e.target === document.getElementById('msgDetailOverlay')) {
-    document.getElementById('msgDetailOverlay').classList.remove('open');
-  }
-}
-
-/* ============================================================
-   LOAD NOTICIAS (Admin)
-============================================================ */
-async function loadNoticiasAdmin() {
-  const wrap = document.getElementById('noticiasAdminWrap');
-  if (!wrap || !db) return;
-  wrap.innerHTML = '<div class="spinner-wrap"><div class="spinner"></div><p style="margin-top:1rem;font-size:.85rem">Cargando...</p></div>';
-  try {
-    const snap = await db.collection('noticias').orderBy('timestamp','desc').limit(20).get();
-    if (snap.empty) {
-      wrap.innerHTML = '<div class="empty-state"><i class="fas fa-newspaper"></i><p>No hay noticias publicadas. Usa la pestaña "Nueva Noticia" para publicar.</p></div>';
-      return;
-    }
-    const rows = snap.docs.map(doc => {
-      const d = doc.data();
-      return `<tr>
-        <td>${escHtml(d.titulo)}</td>
-        <td>${escHtml(d.categoria)}</td>
-        <td>${formatDate(d.timestamp)}</td>
-        <td><span class="news-thumb-badge" style="position:static;background:${d.badgeColor||'var(--cyan)'};color:var(--navy-deep);display:inline-block;font-size:.65rem">${escHtml(d.badge||'–')}</span></td>
-        <td><button class="msg-action-btn danger" onclick="deleteNoticia('${doc.id}',this)"><i class="fas fa-trash"></i> Eliminar</button></td>
-      </tr>`;
-    }).join('');
-    wrap.innerHTML = `
-      <div class="msg-table-wrap">
-        <table class="msg-table">
-          <thead><tr><th>Título</th><th>Categoría</th><th>Fecha</th><th>Badge</th><th>Acciones</th></tr></thead>
-          <tbody>${rows}</tbody>
-        </table>
-      </div>`;
-  } catch(e) {
-    wrap.innerHTML = `<div class="empty-state"><i class="fas fa-exclamation-triangle"></i><p>Error: ${e.message}</p></div>`;
-  }
-}
-
-async function deleteNoticia(id, btn) {
-  if (!confirm('¿Eliminar esta noticia de Firebase?')) return;
-  try {
-    await db.collection('noticias').doc(id).delete();
-    btn.closest('tr').remove();
-    loadAdminStats();
-    loadNews();
-  } catch(e) { alert('Error: ' + e.message); }
-}
-
-/* ============================================================
-   PUBLISH NOTICIA (Admin)
-============================================================ */
-async function publishNoticia() {
-  const titulo    = document.getElementById('n-titulo').value.trim();
-  const categoria = document.getElementById('n-categoria').value;
-  const extracto  = document.getElementById('n-extracto').value.trim();
-  const badge     = document.getElementById('n-badge').value.trim();
-  const badgeColor= document.getElementById('n-badgeColor').value;
-  const icono     = document.getElementById('n-icono').value.trim() || 'fa-newspaper';
-  const lectura   = document.getElementById('n-lectura').value.trim() || '3 min lectura';
-
-  if (!titulo || !categoria || !extracto) {
-    alert('Por favor completa los campos obligatorios: Título, Categoría y Extracto.');
-    return;
-  }
-
-  if (!db) { alert('Firebase no está inicializado. Configure firebaseConfig.'); return; }
-
-  const btn = document.getElementById('publishBtn');
-  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Publicando...';
-  btn.classList.add('btn-loading');
-
-  try {
-    await db.collection('noticias').add({
-      titulo, categoria, extracto, badge, badgeColor,
-      icono: `fa-${icono.replace('fa-','')}`,
-      lectura,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    });
-
-    // Clear form
-    ['n-titulo','n-categoria','n-extracto','n-badge','n-icono','n-lectura'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el.tagName === 'SELECT') el.selectedIndex = 0;
-      else el.value = '';
-    });
-
-    document.getElementById('noticiaSuccess').style.display = 'block';
-    setTimeout(() => document.getElementById('noticiaSuccess').style.display = 'none', 4000);
-
-    loadNoticiasAdmin();
-    loadAdminStats();
-    loadNews(); // refresh public news
-  } catch(e) {
-    alert('Error al publicar: ' + e.message);
-  } finally {
-    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Publicar Noticia';
-    btn.classList.remove('btn-loading');
-  }
-}
-
-/* ============================================================
-   ADMIN TABS
-============================================================ */
-function switchAdminTab(tabId, btn) {
-  document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.admin-tab-content').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('tab-' + tabId).classList.add('active');
-}
-
-/* ============================================================
-   UTILITY
-============================================================ */
-function escHtml(str) {
-  if (!str) return '';
-  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-
-/* ============================================================
-   SPA NAVIGATION
-============================================================ */
-function showPage(page) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  const target = document.getElementById('page-' + page);
-  if (target) {
-    target.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-  document.querySelectorAll('[data-page]').forEach(a => {
-    a.classList.toggle('active', a.getAttribute('data-page') === page);
-  });
-  setTimeout(initFadeAnimations, 100);
-
-  // Handle admin page
-  if (page === 'admin' && auth) {
-    renderAdminState(auth.currentUser);
-  }
-  return false;
-}
-
-function handleHashNavigation() {
-  if (window.location.hash === '#admin') {
-    showPage('admin');
-  }
-}
-
-function toggleMobileNav() {
-  const nav = document.getElementById('mobileNav');
-  const ham = document.getElementById('hamburger');
-  nav.classList.toggle('open');
-  ham.classList.toggle('open');
-}
-function closeMobileNav() {
-  document.getElementById('mobileNav').classList.remove('open');
-  document.getElementById('hamburger').classList.remove('open');
-}
-
-/* ============================================================
-   NAVBAR SCROLL
-============================================================ */
-window.addEventListener('scroll', () => {
-  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
-});
-
-/* ============================================================
-   FADE-UP ON SCROLL
-============================================================ */
-function initFadeAnimations() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
-    });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.fade-up:not(.visible)').forEach(el => observer.observe(el));
-}
-
-/* ============================================================
-   COUNTER ANIMATION
-============================================================ */
-function animateCounters() {
-  document.querySelectorAll('.stat-num[data-target]').forEach(el => {
-    const target = +el.getAttribute('data-target');
-    const duration = 2000;
-    const step = target / (duration / 16);
-    let current = 0;
-    const timer = setInterval(() => {
-      current = Math.min(current + step, target);
-      el.textContent = Math.floor(current).toLocaleString();
-      if (current >= target) clearInterval(timer);
-    }, 16);
-  });
-}
-const statsObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { animateCounters(); statsObserver.disconnect(); }
-  });
-}, { threshold: 0.3 });
-const statsSection = document.querySelector('.stats-section');
-if (statsSection) statsObserver.observe(statsSection);
-
-/* ============================================================
-   PLAN TOGGLE
-============================================================ */
-let isAnnual = false;
-const prices = { basic:{monthly:'$180',annual:'$153'}, pro:{monthly:'$350',annual:'$298'}, corp:{monthly:'$650',annual:'$553'} };
-function togglePlan() {
-  isAnnual = !isAnnual;
-  document.getElementById('planToggle').classList.toggle('on', isAnnual);
-  const sfx = '<small>/mes</small>';
-  document.getElementById('price-basic').innerHTML = (isAnnual ? prices.basic.annual : prices.basic.monthly) + sfx;
-  document.getElementById('price-pro').innerHTML   = (isAnnual ? prices.pro.annual   : prices.pro.monthly)   + sfx;
-  document.getElementById('price-corp').innerHTML  = (isAnnual ? prices.corp.annual  : prices.corp.monthly)  + sfx;
-}
-
-/* ============================================================
-   MODAL
-============================================================ */
-function openModal() {
-  document.getElementById('modalOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  // Track cotización view in Firebase
-  if (firebaseReady && db) {
-    db.collection('estadisticas').doc('cotizaciones').set({
-      vistas: firebase.firestore.FieldValue.increment(1),
-      ultima: firebase.firestore.FieldValue.serverTimestamp()
-    }, { merge: true }).catch(()=>{});
-  }
-}
-function closeModal() {
-  document.getElementById('modalOverlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-function closeModalOutside(e) {
-  if (e.target === document.getElementById('modalOverlay')) closeModal();
-}
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeMsgDetail(); }});
-
-/* ============================================================
-   PROTECCIÓN
-============================================================ */
-function showProtectToast() {
-  const t = document.getElementById('protectToast');
-  t.style.display = 'block';
-  clearTimeout(window._protectTimer);
-  window._protectTimer = setTimeout(() => { t.style.display = 'none'; }, 2500);
-}
-document.addEventListener('contextmenu', e => { e.preventDefault(); showProtectToast(); });
-document.addEventListener('keydown', e => {
-  const k = e.key.toLowerCase();
-  if (e.key === 'F12') { e.preventDefault(); showProtectToast(); return; }
-  if (e.ctrlKey) {
-    if (['u','s','a'].includes(k)) { e.preventDefault(); showProtectToast(); return; }
-    if (e.shiftKey && ['i','j','c'].includes(k)) { e.preventDefault(); showProtectToast(); return; }
-  }
-  if (e.metaKey && ['u','s','a'].includes(k)) { e.preventDefault(); showProtectToast(); return; }
-});
-document.addEventListener('selectstart', e => {
-  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-  e.preventDefault();
-});
-document.addEventListener('dragstart', e => e.preventDefault());
-
-/* ============================================================
-   CANVAS PARTICLES
-============================================================ */
-(function() {
-  const canvas = document.getElementById('particles-canvas');
-  const ctx = canvas.getContext('2d');
-  let W = canvas.width  = window.innerWidth;
-  let H = canvas.height = window.innerHeight;
-  const PARTICLE_COUNT = 90;
-  window.addEventListener('resize', () => { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; });
-  class Particle {
-    constructor() { this.reset(true); }
-    reset(init) {
-      this.x = Math.random() * W; this.y = init ? Math.random() * H : H + 10;
-      this.r = Math.random() * 1.8 + 0.3; this.speed = Math.random() * 0.4 + 0.15;
-      this.drift = (Math.random() - 0.5) * 0.25; this.alpha = Math.random() * 0.6 + 0.15;
-      this.pulse = Math.random() * Math.PI * 2;
-    }
-    update() {
-      this.y -= this.speed; this.x += this.drift; this.pulse += 0.025;
-      this.alpha = (Math.sin(this.pulse) * 0.25 + 0.4) * 0.8;
-      if (this.y < -5) this.reset(false);
-    }
-    draw() {
-      ctx.save(); ctx.globalAlpha = this.alpha; ctx.beginPath();
-      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-      ctx.fillStyle = '#00c3ff'; ctx.shadowColor = '#00c3ff'; ctx.shadowBlur = 6;
-      ctx.fill(); ctx.restore();
-    }
-  }
-  const particles = Array.from({ length: PARTICLE_COUNT }, () => new Particle());
-  function drawLines() {
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx*dx + dy*dy);
-        if (dist < 120) {
-          ctx.save(); ctx.globalAlpha = (1 - dist / 120) * 0.12; ctx.strokeStyle = '#00c3ff';
-          ctx.lineWidth = 0.5; ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke(); ctx.restore();
-        }
-      }
-    }
-  }
-  function animate() {
-    ctx.clearRect(0, 0, W, H); drawLines();
-    particles.forEach(p => { p.update(); p.draw(); });
-    requestAnimationFrame(animate);
-  }
-  animate();
-})();
-</script>
-</body>
-</html>
+    <div class="nav-links">
+      <a href="#" onclick="return showPage('home')" class="active" data-page="home">Inicio</a>
+      <a href="#"
