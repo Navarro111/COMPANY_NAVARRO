@@ -2189,16 +2189,30 @@ function cotGoStep2() {
   renderSrvGrid();
 }
  
+let _cotNumActual = ''; // evita duplicados si el usuario vuelve atrás y re-genera
+ 
 function cotGoStep3() {
   const sel = Object.keys(cotState.selected);
   const warn = document.getElementById('noSrvWarn');
-  if (sel.length === 0) {
-    warn.style.display = 'block';
-    return;
-  }
+  if (sel.length === 0) { warn.style.display = 'block'; return; }
   warn.style.display = 'none';
   buildPreview();
   cotGoStep(3);
+}
+ 
+async function guardarCotizacionFirestore(doc) {
+  if (!firebaseReady || !db) return;
+  try {
+    await db.collection('cotizaciones').add(doc);
+    console.log('✅ Cotización guardada:', doc.numeroCotizacion);
+    // Actualizar contador en estadisticas
+    db.collection('estadisticas').doc('cotizaciones').set({
+      total: firebase.firestore.FieldValue.increment(1),
+      ultima: firebase.firestore.FieldValue.serverTimestamp()
+    }, { merge: true }).catch(()=>{});
+  } catch(e) {
+    console.warn('⚠️ Error al guardar cotización en Firestore:', e.message);
+  }
 }
  
 function buildPreview() {
@@ -2214,7 +2228,11 @@ function buildPreview() {
   const hoy      = new Date();
   const fmtDate  = d => d.toLocaleDateString('es-PA', { day:'2-digit', month:'2-digit', year:'numeric' });
   const vence    = new Date(hoy); vence.setDate(vence.getDate() + +validez);
-  const cotNum   = 'COT-' + hoy.getFullYear() + '-' + String(hoy.getMonth()+1).padStart(2,'0') + String(hoy.getDate()).padStart(2,'0') + String(Math.floor(Math.random()*900)+100);
+  // Reutilizar número si ya existe para esta sesión
+  if (!_cotNumActual) {
+    _cotNumActual = 'COT-' + hoy.getFullYear() + '-' + String(hoy.getMonth()+1).padStart(2,'0') + String(hoy.getDate()).padStart(2,'0') + String(Math.floor(Math.random()*900)+100);
+  }
+  const cotNum = _cotNumActual;
  
   let rows = '', subtotal = 0, idx = 1;
   Object.keys(cotState.selected).forEach(id => {
@@ -2293,27 +2311,34 @@ function buildPreview() {
       Grupo Navarro Comunicaciones S.A. · David, Chiriquí, Panamá · Documento generado el ${fmtDate(hoy)}
     </div>
   `;
+ 
+  // ── GUARDAR EN FIRESTORE ──────────────────────────────────────
+  const serviciosGuardados = Object.keys(cotState.selected).map(id => {
+    const s = GNC_SERVICES.find(x => x.id === id);
+    return { id, nombre: s.name, cantidad: cotState.selected[id], precioUnit: s.price, subtotalItem: s.price * cotState.selected[id] };
+  });
+  guardarCotizacionFirestore({
+    numeroCotizacion : cotNum,
+    fechaTexto       : fmtDate(hoy),
+    validezDias      : +validez,
+    fechaVencimiento : fmtDate(vence),
+    timestamp        : new Date().toISOString(),
+    cliente          : { nombre, apellido, empresa, ruc, email, telefono, direccion: dir },
+    servicios        : serviciosGuardados,
+    subtotal         : +subtotal.toFixed(2),
+    descuentoPct     : disc,
+    descuentoMonto   : +descMonto.toFixed(2),
+    itbms            : +itbms.toFixed(2),
+    total            : +total.toFixed(2),
+    estado           : 'pendiente'
+  });
 }
  
 function printCot() {
   window.print();
 }
  
-// Reset state when modal opens
-const _origOpenModal = typeof openModal === 'function' ? openModal : null;
-function openModal() {
-  document.getElementById('modalOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  // Reset to step 1
-  cotState = { step: 1, selected: {} };
-  cotGoStep(1);
-  if (firebaseReady && db) {
-    db.collection('estadisticas').doc('cotizaciones').set({
-      vistas: firebase.firestore.FieldValue.increment(1),
-      ultima: firebase.firestore.FieldValue.serverTimestamp()
-    }, { merge: true }).catch(()=>{});
-  }
-}
+ 
  
 /* ============================================================
    PLAN TOGGLE
@@ -2335,7 +2360,11 @@ function togglePlan() {
 function openModal() {
   document.getElementById('modalOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
-  // Track cotización view in Firebase
+  // Reset cotización state
+  cotState = { step: 1, selected: {} };
+  _cotNumActual = '';
+  cotGoStep(1);
+  // Track view in Firebase
   if (firebaseReady && db) {
     db.collection('estadisticas').doc('cotizaciones').set({
       vistas: firebase.firestore.FieldValue.increment(1),
@@ -2431,4 +2460,3 @@ document.addEventListener('dragstart', e => e.preventDefault());
 </script>
 </body>
 </html>
-
