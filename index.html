@@ -10,20 +10,20 @@
   <meta property="og:description" content="Tu fuente principal de noticias e información en Chiriquí, Panamá."/>
   <meta property="og:type" content="website"/>
   <title>Grupo Navarro Comunicaciones S.A. | Emisora & Espacio Informativo</title>
-
+ 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"/>
-
+ 
   <!-- ===================== FIREBASE SDK (compat v10) ===================== -->
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-
+ 
   <!-- FAVICON -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='15' fill='%230d1b4b'/><text x='50%' y='58%' dominant-baseline='middle' text-anchor='middle' font-size='45' fill='%2300c3ff'>GN</text></svg>" type="image/svg+xml"/>
-
+ 
 <style>
 /* ============================================================
    RESET & VARIABLES
@@ -62,15 +62,15 @@ body{
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 ul{list-style:none}
-
+ 
 /* SCROLLBAR */
 ::-webkit-scrollbar{width:6px}
 ::-webkit-scrollbar-track{background:var(--navy-deep)}
 ::-webkit-scrollbar-thumb{background:var(--cyan);border-radius:3px}
-
+ 
 /* CANVAS */
 #particles-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.5;}
-
+ 
 /* ============================================================
    FIREBASE STATUS BADGE
 ============================================================ */
@@ -95,7 +95,7 @@ ul{list-style:none}
 #fb-status.connected{border-color:rgba(0,230,118,.3);color:var(--success);}
 #fb-status.error .fb-dot{background:var(--danger);box-shadow:0 0 8px var(--danger);}
 #fb-status.error{border-color:rgba(255,23,68,.3);color:var(--danger);}
-
+ 
 /* ============================================================
    NAVBAR
 ============================================================ */
@@ -153,11 +153,11 @@ ul{list-style:none}
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .hamburger.open span:nth-child(2){opacity:0}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-
+ 
 /* PAGES SPA */
 .page{display:none;min-height:100vh;padding-top:72px;position:relative;z-index:1;}
 .page.active{display:block}
-
+ 
 /* SECTION UTILITY */
 .section{padding:5rem 3rem;}
 .container{max-width:1200px;margin:0 auto;}
@@ -172,7 +172,7 @@ ul{list-style:none}
 .section-title span{color:var(--cyan);text-shadow:0 0 20px var(--cyan-glow);}
 .section-sub{color:var(--gray);font-size:1.05rem;max-width:600px;line-height:1.7;margin-bottom:3rem;}
 .divider{width:60px;height:3px;background:linear-gradient(90deg,var(--cyan),transparent);margin:1rem 0 2.5rem;border-radius:2px;}
-
+ 
 /* BUTTONS */
 .btn-primary{
   display:inline-flex;align-items:center;gap:.5rem;
@@ -203,7 +203,7 @@ ul{list-style:none}
   box-shadow:0 0 12px rgba(0,195,255,.15);
 }
 .btn-outline:hover{background:var(--cyan);color:var(--navy-deep);box-shadow:0 4px 25px rgba(0,195,255,.5);transform:translateY(-3px);}
-
+ 
 /* CARDS */
 .card{
   background:var(--navy-card);border:1px solid rgba(0,195,255,.15);
@@ -217,11 +217,11 @@ ul{list-style:none}
 }
 .card:hover{border-color:rgba(0,195,255,.5);transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,195,255,.15);}
 .card:hover::before{opacity:1}
-
+ 
 /* FADE IN */
 .fade-up{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease;}
 .fade-up.visible{opacity:1;transform:translateY(0)}
-
+ 
 /* ============================================================
    HERO
 ============================================================ */
@@ -290,14 +290,14 @@ ul{list-style:none}
 .orbit-tag:nth-child(3){top:50%;right:-10%;transform:translateY(-50%)}
 .orbit-tag:nth-child(4){bottom:10%;left:50%;transform:translateX(-50%)}
 .orbit-tag:nth-child(5){top:50%;left:-12%;transform:translateY(-50%)}
-
+ 
 /* STATS */
 .stats-section{background:var(--navy-mid);border-top:1px solid rgba(0,195,255,.12);border-bottom:1px solid rgba(0,195,255,.12);padding:3.5rem 3rem;}
 .stats-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;}
 .stat-item{text-align:center;}
 .stat-num{font-family:var(--font-head);font-size:clamp(2rem,4vw,3rem);font-weight:800;color:var(--cyan);text-shadow:0 0 20px var(--cyan-glow);display:block;line-height:1;margin-bottom:.3rem;}
 .stat-label{font-size:.85rem;letter-spacing:2px;text-transform:uppercase;color:var(--gray);}
-
+ 
 /* MISSION/VISION */
 .mv-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem;}
 .mv-card{background:var(--navy-card);border:1px solid rgba(0,195,255,.18);border-radius:var(--radius-lg);padding:2.5rem;position:relative;overflow:hidden;transition:var(--transition);}
@@ -306,7 +306,7 @@ ul{list-style:none}
 .mv-icon{font-size:2.5rem;color:var(--cyan);margin-bottom:1rem;text-shadow:0 0 20px var(--cyan-glow);}
 .mv-card h3{font-family:var(--font-head);font-size:1.1rem;letter-spacing:3px;color:var(--cyan);margin-bottom:1rem;}
 .mv-card p{color:var(--gray);line-height:1.75;font-size:.95rem;}
-
+ 
 /* NEWS */
 .news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem;margin-top:2rem;}
 .news-card{background:var(--navy-card);border:1px solid rgba(0,195,255,.12);border-radius:var(--radius);overflow:hidden;transition:var(--transition);}
@@ -328,7 +328,7 @@ ul{list-style:none}
 .skeleton-line.short{width:60%}
 .skeleton-line.medium{width:80%}
 @keyframes shimmer{to{background-position:-200% 0}}
-
+ 
 /* COLLAGE */
 .collage-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,200px);gap:1rem;margin-top:2rem;}
 .collage-item{background:var(--navy-card);border:1px solid rgba(0,195,255,.12);border-radius:var(--radius);overflow:hidden;position:relative;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--transition);}
@@ -341,7 +341,7 @@ ul{list-style:none}
 .collage-inner span{font-size:.8rem;color:var(--gray);letter-spacing:1px;text-transform:uppercase;}
 .collage-overlay{position:absolute;inset:0;background:rgba(0,195,255,.04);opacity:0;transition:var(--transition);}
 .collage-item:hover .collage-overlay{opacity:1}
-
+ 
 /* ============================================================
    CLIENTES PAGE
 ============================================================ */
@@ -367,7 +367,7 @@ ul{list-style:none}
 .t-name{font-family:var(--font-head);font-size:.8rem;font-weight:600;}
 .t-role{font-size:.75rem;color:var(--gray);}
 .stars{color:var(--cyan);font-size:.8rem;margin-bottom:.8rem;}
-
+ 
 /* ============================================================
    CONTACTOS PAGE
 ============================================================ */
@@ -397,7 +397,7 @@ ul{list-style:none}
 .form-error-msg{display:none;background:rgba(255,23,68,.1);border:1px solid rgba(255,23,68,.3);border-radius:var(--radius);padding:1rem;text-align:center;color:#ff5370;font-size:.85rem;margin-top:1rem;}
 .form-error-msg.show{display:block}
 .btn-loading{opacity:.7;pointer-events:none;}
-
+ 
 /* ============================================================
    PRODUCTOS PAGE
 ============================================================ */
@@ -432,7 +432,7 @@ ul{list-style:none}
 .addon-info h4{font-family:var(--font-head);font-size:.85rem;margin-bottom:.3rem}
 .addon-info p{font-size:.82rem;color:var(--gray);line-height:1.5}
 .addon-price{font-family:var(--font-head);font-size:.95rem;color:var(--cyan);margin-top:.5rem;}
-
+ 
 /* ============================================================
    SERVICIOS PAGE
 ============================================================ */
@@ -461,7 +461,7 @@ ul{list-style:none}
 .pricing-table tr:hover td{background:rgba(0,195,255,.04)}
 .pricing-table td:first-child{color:var(--white);font-weight:600}
 .pricing-table td:last-child{color:var(--cyan);font-family:var(--font-head);font-size:.85rem}
-
+ 
 /* ============================================================
    ADMIN PANEL PAGE
 ============================================================ */
@@ -526,7 +526,7 @@ ul{list-style:none}
 .msg-field{margin-bottom:1rem;}
 .msg-field label{display:block;font-size:.7rem;letter-spacing:2px;color:var(--cyan);text-transform:uppercase;margin-bottom:.3rem;font-family:var(--font-head);}
 .msg-field p{background:rgba(0,195,255,.04);border:1px solid rgba(0,195,255,.1);border-radius:8px;padding:.7rem 1rem;color:var(--white);font-size:.9rem;line-height:1.6;}
-
+ 
 /* empty state */
 .empty-state{text-align:center;padding:3rem;color:var(--gray);}
 .empty-state i{font-size:3rem;color:rgba(0,195,255,.2);margin-bottom:1rem;display:block;}
@@ -535,7 +535,7 @@ ul{list-style:none}
 .spinner-wrap{text-align:center;padding:2rem;color:var(--gray);}
 .spinner{display:inline-block;width:40px;height:40px;border:3px solid rgba(0,195,255,.2);border-top-color:var(--cyan);border-radius:50%;animation:spin .8s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg)}}
-
+ 
 /* ============================================================
    FOOTER
 ============================================================ */
@@ -556,7 +556,7 @@ ul{list-style:none}
 .footer-bottom span{color:var(--cyan);}
 .footer-address{display:flex;align-items:center;gap:.4rem;font-size:.8rem;color:var(--gray);}
 .footer-address i{color:var(--cyan)}
-
+ 
 /* ============================================================
    MODAL FACTURA
 ============================================================ */
@@ -590,17 +590,17 @@ table.invoice-table{width:100%;border-collapse:collapse;font-size:.85rem;}
 .invoice-note{margin-top:1.5rem;background:rgba(0,195,255,.06);border:1px solid rgba(0,195,255,.12);border-radius:8px;padding:1rem;font-size:.82rem;color:var(--gray);line-height:1.6;}
 .invoice-note strong{color:var(--cyan)}
 .modal-footer{padding:1.5rem 2rem;border-top:1px solid rgba(0,195,255,.12);display:flex;gap:1rem;justify-content:flex-end;}
-
+ 
 /* PROTECT TOAST */
 .protect-toast{position:fixed;bottom:2rem;right:2rem;background:rgba(13,27,75,.95);border:1px solid var(--cyan);border-radius:10px;padding:1rem 1.5rem;font-size:.82rem;color:var(--cyan);z-index:9999;display:none;letter-spacing:1px;box-shadow:0 0 20px rgba(0,195,255,.3);font-family:var(--font-head);animation:toast-in .3s ease;}
 @keyframes toast-in{from{opacity:0;transform:translateY(10px)}}
-
+ 
 /* MOBILE NAV */
 .mobile-nav{position:fixed;top:72px;left:0;right:0;background:rgba(10,15,46,.98);border-bottom:1px solid rgba(0,195,255,.18);padding:1.5rem 2rem;z-index:990;transform:translateY(-100%);opacity:0;transition:transform .35s ease,opacity .35s ease;pointer-events:none;}
 .mobile-nav.open{transform:translateY(0);opacity:1;pointer-events:all}
 .mobile-nav a{display:block;padding:.9rem 0;font-family:var(--font-ui);font-size:1.1rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--white);border-bottom:1px solid rgba(0,195,255,.08);transition:var(--transition);}
 .mobile-nav a:hover,.mobile-nav a.active{color:var(--cyan);padding-left:.5rem}
-
+ 
 /* ============================================================
    RESPONSIVE
 ============================================================ */
@@ -642,16 +642,16 @@ table.invoice-table{width:100%;border-collapse:collapse;font-size:.85rem;}
 </style>
 </head>
 <body>
-
+ 
 <!-- CANVAS PARTICLES -->
 <canvas id="particles-canvas"></canvas>
-
+ 
 <!-- FIREBASE STATUS BADGE -->
 <div id="fb-status">
   <span class="fb-dot"></span>
   <span id="fb-status-text">Firebase...</span>
 </div>
-
+ 
 <!-- ===================== NAVBAR ===================== -->
 <nav class="navbar" id="navbar">
   <div class="nav-logo">
@@ -670,7 +670,7 @@ table.invoice-table{width:100%;border-collapse:collapse;font-size:.85rem;}
     <span></span><span></span><span></span>
   </button>
 </nav>
-
+ 
 <!-- MOBILE NAV -->
 <div class="mobile-nav" id="mobileNav">
   <a href="#" onclick="showPage('home');closeMobileNav()" data-page="home">Inicio</a>
@@ -680,7 +680,7 @@ table.invoice-table{width:100%;border-collapse:collapse;font-size:.85rem;}
   <a href="#" onclick="showPage('servicios');closeMobileNav()" data-page="servicios">Servicios</a>
   <a href="#" onclick="openModal();closeMobileNav()" style="color:var(--cyan);margin-top:.5rem"><i class="fas fa-file-invoice-dollar"></i> &nbsp;Ver Cotización</a>
 </div>
-
+ 
 <!-- ===========================================================
      PÁGINA: HOME
 =========================================================== -->
@@ -716,7 +716,7 @@ table.invoice-table{width:100%;border-collapse:collapse;font-size:.85rem;}
       </div>
     </div>
   </section>
-
+ 
   <section class="stats-section">
     <div class="stats-grid">
       <div class="stat-item fade-up">
@@ -737,7 +737,7 @@ table.invoice-table{width:100%;border-collapse:collapse;font-size:.85rem;}
       </div>
     </div>
   </section>
-
+ 
   <section class="section">
     <div class="container">
       <span class="section-tag">Quiénes Somos</span>
@@ -757,7 +757,7 @@ table.invoice-table{width:100%;border-collapse:collapse;font-size:.85rem;}
       </div>
     </div>
   </section>
-
+ 
   <!-- NOTICIAS DINÁMICAS DESDE FIREBASE -->
   <section class="section" style="padding-top:0">
     <div class="container">
@@ -797,7 +797,7 @@ table.invoice-table{width:100%;border-collapse:collapse;font-size:.85rem;}
       </div>
     </div>
   </section>
-
+ 
   <section class="section" style="padding-top:0">
     <div class="container">
       <span class="section-tag">Portafolio</span>
@@ -813,7 +813,7 @@ table.invoice-table{width:100%;border-collapse:collapse;font-size:.85rem;}
       </div>
     </div>
   </section>
-
+ 
   <section class="section" style="padding-top:0">
     <div class="container">
       <div class="card" style="text-align:center;padding:4rem 2rem;background:linear-gradient(135deg,var(--navy-card),var(--navy-light));border-color:rgba(0,195,255,.3)">
@@ -827,7 +827,7 @@ table.invoice-table{width:100%;border-collapse:collapse;font-size:.85rem;}
       </div>
     </div>
   </section>
-
+ 
   <footer class="footer">
     <div class="footer-grid">
       <div class="footer-brand">
@@ -869,7 +869,7 @@ table.invoice-table{width:100%;border-collapse:collapse;font-size:.85rem;}
     </div>
   </footer>
 </div>
-
+ 
 <!-- ===========================================================
      PÁGINA: CLIENTES
 =========================================================== -->
@@ -918,7 +918,7 @@ table.invoice-table{width:100%;border-collapse:collapse;font-size:.85rem;}
     <div class="footer-bottom"><div>© 2026 <span>Grupo Navarro Comunicaciones S.A.</span> · Todos los derechos reservados.</div><div class="footer-address"><i class="fas fa-map-pin"></i> Av. Domingo Díaz, David, Chiriquí, República de Panamá</div></div>
   </footer>
 </div>
-
+ 
 <!-- ===========================================================
      PÁGINA: CONTACTOS
 =========================================================== -->
@@ -942,7 +942,7 @@ table.invoice-table{width:100%;border-collapse:collapse;font-size:.85rem;}
         </div>
       </div>
     </div>
-
+ 
     <div class="contact-form-wrap fade-up">
       <h3><i class="fas fa-paper-plane" style="margin-right:.5rem"></i>Envíanos un Mensaje</h3>
       <!-- Firebase connection notice -->
@@ -1010,7 +1010,7 @@ table.invoice-table{width:100%;border-collapse:collapse;font-size:.85rem;}
     <div class="footer-bottom"><div>© 2026 <span>Grupo Navarro Comunicaciones S.A.</span> · Todos los derechos reservados.</div><div class="footer-address"><i class="fas fa-map-pin"></i> Av. Domingo Díaz, David, Chiriquí, República de Panamá</div></div>
   </footer>
 </div>
-
+ 
 <!-- ===========================================================
      PÁGINA: PRODUCTOS
 =========================================================== -->
@@ -1062,7 +1062,7 @@ table.invoice-table{width:100%;border-collapse:collapse;font-size:.85rem;}
     <div class="footer-bottom"><div>© 2026 <span>Grupo Navarro Comunicaciones S.A.</span> · Todos los derechos reservados.</div></div>
   </footer>
 </div>
-
+ 
 <!-- ===========================================================
      PÁGINA: SERVICIOS
 =========================================================== -->
@@ -1135,7 +1135,7 @@ table.invoice-table{width:100%;border-collapse:collapse;font-size:.85rem;}
     <div class="footer-bottom"><div>© 2026 <span>Grupo Navarro Comunicaciones S.A.</span> · Todos los derechos reservados.</div></div>
   </footer>
 </div>
-
+ 
 <!-- ===========================================================
      PÁGINA: ADMIN PANEL (acceso por URL hash #admin)
 =========================================================== -->
@@ -1147,7 +1147,7 @@ table.invoice-table{width:100%;border-collapse:collapse;font-size:.85rem;}
       <div class="divider"></div>
     </div>
   </section>
-
+ 
   <!-- LOGIN PANEL -->
   <div class="section" style="padding-top:0">
     <div class="container">
@@ -1173,7 +1173,7 @@ table.invoice-table{width:100%;border-collapse:collapse;font-size:.85rem;}
           </p>
         </div>
       </div>
-
+ 
       <!-- Dashboard (shown when authenticated) -->
       <div id="adminDashboard" style="display:none">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:1rem;">
@@ -1185,7 +1185,7 @@ table.invoice-table{width:100%;border-collapse:collapse;font-size:.85rem;}
             <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
           </button>
         </div>
-
+ 
         <!-- Stats cards -->
         <div class="admin-stats-grid" id="adminStatsGrid">
           <div class="admin-stat-card"><div class="admin-stat-num" id="stat-total">–</div><div class="admin-stat-label">Total Mensajes</div></div>
@@ -1193,14 +1193,14 @@ table.invoice-table{width:100%;border-collapse:collapse;font-size:.85rem;}
           <div class="admin-stat-card"><div class="admin-stat-num" id="stat-noticias">–</div><div class="admin-stat-label">Noticias</div></div>
           <div class="admin-stat-card"><div class="admin-stat-num" id="stat-visits">–</div><div class="admin-stat-label">Visitas Totales</div></div>
         </div>
-
+ 
         <!-- Tabs -->
         <div class="admin-tabs">
           <button class="admin-tab active" onclick="switchAdminTab('mensajes',this)"><i class="fas fa-envelope"></i> Mensajes</button>
           <button class="admin-tab" onclick="switchAdminTab('noticias',this)"><i class="fas fa-newspaper"></i> Noticias</button>
           <button class="admin-tab" onclick="switchAdminTab('nueva-noticia',this)"><i class="fas fa-plus-circle"></i> Nueva Noticia</button>
         </div>
-
+ 
         <!-- Tab: Mensajes -->
         <div class="admin-tab-content active" id="tab-mensajes">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:.8rem;">
@@ -1211,7 +1211,7 @@ table.invoice-table{width:100%;border-collapse:collapse;font-size:.85rem;}
             <div class="spinner-wrap"><div class="spinner"></div><p style="margin-top:1rem;font-size:.85rem">Cargando mensajes...</p></div>
           </div>
         </div>
-
+ 
         <!-- Tab: Noticias -->
         <div class="admin-tab-content" id="tab-noticias">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:.8rem;">
@@ -1222,7 +1222,7 @@ table.invoice-table{width:100%;border-collapse:collapse;font-size:.85rem;}
             <div class="spinner-wrap"><div class="spinner"></div><p style="margin-top:1rem;font-size:.85rem">Cargando noticias...</p></div>
           </div>
         </div>
-
+ 
         <!-- Tab: Nueva Noticia -->
         <div class="admin-tab-content" id="tab-nueva-noticia">
           <h4 style="font-family:var(--font-head);font-size:.85rem;color:var(--cyan);letter-spacing:1px;margin-bottom:1.5rem">PUBLICAR NUEVA NOTICIA</h4>
@@ -1266,7 +1266,7 @@ table.invoice-table{width:100%;border-collapse:collapse;font-size:.85rem;}
       </div><!-- end adminDashboard -->
     </div>
   </div>
-
+ 
   <footer class="footer" style="margin-top:3rem">
     <div class="footer-bottom" style="max-width:1200px;margin:0 auto;border-top:none;padding-top:1.5rem;">
       <div>© 2026 <span>Grupo Navarro Comunicaciones S.A.</span> · Panel Administrativo</div>
@@ -1274,7 +1274,7 @@ table.invoice-table{width:100%;border-collapse:collapse;font-size:.85rem;}
     </div>
   </footer>
 </div>
-
+ 
 <!-- ===========================================================
      MODAL: DETALLE DE MENSAJE
 =========================================================== -->
@@ -1285,62 +1285,196 @@ table.invoice-table{width:100%;border-collapse:collapse;font-size:.85rem;}
     <div id="msgDetailContent"></div>
   </div>
 </div>
-
+ 
 <!-- ===========================================================
-     MODAL: FACTURA / COTIZACIÓN
+     MODAL: COTIZACIÓN INTERACTIVA
 =========================================================== -->
+<style>
+/* ── MODAL OVERRIDES for quote builder ── */
+#modalContent { max-width: 860px; width: 95%; max-height: 92vh; display: flex; flex-direction: column; }
+.modal-body { overflow-y: auto; flex: 1; padding: 1.5rem 2rem; }
+ 
+/* STEPS */
+.cot-steps { display: flex; gap: 0; margin-bottom: 1.8rem; border-radius: 8px; overflow: hidden; border: 1px solid rgba(0,195,255,.2); }
+.cot-step { flex: 1; text-align: center; padding: .6rem; font-family: var(--font-head); font-size: .65rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray); background: rgba(0,195,255,.04); cursor: pointer; transition: all .25s; border-right: 1px solid rgba(0,195,255,.12); }
+.cot-step:last-child { border-right: none; }
+.cot-step.active { background: var(--cyan); color: var(--navy-deep); font-weight: 700; }
+.cot-step.done { background: rgba(0,195,255,.15); color: var(--cyan); }
+ 
+/* PANELS */
+.cot-panel { display: none; }
+.cot-panel.active { display: block; }
+ 
+/* CLIENT FORM */
+.cot-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.cot-field { display: flex; flex-direction: column; gap: .35rem; }
+.cot-field label { font-family: var(--font-ui); font-size: .78rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--cyan); }
+.cot-field input, .cot-field select { background: rgba(0,195,255,.05); border: 1px solid rgba(0,195,255,.2); border-radius: 8px; padding: .65rem 1rem; color: var(--white); font-family: var(--font-body); font-size: .9rem; outline: none; transition: border-color .25s; }
+.cot-field input:focus, .cot-field select:focus { border-color: var(--cyan); box-shadow: 0 0 10px rgba(0,195,255,.2); }
+.cot-field select option { background: var(--navy-deep); }
+.cot-full { grid-column: 1 / -1; }
+ 
+/* SERVICE CARDS */
+.srv-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.2rem; }
+.srv-card { background: rgba(0,195,255,.04); border: 1px solid rgba(0,195,255,.15); border-radius: 10px; padding: 1rem; cursor: pointer; transition: all .25s; position: relative; user-select: none; }
+.srv-card:hover { border-color: rgba(0,195,255,.45); background: rgba(0,195,255,.09); }
+.srv-card.selected { border-color: var(--cyan); background: rgba(0,195,255,.14); box-shadow: 0 0 18px rgba(0,195,255,.2); }
+.srv-card .srv-check { position: absolute; top: .7rem; right: .7rem; width: 20px; height: 20px; border-radius: 50%; border: 2px solid rgba(0,195,255,.35); display: flex; align-items: center; justify-content: center; font-size: .7rem; transition: all .2s; }
+.srv-card.selected .srv-check { background: var(--cyan); border-color: var(--cyan); color: var(--navy-deep); }
+.srv-card .srv-icon { font-size: 1.5rem; color: var(--cyan); margin-bottom: .5rem; text-shadow: 0 0 12px rgba(0,195,255,.4); }
+.srv-card .srv-name { font-family: var(--font-head); font-size: .72rem; letter-spacing: 1.5px; color: var(--white); margin-bottom: .3rem; text-transform: uppercase; }
+.srv-card .srv-desc { font-size: .76rem; color: var(--gray); line-height: 1.4; margin-bottom: .6rem; }
+.srv-card .srv-price { font-family: var(--font-head); font-size: .9rem; color: var(--cyan); }
+.srv-card .srv-unit { font-size: .68rem; color: var(--gray); }
+ 
+/* QTY CONTROLS */
+.srv-qty { display: flex; align-items: center; gap: .5rem; margin-top: .6rem; }
+.srv-qty button { width: 24px; height: 24px; border-radius: 50%; background: rgba(0,195,255,.15); border: 1px solid rgba(0,195,255,.3); color: var(--cyan); font-size: .9rem; line-height: 1; cursor: pointer; transition: all .2s; display: flex; align-items: center; justify-content: center; }
+.srv-qty button:hover { background: var(--cyan); color: var(--navy-deep); }
+.srv-qty span { font-family: var(--font-head); font-size: .85rem; color: var(--white); min-width: 20px; text-align: center; }
+ 
+/* LIVE TOTAL BAR */
+.cot-live-bar { display: flex; align-items: center; justify-content: space-between; background: rgba(0,195,255,.08); border: 1px solid rgba(0,195,255,.2); border-radius: 8px; padding: .7rem 1.2rem; margin-bottom: 1.2rem; flex-wrap: wrap; gap: .5rem; }
+.cot-live-bar .cot-live-label { font-size: .78rem; color: var(--gray); letter-spacing: 1px; text-transform: uppercase; }
+.cot-live-bar .cot-live-total { font-family: var(--font-head); font-size: 1.2rem; color: var(--cyan); text-shadow: 0 0 12px var(--cyan-glow); }
+.cot-live-bar .cot-live-count { font-size: .78rem; color: var(--gray); }
+ 
+/* PREVIEW / PRINT */
+.print-area { background: white; color: #1a1a2e; border-radius: 10px; padding: 2rem; font-family: 'Exo 2', sans-serif; }
+.print-area .ph { display: flex; align-items: flex-start; justify-content: space-between; border-bottom: 3px solid #0d1b4b; padding-bottom: 1.2rem; margin-bottom: 1.2rem; }
+.print-area .ph-logo { font-family: 'Orbitron', sans-serif; font-size: 1.1rem; font-weight: 900; color: #0d1b4b; }
+.print-area .ph-logo small { display: block; font-size: .6rem; letter-spacing: 3px; color: #4a6fa5; margin-top: .1rem; }
+.print-area .ph-meta { text-align: right; font-size: .78rem; color: #4a6fa5; line-height: 1.6; }
+.print-area .ph-meta strong { color: #0d1b4b; }
+.print-area .pinfo { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.2rem; font-size: .82rem; }
+.print-area .pinfo h4 { font-family: 'Orbitron', sans-serif; font-size: .65rem; letter-spacing: 2px; color: #00a0cc; margin-bottom: .4rem; text-transform: uppercase; }
+.print-area .pinfo p { color: #333; line-height: 1.6; }
+.print-area table { width: 100%; border-collapse: collapse; font-size: .82rem; margin-bottom: 1rem; }
+.print-area table th { background: #0d1b4b; color: #00c3ff; font-family: 'Orbitron', sans-serif; font-size: .65rem; letter-spacing: 1.5px; padding: .6rem .8rem; text-align: left; }
+.print-area table td { padding: .65rem .8rem; border-bottom: 1px solid #e0e8f0; color: #333; vertical-align: top; }
+.print-area table tr:last-child td { border-bottom: none; }
+.print-area table tr:nth-child(even) td { background: #f5f8fc; }
+.print-area .ptotals { display: flex; flex-direction: column; align-items: flex-end; gap: .3rem; margin-bottom: 1rem; }
+.print-area .prow { display: flex; gap: 2.5rem; font-size: .85rem; color: #444; }
+.print-area .prow span:last-child { min-width: 90px; text-align: right; color: #222; }
+.print-area .prow.ptotal { font-family: 'Orbitron', sans-serif; color: #0d1b4b; font-size: 1rem; border-top: 2px solid #0d1b4b; padding-top: .4rem; margin-top: .3rem; }
+.print-area .prow.ptotal span:last-child { color: #0d8aad; }
+.print-area .pnote { background: #f0f7ff; border-left: 3px solid #00c3ff; padding: .8rem 1rem; border-radius: 4px; font-size: .78rem; color: #444; line-height: 1.6; }
+.print-area .pfooter { margin-top: 1.2rem; border-top: 1px solid #dde6f0; padding-top: .8rem; text-align: center; font-size: .72rem; color: #888; }
+ 
+/* NAV BUTTONS */
+.cot-nav { display: flex; gap: .8rem; justify-content: flex-end; margin-top: 1.2rem; }
+ 
+/* NO SERVICES WARNING */
+.no-srv-warn { text-align: center; padding: 1.5rem; color: var(--warning); font-size: .85rem; display: none; }
+ 
+@media print {
+  body > *:not(#modalOverlay) { display: none !important; }
+  #modalOverlay { position: static !important; background: none !important; padding: 0 !important; }
+  #modalContent { box-shadow: none !important; border: none !important; max-height: none !important; }
+  .modal-header, .modal-footer, .cot-steps, .cot-nav, #panelSelector, #panelClient, .no-srv-warn { display: none !important; }
+  #panelPreview { display: block !important; }
+  .print-area { border-radius: 0 !important; padding: 1rem !important; }
+  .cot-live-bar { display: none !important; }
+}
+@media(max-width:600px){
+  .cot-form-grid { grid-template-columns: 1fr; }
+  .srv-grid { grid-template-columns: 1fr 1fr; }
+  .print-area .pinfo { grid-template-columns: 1fr; }
+  .print-area .ph { flex-direction: column; gap: .8rem; }
+  .print-area .ph-meta { text-align: left; }
+}
+</style>
+ 
 <div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
   <div class="modal" id="modalContent">
     <div class="modal-header">
-      <div class="modal-title"><i class="fas fa-file-invoice-dollar" style="margin-right:.6rem"></i>COTIZACIÓN PROFESIONAL DE SERVICIOS</div>
+      <div class="modal-title"><i class="fas fa-file-invoice-dollar" style="margin-right:.6rem"></i>COTIZACIÓN DE SERVICIOS — GNC</div>
       <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
     </div>
+ 
     <div class="modal-body">
-      <div class="invoice-meta">
-        <div class="invoice-meta-item"><span>No. Cotización</span><strong>COT-2026-041</strong></div>
-        <div class="invoice-meta-item"><span>Fecha</span><strong>26/03/2026</strong></div>
-        <div class="invoice-meta-item"><span>Válida hasta</span><strong>26/04/2026</strong></div>
-        <div class="invoice-meta-item"><span>Moneda</span><strong>USD ($)</strong></div>
+      <!-- STEPS -->
+      <div class="cot-steps" id="cotSteps">
+        <div class="cot-step active" id="step1"><i class="fas fa-user"></i> 1. Datos</div>
+        <div class="cot-step" id="step2"><i class="fas fa-list-check"></i> 2. Servicios</div>
+        <div class="cot-step" id="step3"><i class="fas fa-file-invoice"></i> 3. Vista Previa</div>
       </div>
-      <div class="invoice-header">
-        <div class="invoice-from"><h4>EMITIDO POR:</h4><p><strong style="color:var(--white)">Servicios TI Profesionales</strong><br>RUC: 8-123-4567<br>David, Chiriquí, Panamá<br>Tel: +507 6500-0000<br><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e2968bcc918790948b818b8d91a2878f838b8ecc818d8f">[email&#160;protected]</a></p></div>
-        <div class="invoice-to"><h4>PARA:</h4><p><strong style="color:var(--white)">Grupo Navarro Comunicaciones S.A.</strong><br>Emisora & Espacio Informativo<br>Av. Domingo Díaz, Barrio Bolívar<br>David, Chiriquí, Panamá<br><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="660f080009260807100714140905090b13080f0507050f090803154805090b">[email&#160;protected]</a></p></div>
+ 
+      <!-- PANEL 1: DATOS DEL CLIENTE -->
+      <div class="cot-panel active" id="panelClient">
+        <p style="font-size:.85rem;color:var(--gray);margin-bottom:1.2rem">Ingresa los datos del cliente para generar la cotización personalizada.</p>
+        <div class="cot-form-grid">
+          <div class="cot-field"><label>Nombre *</label><input id="cot-nombre" type="text" placeholder="Ej: Juan"/></div>
+          <div class="cot-field"><label>Apellido *</label><input id="cot-apellido" type="text" placeholder="Ej: Pérez"/></div>
+          <div class="cot-field"><label>Empresa / Organización</label><input id="cot-empresa" type="text" placeholder="Ej: Mi Empresa S.A."/></div>
+          <div class="cot-field"><label>RUC / Cédula</label><input id="cot-ruc" type="text" placeholder="Ej: 8-000-0000"/></div>
+          <div class="cot-field"><label>Correo Electrónico *</label><input id="cot-email" type="email" placeholder="cliente@correo.com"/></div>
+          <div class="cot-field"><label>Teléfono</label><input id="cot-telefono" type="tel" placeholder="+507 6000-0000"/></div>
+          <div class="cot-field cot-full"><label>Dirección</label><input id="cot-direccion" type="text" placeholder="Ej: David, Chiriquí, Panamá"/></div>
+          <div class="cot-field">
+            <label>Aplicar Descuento</label>
+            <select id="cot-descuento">
+              <option value="0">Sin descuento</option>
+              <option value="5">5% — Cliente frecuente</option>
+              <option value="10">10% — Paquete especial</option>
+              <option value="15">15% — Contrato anual</option>
+            </select>
+          </div>
+          <div class="cot-field">
+            <label>Validez de la cotización</label>
+            <select id="cot-validez">
+              <option value="15">15 días</option>
+              <option value="30" selected>30 días</option>
+              <option value="45">45 días</option>
+              <option value="60">60 días</option>
+            </select>
+          </div>
+        </div>
+        <div class="cot-nav">
+          <button class="btn-primary" onclick="cotGoStep2()"><i class="fas fa-arrow-right"></i> Continuar</button>
+        </div>
       </div>
-      <table class="invoice-table">
-        <thead><tr><th>#</th><th>Descripción del Servicio</th><th>Cant.</th><th>Precio Unit.</th><th>Total</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td><strong style="color:var(--white)">Diseño y Desarrollo Web Corporativo</strong><br><span style="font-size:.78rem">Sitio web 5 páginas, responsive, SEO básico, panel de administración</span></td><td>1</td><td>$450.00</td><td>$450.00</td></tr>
-          <tr><td>2</td><td><strong style="color:var(--white)">Hosting Web Compartido – Anual</strong><br><span style="font-size:.78rem">Proveedor: DigitalOcean / cPanel · 10 GB SSD · SSL incluido · Uptime 99.9%</span></td><td>1</td><td>$120.00</td><td>$120.00</td></tr>
-          <tr><td>3</td><td><strong style="color:var(--white)">Registro de Dominio .com – Anual</strong><br><span style="font-size:.78rem">navarrocomunicaciones.com · Incluye privacidad WHOIS</span></td><td>1</td><td>$15.00</td><td>$15.00</td></tr>
-          <tr><td>4</td><td><strong style="color:var(--white)">Servidor de Datos Linux (VPS) – Anual</strong><br><span style="font-size:.78rem">Ubuntu 22.04 LTS · 2vCPU · 4GB RAM · SSH + FTP configurado · Backups diarios</span></td><td>1</td><td>$240.00</td><td>$240.00</td></tr>
-          <tr><td>5</td><td><strong style="color:var(--white)">Mantenimiento Web Mensual (6 meses)</strong><br><span style="font-size:.78rem">Actualizaciones, copias de seguridad, soporte técnico, optimización SEO</span></td><td>6</td><td>$60.00</td><td>$360.00</td></tr>
-          <tr><td>6</td><td><strong style="color:var(--white)">Implementación Sistema de Streaming</strong><br><span style="font-size:.78rem">Servidor de transmisión online + app móvil + estadísticas en tiempo real</span></td><td>1</td><td>$800.00</td><td>$800.00</td></tr>
-        </tbody>
-      </table>
-      <div class="invoice-totals">
-        <div class="invoice-row"><span>Subtotal:</span><span>$1,985.00</span></div>
-        <div class="invoice-row"><span>ITBMS (7%):</span><span>$138.95</span></div>
-        <div class="invoice-row"><span>Descuento (5%):</span><span>-$99.25</span></div>
-        <div class="invoice-row total"><span>TOTAL A PAGAR:</span><span>$2,024.70</span></div>
+ 
+      <!-- PANEL 2: SELECCIÓN DE SERVICIOS -->
+      <div class="cot-panel" id="panelSelector">
+        <p style="font-size:.85rem;color:var(--gray);margin-bottom:1rem">Selecciona los servicios que deseas incluir en la cotización y ajusta las cantidades.</p>
+        <div class="cot-live-bar">
+          <div>
+            <div class="cot-live-label">Servicios seleccionados</div>
+            <div class="cot-live-count" id="cot-count">0 servicio(s)</div>
+          </div>
+          <div style="text-align:right">
+            <div class="cot-live-label">Total estimado (sin ITBMS)</div>
+            <div class="cot-live-total" id="cot-total-live">$0.00</div>
+          </div>
+        </div>
+        <div class="srv-grid" id="srvGrid"><!-- Rendered by JS --></div>
+        <div class="no-srv-warn" id="noSrvWarn"><i class="fas fa-exclamation-triangle"></i> Debes seleccionar al menos un servicio.</div>
+        <div class="cot-nav">
+          <button class="btn-outline" onclick="cotGoStep(1)"><i class="fas fa-arrow-left"></i> Atrás</button>
+          <button class="btn-primary" onclick="cotGoStep3()"><i class="fas fa-file-invoice"></i> Ver Cotización</button>
+        </div>
       </div>
-      <div class="invoice-note">
-        <strong>📋 Condiciones:</strong> Pago 50% al inicio del proyecto · 50% a la entrega final.<br>
-        <strong>🗄️ Base de Datos:</strong> Incluye integración Firebase Firestore para gestión de mensajes y noticias en tiempo real.<br>
-        <strong>✅ Garantía:</strong> 30 días de soporte post-entrega incluidos en todos los servicios.
+ 
+      <!-- PANEL 3: PREVIEW IMPRIMIBLE -->
+      <div class="cot-panel" id="panelPreview">
+        <div class="print-area" id="printArea"><!-- Built by JS --></div>
+        <div class="cot-nav">
+          <button class="btn-outline" onclick="cotGoStep(2)"><i class="fas fa-arrow-left"></i> Modificar</button>
+          <button class="btn-outline" onclick="printCot()"><i class="fas fa-print"></i> Imprimir / PDF</button>
+          <button class="btn-primary" onclick="closeModal();showPage('contactos')"><i class="fas fa-handshake"></i> Aceptar</button>
+        </div>
       </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn-outline" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button>
-      <button class="btn-primary" onclick="closeModal();showPage('contactos')"><i class="fas fa-handshake"></i> Aceptar Cotización</button>
-    </div>
+    </div><!-- /.modal-body -->
   </div>
 </div>
-
+ 
 <!-- TOAST PROTECCIÓN -->
 <div class="protect-toast" id="protectToast">
   <i class="fas fa-shield-alt"></i> &nbsp;CONTENIDO PROTEGIDO · GRUPO NAVARRO COMUNICACIONES S.A.
 </div>
-
+ 
 <!-- ===========================================================
      JAVASCRIPT PRINCIPAL + FIREBASE
 =========================================================== -->
@@ -1358,14 +1492,14 @@ const firebaseConfig = {
   messagingSenderId: "13899466919",
   appId:             "1:13899466919:web:b382d18b5a7b3249103382"
 };
-
+ 
 /* ============================================================
    FIREBASE INIT
 ============================================================ */
 let db = null;
 let auth = null;
 let firebaseReady = false;
-
+ 
 function initFirebase() {
   try {
     if (typeof firebase === 'undefined') {
@@ -1378,7 +1512,7 @@ function initFirebase() {
     }
     db   = firebase.firestore();
     auth = firebase.auth();
-
+ 
     // Test connection with a lightweight read
     db.collection('_ping').doc('test').set({ ts: firebase.firestore.FieldValue.serverTimestamp() })
       .then(() => {
@@ -1394,34 +1528,34 @@ function initFirebase() {
         loadNews();
         console.warn('Firestore ping:', err.message);
       });
-
+ 
     // Listen to auth state
     auth.onAuthStateChanged(user => {
       if (document.getElementById('page-admin').classList.contains('active')) {
         renderAdminState(user);
       }
     });
-
+ 
   } catch(e) {
     setFbStatus('error', 'Config. inválida');
     console.error('Firebase init error:', e);
   }
 }
-
+ 
 function setFbStatus(state, text) {
   const el = document.getElementById('fb-status');
   el.className = '';
   el.classList.add(state);
   document.getElementById('fb-status-text').textContent = text;
 }
-
+ 
 // Init on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
   initFirebase();
   initFadeAnimations();
   handleHashNavigation();
 });
-
+ 
 /* ============================================================
    TRACK VISIT (Firestore analytics)
 ============================================================ */
@@ -1435,7 +1569,7 @@ async function trackVisit() {
     }, { merge: true });
   } catch(e) { /* silent */ }
 }
-
+ 
 /* ============================================================
    NOTICIAS ESTÁTICAS (fallback cuando Firebase no está configurado)
 ============================================================ */
@@ -1474,30 +1608,30 @@ const staticNews = [
     thumbBg: "linear-gradient(135deg,#0a2e1e,#0a0f2e)"
   }
 ];
-
+ 
 /* ============================================================
    LOAD NEWS (from Firestore, fallback to static)
 ============================================================ */
 async function loadNews() {
   const grid = document.getElementById('newsGrid');
   if (!grid) return;
-
+ 
   if (!firebaseReady || !db) {
     renderNewsCards(staticNews, grid);
     return;
   }
-
+ 
   try {
     const snap = await db.collection('noticias')
       .orderBy('timestamp', 'desc')
       .limit(3)
       .get();
-
+ 
     if (snap.empty) {
       renderNewsCards(staticNews, grid);
       return;
     }
-
+ 
     const news = snap.docs.map(d => ({ id: d.id, ...d.data() }));
     renderNewsCards(news, grid);
   } catch(e) {
@@ -1505,7 +1639,7 @@ async function loadNews() {
     renderNewsCards(staticNews, grid);
   }
 }
-
+ 
 function renderNewsCards(newsArr, grid) {
   grid.innerHTML = '';
   newsArr.forEach(n => {
@@ -1530,7 +1664,7 @@ function renderNewsCards(newsArr, grid) {
   });
   setTimeout(initFadeAnimations, 50);
 }
-
+ 
 function formatDate(ts) {
   if (!ts) return '–';
   try {
@@ -1538,7 +1672,7 @@ function formatDate(ts) {
     return d.toLocaleDateString('es-PA', { day: '2-digit', month: 'short', year: 'numeric' });
   } catch { return '–'; }
 }
-
+ 
 /* ============================================================
    CONTACT FORM → FIRESTORE
 ============================================================ */
@@ -1547,9 +1681,9 @@ async function submitContact(e) {
   const btn = document.getElementById('submitBtn');
   const errDiv = document.getElementById('formError');
   const sucDiv = document.getElementById('formSuccess');
-
+ 
   errDiv.classList.remove('show');
-
+ 
   const data = {
     nombre:   document.getElementById('inp-nombre').value.trim(),
     apellido: document.getElementById('inp-apellido').value.trim(),
@@ -1560,11 +1694,11 @@ async function submitContact(e) {
     leido:    false,
     timestamp: null
   };
-
+ 
   // Loading state
   btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
   btn.classList.add('btn-loading');
-
+ 
   if (firebaseReady && db) {
     try {
       data.timestamp = firebase.firestore.FieldValue.serverTimestamp();
@@ -1580,11 +1714,11 @@ async function submitContact(e) {
     await new Promise(r => setTimeout(r, 900));
     showFormSuccess('Mensaje registrado localmente. Configure Firebase para persistencia.');
   }
-
+ 
   btn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar Mensaje';
   btn.classList.remove('btn-loading');
 }
-
+ 
 function showFormSuccess(customMsg) {
   const form = document.getElementById('contactForm');
   const suc  = document.getElementById('formSuccess');
@@ -1592,7 +1726,7 @@ function showFormSuccess(customMsg) {
   if (customMsg) suc.innerHTML = `<i class="fas fa-check-circle" style="font-size:1.5rem;display:block;margin-bottom:.5rem"></i>¡MENSAJE ENVIADO!<br><span style="font-size:.8rem;color:var(--gray);font-family:var(--font-body)">${customMsg}</span>`;
   suc.classList.add('show');
 }
-
+ 
 /* ============================================================
    ADMIN AUTH
 ============================================================ */
@@ -1609,15 +1743,15 @@ function renderAdminState(user) {
     document.getElementById('adminDashboard').style.display = 'none';
   }
 }
-
+ 
 async function adminLogin() {
   const email = document.getElementById('adminEmail').value.trim();
   const pass  = document.getElementById('adminPass').value;
   const errEl = document.getElementById('loginError');
   errEl.style.display = 'none';
-
+ 
   if (!auth) { errEl.textContent = 'Firebase no inicializado. Configure firebaseConfig.'; errEl.style.display = 'block'; return; }
-
+ 
   try {
     await auth.signInWithEmailAndPassword(email, pass);
     // onAuthStateChanged will handle the rest
@@ -1633,11 +1767,11 @@ async function adminLogin() {
     errEl.style.display = 'block';
   }
 }
-
+ 
 function adminLogout() {
   if (auth) auth.signOut();
 }
-
+ 
 /* ============================================================
    ADMIN STATS
 ============================================================ */
@@ -1653,14 +1787,14 @@ async function loadAdminStats() {
     const unread  = msgSnap.docs.filter(d => !d.data().leido).length;
     const nots    = notSnap.size;
     const visits  = statsDoc.exists ? (statsDoc.data().total || 0) : 0;
-
+ 
     document.getElementById('stat-total').textContent    = total;
     document.getElementById('stat-new').textContent      = unread;
     document.getElementById('stat-noticias').textContent = nots;
     document.getElementById('stat-visits').textContent   = visits.toLocaleString();
   } catch(e) { console.warn('Stats error:', e.message); }
 }
-
+ 
 /* ============================================================
    LOAD MESSAGES (Admin)
 ============================================================ */
@@ -1668,7 +1802,7 @@ async function loadMessages() {
   const wrap = document.getElementById('messagesWrap');
   if (!wrap || !db) return;
   wrap.innerHTML = '<div class="spinner-wrap"><div class="spinner"></div><p style="margin-top:1rem;font-size:.85rem">Cargando...</p></div>';
-
+ 
   try {
     const snap = await db.collection('mensajes').orderBy('timestamp','desc').limit(50).get();
     if (snap.empty) {
@@ -1691,7 +1825,7 @@ async function loadMessages() {
         </td>
       </tr>`;
     }).join('');
-
+ 
     wrap.innerHTML = `
       <div class="msg-table-wrap">
         <table class="msg-table">
@@ -1703,7 +1837,7 @@ async function loadMessages() {
     wrap.innerHTML = `<div class="empty-state"><i class="fas fa-exclamation-triangle"></i><p>Error al cargar: ${e.message}<br><small>Asegúrate de configurar las reglas de Firestore.</small></p></div>`;
   }
 }
-
+ 
 async function viewMessage(id) {
   if (!db) return;
   try {
@@ -1727,7 +1861,7 @@ async function viewMessage(id) {
     }
   } catch(e) { alert('Error: ' + e.message); }
 }
-
+ 
 async function markRead(id, btn) {
   if (!db) return;
   try {
@@ -1737,7 +1871,7 @@ async function markRead(id, btn) {
     loadAdminStats();
   } catch(e) { alert('Error: ' + e.message); }
 }
-
+ 
 async function deleteMessage(id, btn) {
   if (!confirm('¿Eliminar este mensaje de Firebase? Esta acción no se puede deshacer.')) return;
   if (!db) return;
@@ -1747,13 +1881,13 @@ async function deleteMessage(id, btn) {
     loadAdminStats();
   } catch(e) { alert('Error: ' + e.message); }
 }
-
+ 
 function closeMsgDetail(e) {
   if (!e || e.target === document.getElementById('msgDetailOverlay')) {
     document.getElementById('msgDetailOverlay').classList.remove('open');
   }
 }
-
+ 
 /* ============================================================
    LOAD NOTICIAS (Admin)
 ============================================================ */
@@ -1788,7 +1922,7 @@ async function loadNoticiasAdmin() {
     wrap.innerHTML = `<div class="empty-state"><i class="fas fa-exclamation-triangle"></i><p>Error: ${e.message}</p></div>`;
   }
 }
-
+ 
 async function deleteNoticia(id, btn) {
   if (!confirm('¿Eliminar esta noticia de Firebase?')) return;
   try {
@@ -1798,7 +1932,7 @@ async function deleteNoticia(id, btn) {
     loadNews();
   } catch(e) { alert('Error: ' + e.message); }
 }
-
+ 
 /* ============================================================
    PUBLISH NOTICIA (Admin)
 ============================================================ */
@@ -1810,18 +1944,18 @@ async function publishNoticia() {
   const badgeColor= document.getElementById('n-badgeColor').value;
   const icono     = document.getElementById('n-icono').value.trim() || 'fa-newspaper';
   const lectura   = document.getElementById('n-lectura').value.trim() || '3 min lectura';
-
+ 
   if (!titulo || !categoria || !extracto) {
     alert('Por favor completa los campos obligatorios: Título, Categoría y Extracto.');
     return;
   }
-
+ 
   if (!db) { alert('Firebase no está inicializado. Configure firebaseConfig.'); return; }
-
+ 
   const btn = document.getElementById('publishBtn');
   btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Publicando...';
   btn.classList.add('btn-loading');
-
+ 
   try {
     await db.collection('noticias').add({
       titulo, categoria, extracto, badge, badgeColor,
@@ -1829,17 +1963,17 @@ async function publishNoticia() {
       lectura,
       timestamp: firebase.firestore.FieldValue.serverTimestamp()
     });
-
+ 
     // Clear form
     ['n-titulo','n-categoria','n-extracto','n-badge','n-icono','n-lectura'].forEach(id => {
       const el = document.getElementById(id);
       if (el.tagName === 'SELECT') el.selectedIndex = 0;
       else el.value = '';
     });
-
+ 
     document.getElementById('noticiaSuccess').style.display = 'block';
     setTimeout(() => document.getElementById('noticiaSuccess').style.display = 'none', 4000);
-
+ 
     loadNoticiasAdmin();
     loadAdminStats();
     loadNews(); // refresh public news
@@ -1850,7 +1984,7 @@ async function publishNoticia() {
     btn.classList.remove('btn-loading');
   }
 }
-
+ 
 /* ============================================================
    ADMIN TABS
 ============================================================ */
@@ -1860,7 +1994,7 @@ function switchAdminTab(tabId, btn) {
   btn.classList.add('active');
   document.getElementById('tab-' + tabId).classList.add('active');
 }
-
+ 
 /* ============================================================
    UTILITY
 ============================================================ */
@@ -1868,7 +2002,7 @@ function escHtml(str) {
   if (!str) return '';
   return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
-
+ 
 /* ============================================================
    SPA NAVIGATION
 ============================================================ */
@@ -1883,20 +2017,20 @@ function showPage(page) {
     a.classList.toggle('active', a.getAttribute('data-page') === page);
   });
   setTimeout(initFadeAnimations, 100);
-
+ 
   // Handle admin page
   if (page === 'admin' && auth) {
     renderAdminState(auth.currentUser);
   }
   return false;
 }
-
+ 
 function handleHashNavigation() {
   if (window.location.hash === '#admin') {
     showPage('admin');
   }
 }
-
+ 
 function toggleMobileNav() {
   const nav = document.getElementById('mobileNav');
   const ham = document.getElementById('hamburger');
@@ -1907,14 +2041,14 @@ function closeMobileNav() {
   document.getElementById('mobileNav').classList.remove('open');
   document.getElementById('hamburger').classList.remove('open');
 }
-
+ 
 /* ============================================================
    NAVBAR SCROLL
 ============================================================ */
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
 });
-
+ 
 /* ============================================================
    FADE-UP ON SCROLL
 ============================================================ */
@@ -1926,7 +2060,7 @@ function initFadeAnimations() {
   }, { threshold: 0.12 });
   document.querySelectorAll('.fade-up:not(.visible)').forEach(el => observer.observe(el));
 }
-
+ 
 /* ============================================================
    COUNTER ANIMATION
 ============================================================ */
@@ -1950,7 +2084,237 @@ const statsObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.3 });
 const statsSection = document.querySelector('.stats-section');
 if (statsSection) statsObserver.observe(statsSection);
-
+ 
+/* ============================================================
+   COTIZACIÓN INTERACTIVA — SERVICIOS GNC
+============================================================ */
+const GNC_SERVICES = [
+  { id:'cuna',    icon:'fa-volume-up',      name:'Cuña Radial',             desc:'Grabación y producción de spot publicitario de 30 seg.',           price:45,   unit:'por cuña',   qty:1 },
+  { id:'mencion', icon:'fa-microphone',     name:'Mención en Vivo',         desc:'Referencia directa al aire por locutor oficial (15–30 seg).',      price:25,   unit:'por mención',qty:1 },
+  { id:'video',   icon:'fa-film',           name:'Video Corporativo',        desc:'Producción audiovisual institucional completa (2–5 min).',         price:200,  unit:'por video',  qty:1 },
+  { id:'evento',  icon:'fa-calendar-star',  name:'Cobertura de Evento',      desc:'Equipo en campo + transmisión + nota informativa (4 horas).',     price:350,  unit:'por evento', qty:1 },
+  { id:'redes',   icon:'fa-mobile-alt',     name:'Gestión Redes Sociales',   desc:'Publicaciones diarias, diseño y análisis de métricas.',           price:150,  unit:'por mes',    qty:1 },
+  { id:'web',     icon:'fa-laptop-code',    name:'Sitio Web Corporativo',    desc:'Diseño responsive + SEO básico, entrega en 15 días.',             price:450,  unit:'por proyecto',qty:1 },
+  { id:'stream',  icon:'fa-broadcast-tower',name:'Streaming en Vivo',        desc:'Transmisión digital multiplataforma en tiempo real.',             price:250,  unit:'por evento', qty:1 },
+  { id:'mkt',     icon:'fa-chart-line',     name:'Marketing Digital',        desc:'Estrategia de contenido digital + posicionamiento SEO local.',    price:180,  unit:'por mes',    qty:1 },
+  { id:'nota',    icon:'fa-newspaper',      name:'Nota de Prensa / Comunicado',desc:'Redacción, edición y publicación en plataforma digital GNC.',   price:80,   unit:'por nota',   qty:1 },
+  { id:'radio_p', icon:'fa-satellite-dish', name:'Paquete Radio Mensual',    desc:'8 cuñas + 4 menciones al día durante todo el mes.',              price:480,  unit:'por mes',    qty:1 },
+  { id:'foto',    icon:'fa-camera',         name:'Sesión Fotográfica',       desc:'Reportaje fotográfico profesional para eventos o corporativo.',   price:120,  unit:'por sesión', qty:1 },
+  { id:'hosting', icon:'fa-server',         name:'Hosting + Dominio Anual',  desc:'10 GB SSD, SSL, correos ilimitados, uptime 99.9 %.',             price:135,  unit:'por año',    qty:1 },
+];
+ 
+// State
+let cotState = { step: 1, selected: {} };  // selected: { id: qty }
+ 
+function renderSrvGrid() {
+  const grid = document.getElementById('srvGrid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  GNC_SERVICES.forEach(s => {
+    const sel = !!cotState.selected[s.id];
+    const qty = cotState.selected[s.id] || s.qty;
+    const div = document.createElement('div');
+    div.className = 'srv-card' + (sel ? ' selected' : '');
+    div.id = 'srv-' + s.id;
+    div.innerHTML = `
+      <div class="srv-check">${sel ? '<i class="fas fa-check"></i>' : ''}</div>
+      <div class="srv-icon"><i class="fas ${s.icon}"></i></div>
+      <div class="srv-name">${s.name}</div>
+      <div class="srv-desc">${s.desc}</div>
+      <div class="srv-price">$${s.price.toFixed(2)} <span class="srv-unit">${s.unit}</span></div>
+      ${sel ? `<div class="srv-qty">
+        <button onclick="event.stopPropagation();cotQty('${s.id}',-1)">−</button>
+        <span id="qty-${s.id}">${qty}</span>
+        <button onclick="event.stopPropagation();cotQty('${s.id}',1)">+</button>
+      </div>` : ''}
+    `;
+    div.onclick = () => cotToggle(s.id);
+    grid.appendChild(div);
+  });
+  updateLiveBar();
+}
+ 
+function cotToggle(id) {
+  if (cotState.selected[id]) {
+    delete cotState.selected[id];
+  } else {
+    const s = GNC_SERVICES.find(x => x.id === id);
+    cotState.selected[id] = s.qty;
+  }
+  renderSrvGrid();
+}
+ 
+function cotQty(id, delta) {
+  if (!cotState.selected[id]) return;
+  const nv = Math.max(1, cotState.selected[id] + delta);
+  cotState.selected[id] = nv;
+  const el = document.getElementById('qty-' + id);
+  if (el) el.textContent = nv;
+  updateLiveBar();
+}
+ 
+function updateLiveBar() {
+  let total = 0, count = 0;
+  Object.keys(cotState.selected).forEach(id => {
+    const s = GNC_SERVICES.find(x => x.id === id);
+    if (s) { total += s.price * cotState.selected[id]; count++; }
+  });
+  const disc = +document.getElementById('cot-descuento')?.value || 0;
+  const after = total * (1 - disc / 100);
+  document.getElementById('cot-total-live').textContent = '$' + after.toFixed(2);
+  document.getElementById('cot-count').textContent = count + ' servicio(s)';
+}
+ 
+function cotGoStep(n) {
+  cotState.step = n;
+  document.querySelectorAll('.cot-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.cot-step').forEach((s, i) => {
+    s.classList.remove('active','done');
+    if (i + 1 < n) s.classList.add('done');
+    else if (i + 1 === n) s.classList.add('active');
+  });
+  const panels = { 1: 'panelClient', 2: 'panelSelector', 3: 'panelPreview' };
+  const el = document.getElementById(panels[n]);
+  if (el) el.classList.add('active');
+}
+ 
+function cotGoStep2() {
+  const nombre = document.getElementById('cot-nombre').value.trim();
+  const email  = document.getElementById('cot-email').value.trim();
+  if (!nombre || !email) {
+    alert('Por favor completa Nombre y Correo Electrónico.');
+    return;
+  }
+  cotGoStep(2);
+  renderSrvGrid();
+}
+ 
+function cotGoStep3() {
+  const sel = Object.keys(cotState.selected);
+  const warn = document.getElementById('noSrvWarn');
+  if (sel.length === 0) {
+    warn.style.display = 'block';
+    return;
+  }
+  warn.style.display = 'none';
+  buildPreview();
+  cotGoStep(3);
+}
+ 
+function buildPreview() {
+  const nombre   = document.getElementById('cot-nombre').value.trim();
+  const apellido = document.getElementById('cot-apellido').value.trim();
+  const empresa  = document.getElementById('cot-empresa').value.trim();
+  const ruc      = document.getElementById('cot-ruc').value.trim();
+  const email    = document.getElementById('cot-email').value.trim();
+  const telefono = document.getElementById('cot-telefono').value.trim();
+  const dir      = document.getElementById('cot-direccion').value.trim();
+  const disc     = +document.getElementById('cot-descuento').value;
+  const validez  = document.getElementById('cot-validez').value;
+  const hoy      = new Date();
+  const fmtDate  = d => d.toLocaleDateString('es-PA', { day:'2-digit', month:'2-digit', year:'numeric' });
+  const vence    = new Date(hoy); vence.setDate(vence.getDate() + +validez);
+  const cotNum   = 'COT-' + hoy.getFullYear() + '-' + String(hoy.getMonth()+1).padStart(2,'0') + String(hoy.getDate()).padStart(2,'0') + String(Math.floor(Math.random()*900)+100);
+ 
+  let rows = '', subtotal = 0, idx = 1;
+  Object.keys(cotState.selected).forEach(id => {
+    const s = GNC_SERVICES.find(x => x.id === id);
+    if (!s) return;
+    const qty = cotState.selected[id];
+    const tot = s.price * qty;
+    subtotal += tot;
+    rows += `<tr>
+      <td>${idx++}</td>
+      <td><strong>${s.name}</strong><br><span style="font-size:.75rem;color:#666">${s.desc}</span></td>
+      <td style="text-align:center">${qty}</td>
+      <td style="text-align:right">$${s.price.toFixed(2)}</td>
+      <td style="text-align:right;font-weight:600">$${tot.toFixed(2)}</td>
+    </tr>`;
+  });
+ 
+  const descMonto = subtotal * disc / 100;
+  const base      = subtotal - descMonto;
+  const itbms     = base * 0.07;
+  const total     = base + itbms;
+ 
+  document.getElementById('printArea').innerHTML = `
+    <div class="ph">
+      <div>
+        <div class="ph-logo">📡 Grupo Navarro Comunicaciones S.A.<small>EMISORA & ESPACIO INFORMATIVO · CHIRIQUÍ, PANAMÁ</small></div>
+        <div style="font-size:.75rem;color:#4a6fa5;margin-top:.3rem">Tel: +507 6400-0000 · info@navarrocomunicaciones.com</div>
+      </div>
+      <div class="ph-meta">
+        <div><strong>N° Cotización:</strong> ${cotNum}</div>
+        <div><strong>Fecha:</strong> ${fmtDate(hoy)}</div>
+        <div><strong>Válida hasta:</strong> ${fmtDate(vence)}</div>
+        <div><strong>Moneda:</strong> USD ($)</div>
+      </div>
+    </div>
+ 
+    <div class="pinfo">
+      <div>
+        <h4>Emitido por:</h4>
+        <p><strong>Grupo Navarro Comunicaciones S.A.</strong><br>
+        RUC: PE-8-1234-56789<br>
+        Av. Domingo Díaz, Barrio Bolívar<br>
+        David, Chiriquí, Panamá<br>
+        Tel: +507 6400-0000</p>
+      </div>
+      <div>
+        <h4>Para:</h4>
+        <p><strong>${nombre} ${apellido}</strong><br>
+        ${empresa ? empresa + '<br>' : ''}
+        ${ruc ? 'RUC / Cédula: ' + ruc + '<br>' : ''}
+        ${email}<br>
+        ${telefono || ''}
+        ${dir ? '<br>' + dir : ''}</p>
+      </div>
+    </div>
+ 
+    <table>
+      <thead><tr><th>#</th><th>Descripción</th><th style="text-align:center">Cant.</th><th style="text-align:right">P. Unit.</th><th style="text-align:right">Total</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+ 
+    <div class="ptotals">
+      <div class="prow"><span>Subtotal:</span><span>$${subtotal.toFixed(2)}</span></div>
+      ${disc > 0 ? `<div class="prow"><span>Descuento (${disc}%):</span><span>−$${descMonto.toFixed(2)}</span></div>` : ''}
+      <div class="prow"><span>ITBMS (7%):</span><span>$${itbms.toFixed(2)}</span></div>
+      <div class="prow ptotal"><span>TOTAL A PAGAR:</span><span>$${total.toFixed(2)}</span></div>
+    </div>
+ 
+    <div class="pnote">
+      <strong>📋 Condiciones de pago:</strong> 50% al inicio · 50% a la entrega o según acuerdo.<br>
+      <strong>✅ Garantía:</strong> 30 días de soporte post-servicio incluidos.<br>
+      <strong>📌 Nota:</strong> Esta cotización es válida por ${validez} días a partir de la fecha de emisión.
+    </div>
+ 
+    <div class="pfooter">
+      Grupo Navarro Comunicaciones S.A. · David, Chiriquí, Panamá · Documento generado el ${fmtDate(hoy)}
+    </div>
+  `;
+}
+ 
+function printCot() {
+  window.print();
+}
+ 
+// Reset state when modal opens
+const _origOpenModal = typeof openModal === 'function' ? openModal : null;
+function openModal() {
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  // Reset to step 1
+  cotState = { step: 1, selected: {} };
+  cotGoStep(1);
+  if (firebaseReady && db) {
+    db.collection('estadisticas').doc('cotizaciones').set({
+      vistas: firebase.firestore.FieldValue.increment(1),
+      ultima: firebase.firestore.FieldValue.serverTimestamp()
+    }, { merge: true }).catch(()=>{});
+  }
+}
+ 
 /* ============================================================
    PLAN TOGGLE
 ============================================================ */
@@ -1964,7 +2328,7 @@ function togglePlan() {
   document.getElementById('price-pro').innerHTML   = (isAnnual ? prices.pro.annual   : prices.pro.monthly)   + sfx;
   document.getElementById('price-corp').innerHTML  = (isAnnual ? prices.corp.annual  : prices.corp.monthly)  + sfx;
 }
-
+ 
 /* ============================================================
    MODAL
 ============================================================ */
@@ -1987,7 +2351,7 @@ function closeModalOutside(e) {
   if (e.target === document.getElementById('modalOverlay')) closeModal();
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeMsgDetail(); }});
-
+ 
 /* ============================================================
    PROTECCIÓN
 ============================================================ */
@@ -2012,7 +2376,7 @@ document.addEventListener('selectstart', e => {
   e.preventDefault();
 });
 document.addEventListener('dragstart', e => e.preventDefault());
-
+ 
 /* ============================================================
    CANVAS PARTICLES
 ============================================================ */
